@@ -1,18 +1,20 @@
 /**
  * =========================================================
- * 🎯 FINAL CTA — LEADYIA WEBSITE
+ * 🎯 FINAL CTA — LEADYIA WEBSITE (ENTERPRISE)
  * =========================================================
  *
- * 🎯 Função:
- * - Encerrar a landing com clareza e autoridade
- * - Reforçar valor percebido
- * - Direcionar para conversão sem pressão artificial
+ * 📄 Arquivo:
+ * src/components/landing/CTA.jsx
  *
- * 🧠 Estratégia:
- * - Copy institucional
- * - Visual premium
- * - Sem contraste agressivo
- * - Mesmo sistema visual do Hero
+ * 🎯 Função:
+ * - Encerrar a landing com autoridade estratégica
+ * - Tornar a decisão óbvia para o decisor
+ * - Mostrar o custo de NÃO agir
+ *
+ * 🧠 Princípio:
+ * - Sem pressão artificial
+ * - Sem urgência falsa
+ * - Apenas lógica de negócio clara
  */
 
 import React from "react";
@@ -21,10 +23,15 @@ export default function CTA() {
   return (
     <section
       id="cta"
-      className="relative overflow-hidden py-32 text-white"
+      className="
+        relative
+        overflow-hidden
+        py-36
+        text-white
+      "
     >
       {/* =====================================================
-          BACKGROUND FINAL (CONTINUIDADE VISUAL)
+          BACKGROUND — CONTINUIDADE DO HERO
          ===================================================== */}
       <div
         aria-hidden
@@ -32,67 +39,96 @@ export default function CTA() {
         style={{ background: "var(--gradient-hero)" }}
       />
 
-      {/* Glow sutil de encerramento */}
+      {/* Glow inferior (encerramento visual) */}
       <div
         aria-hidden
         className="absolute inset-0 -z-10"
         style={{
           background:
-            "radial-gradient(50% 40% at 50% 100%, rgba(59,130,246,0.18), transparent 70%)",
+            "radial-gradient(60% 45% at 50% 100%, rgba(59,130,246,0.22), transparent 70%)",
         }}
       />
 
       <div className="mx-auto max-w-6xl px-6 text-center">
-        {/* Headline */}
+        {/* =====================================================
+            HEADLINE — DECISÃO FINAL
+           ===================================================== */}
         <h2 className="text-4xl md:text-5xl font-extrabold tracking-tight">
-          Um sistema de vendas
-          <br />
-          que decide no tempo certo
+          Enquanto você decide,
+          <br className="hidden md:block" />
+          seus leads já estão decidindo
         </h2>
 
-        {/* Subheadline */}
-        <p className="mx-auto mt-6 max-w-3xl text-lg text-neutral-300">
-          O LeadyIA não substitui seu time.
-          Ele elimina ruído, acelera decisões
-          e entrega leads prontos para fechar.
+        {/* =====================================================
+            SUBHEADLINE — POR QUE NÃO FICAR DE FORA
+           ===================================================== */}
+        <p className="mx-auto mt-8 max-w-3xl text-lg leading-relaxed text-neutral-300">
+          Cada conversa não qualificada é uma oportunidade perdida.
+          Cada atraso na resposta reduz intenção.
+          O Leadyia garante que nenhuma decisão importante
+          aconteça tarde demais.
         </p>
 
-        {/* CTAs */}
-        <div className="mt-14 flex flex-col items-center justify-center gap-4 sm:flex-row">
-          {/* CTA primário */}
+        {/* =====================================================
+            CTAs
+           ===================================================== */}
+        <div className="mt-16 flex flex-col items-center justify-center gap-5 sm:flex-row">
+          {/* CTA Primário */}
           <a
             href="#demo"
             className="
-              inline-flex items-center justify-center
-              rounded-xl bg-brand-blue
-              px-10 py-4 text-lg font-semibold
-              text-white transition hover:opacity-90
+              inline-flex
+              items-center
+              justify-center
+              rounded-xl
+              bg-brand-blue
+              px-12
+              py-4
+              text-lg
+              font-semibold
+              text-white
+              transition
+              hover:opacity-90
+              focus-visible:outline-none
+              focus-visible:ring-2
+              focus-visible:ring-brand-blue
+              focus-visible:ring-offset-2
+              focus-visible:ring-offset-neutral-900
             "
           >
             Solicitar demonstração
           </a>
 
-          {/* CTA secundário */}
+          {/* CTA Secundário */}
           <a
             href="#pricing"
             className="
-              inline-flex items-center justify-center
-              rounded-xl border
-              px-10 py-4 text-lg font-semibold
-              transition hover:bg-white/5
+              inline-flex
+              items-center
+              justify-center
+              rounded-xl
+              border
+              px-12
+              py-4
+              text-lg
+              font-semibold
+              transition
+              hover:bg-white/5
             "
             style={{
               borderColor: "rgba(255,255,255,0.25)",
               color: "var(--color-text)",
             }}
           >
-            Ver planos
+            Avaliar planos
           </a>
         </div>
 
-        {/* Reforço de confiança */}
-        <p className="mt-12 text-sm text-neutral-400">
-          ✔️ IA auditável • ✔️ Score em tempo real • ✔️ Pronto para escala enterprise
+        {/* =====================================================
+            MICROCOPY — REDUÇÃO DE RISCO
+           ===================================================== */}
+        <p className="mt-14 text-sm text-neutral-400">
+          ✔️ Sem compromisso • ✔️ Setup guiado • ✔️ IA auditável e controlável
         </p>
       </div>
     </section>

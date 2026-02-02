@@ -1,0 +1,12 @@
+{
+  "redirects": [
+    {
+      "source": "/(.*)",
+      "has": [
+        { "type": "host", "value": "leadyia.com" }
+      ],
+      "destination": "https://www.leadyia.com/$1",
+      "permanent": true
+    }
+  ]
+}
