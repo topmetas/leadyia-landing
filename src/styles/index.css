@@ -1,0 +1,15 @@
+/**
+ * =========================================================
+ * 🎨 GLOBAL STYLE CONTRACT — LEADYIA
+ * =========================================================
+ *
+ * Regra CRÍTICA:
+ * - Tailwind v4 DEVE ser o primeiro import
+ * - Tokens depois
+ * - Sistema de gradientes ANTES do global
+ */
+
+@import "./tailwind.css";
+@import "./tokens.css";
+@import "./gradient.system.css";
+@import "./global.css";

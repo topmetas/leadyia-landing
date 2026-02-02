@@ -1,0 +1,40 @@
+<!--
+=========================================================
+🚀 HTML ENTRYPOINT — LEADYIA WEBSITE
+=========================================================
+
+Responsabilidade:
+- Ponto inicial do Vite
+- Nunca conter lógica de layout ou negócio
+- Ativar o contexto visual da LANDING
+-->
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
+
+    <title>LeadyIA — Automação de Leads com IA</title>
+
+    <!-- Font (opcional, mas recomendado para premium feel) -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+
+  <!--
+    🔑 PONTO CRÍTICO
+    - data-layout="landing" ativa o Gradient System
+    - NÃO usar classes bg-* aqui
+  -->
+  <body data-layout="landing">
+    <div id="root"></div>
+
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>

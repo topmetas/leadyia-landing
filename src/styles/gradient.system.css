@@ -1,0 +1,24 @@
+/* =========================================================
+   🎨 GRADIENT SYSTEM — LANDING
+   ========================================================= */
+
+body[data-layout="landing"] {
+  --gradient-usecases: linear-gradient(
+    180deg,
+    #0b1220 0%,
+    #020617 70%,
+    #020617 100%
+  );
+}
+
+/* Fundo da seção UseCases */
+.usecases-bg {
+  background: var(--gradient-usecases);
+}
+
+/* Card padrão (já otimizado) */
+.card {
+  background: var(--gradient-card);
+  border-radius: 16px;
+  border: 1px solid rgba(255,255,255,0.08);
+}
