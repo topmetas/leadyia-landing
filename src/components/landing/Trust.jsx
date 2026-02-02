@@ -1,23 +1,12 @@
 /**
  * =========================================================
- * 🛡️ TRUST & ENTERPRISE READINESS — LEADYIA
+ * 🛡️ CONFIANÇA & PRONTO PARA EMPRESAS — LEADYIA
  * =========================================================
  *
- * 📄 Arquivo:
- * src/components/landing/Trust.jsx
- *
- * 🎯 Responsabilidade:
- * - Construir confiança técnica e estratégica
- * - Reduzir risco percebido por decisores enterprise
- * - Posicionar Leadyia como infraestrutura, não ferramenta
- *
- * 🧠 Leitura-alvo:
- * - CTOs, Heads de Produto, RevOps, Vendas
- *
- * 📐 Decisão de design:
- * - Dark section = robustez + previsibilidade
- * - Cards silenciosos, sem hype
- * - Microinterações como feedback de controle
+ * Objetivo:
+ * - Fazer o decisor confiar
+ * - Mostrar que não existe risco oculto
+ * - Deixar claro que isso é infraestrutura, não experimento
  */
 
 import React from "react";
@@ -29,34 +18,34 @@ import React from "react";
  */
 const TRUST_PILLARS = [
   {
-    title: "Arquitetura determinística",
+    title: "Decisões sob controle total",
     description:
-      "Cada decisão é rastreável, auditável e previsível — sem comportamento emergente fora de controle.",
+      "Você sabe exatamente por que o LeadyIA respondeu algo, tomou uma ação ou escalou para um humano. Nada é aleatório ou fora do seu controle.",
   },
   {
-    title: "Separação clara de responsabilidades",
+    title: "IA sem risco operacional",
     description:
-      "IA, decisão e execução são camadas independentes, evitando acoplamento e risco sistêmico.",
+      "A inteligência, as regras de negócio e a execução são separadas. Se algo muda, o resto do sistema continua estável.",
   },
   {
-    title: "Multi-tenant & white-label",
+    title: "Pronto para múltiplos clientes e marcas",
     description:
-      "Projetado desde o núcleo para múltiplos clientes, marcas e ambientes isolados.",
+      "Ideal para empresas, agências e operações white-label. Cada cliente isolado, seguro e independente.",
   },
   {
-    title: "Observabilidade completa",
+    title: "Tudo registrado e auditável",
     description:
-      "Logs, métricas e histórico por conversa para análise, compliance e melhoria contínua.",
+      "Cada conversa, decisão e resultado ficam registrados para análise, melhoria e compliance.",
   },
   {
-    title: "Integração enterprise-ready",
+    title: "Integra com o que você já usa",
     description:
-      "APIs, CRMs, WhatsApp e fluxos existentes sem fricção ou dependência proprietária.",
+      "CRM, WhatsApp, APIs internas e fluxos existentes. O LeadyIA entra na operação sem quebrar nada.",
   },
   {
-    title: "Escala previsível",
+    title: "Escala sem perder qualidade",
     description:
-      "Infraestrutura preparada para alto volume sem degradação de decisão ou latência.",
+      "Quanto mais leads entram, mais o sistema prova sua força — sem lentidão, sem decisões ruins.",
   },
 ];
 
@@ -74,36 +63,33 @@ export default function Trust() {
       "
     >
       {/* =====================================================
-          Fundo com profundidade (silencioso e institucional)
+          FUNDO DARK — SOLIDEZ E CONTROLE
          ===================================================== */}
       <div
         aria-hidden
-        className="
-          absolute inset-0 -z-10
-          bg-linear-to-b
-          from-neutral-900
-          via-neutral-900
-          to-black
-        "
+        className="absolute inset-0 -z-10"
+        style={{
+          background:
+            "linear-gradient(to bottom, #0a0a0a 0%, #0f0f0f 60%, #000000 100%)",
+        }}
       />
 
       <div className="mx-auto max-w-7xl">
         {/* ================= HEADER ================= */}
         <div className="max-w-3xl">
           <span className="text-xs font-semibold uppercase tracking-widest text-brand-blue/80">
-            Trust & Enterprise Readiness
+            Confiança para decisões críticas
           </span>
 
           <h2 className="mt-4 text-3xl md:text-4xl font-extrabold tracking-tight">
-            Construído para controle,
+            Não é um bot.
             <br className="hidden md:block" />
-            escala e previsibilidade
+            É infraestrutura de decisão
           </h2>
 
           <p className="mt-6 text-lg text-neutral-400">
-            O Leadyia não é um chatbot.
-            É uma camada de decisão projetada como infraestrutura
-            para times que não podem errar.
+            O LeadyIA foi criado para empresas que não podem
+            perder leads, dinheiro ou controle da operação.
           </p>
         </div>
 
@@ -120,9 +106,9 @@ export default function Trust() {
 
         {/* ================= FOOTNOTE ================= */}
         <p className="mt-16 max-w-3xl text-sm leading-relaxed text-neutral-500">
-          Arquitetura pensada para ambientes regulados,
-          múltiplos stakeholders e decisões orientadas por dados —
-          sem comprometer performance, segurança ou flexibilidade.
+          Se sua operação exige previsibilidade, rastreabilidade
+          e decisões claras, o LeadyIA foi projetado exatamente
+          para esse nível de responsabilidade.
         </p>
       </div>
     </section>
@@ -131,16 +117,8 @@ export default function Trust() {
 
 /**
  * =========================================================
- * 🧱 TRUST CARD — ENTERPRISE
+ * 🧱 TRUST CARD
  * =========================================================
- *
- * 🎯 Função:
- * - Comunicar solidez técnica
- * - Ser escaneável em segundos
- *
- * 🧠 Microinteração:
- * - Hover sutil = sensação de controle
- * - Nada agressivo ou “marketing”
  */
 function TrustCard({ title, description }) {
   return (
@@ -153,7 +131,7 @@ function TrustCard({ title, description }) {
         border-white/5
         bg-neutral-800/70
         p-6
-        transition
+        transition-all
         duration-300
         hover:border-brand-blue/40
         hover:bg-neutral-800
@@ -163,12 +141,8 @@ function TrustCard({ title, description }) {
       <div
         aria-hidden
         className="
-          absolute
-          left-0
-          top-6
-          h-12
-          w-1
-          rounded-full
+          absolute left-0 top-6
+          h-12 w-1 rounded-full
           bg-brand-blue/60
           opacity-0
           transition

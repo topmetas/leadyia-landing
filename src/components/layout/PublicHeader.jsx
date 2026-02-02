@@ -1,34 +1,24 @@
 /**
  * =========================================================
- * 🧭 PUBLIC HEADER — LEADYIA
+ * 🧭 PUBLIC HEADER — LEADYIA (PREMIUM)
  * =========================================================
  *
  * 📄 Arquivo: PublicHeader.jsx
  * 📁 Caminho: src/components/layout/PublicHeader.jsx
  *
- * 🎯 Responsabilidade:
- * - Exibir o cabeçalho público do site institucional
- * - Fornecer branding consistente (logo/nome)
- * - Oferecer CTA primário de conversão
- *
- * 🚫 O que este componente NÃO deve fazer:
- * - Controlar navegação de rotas
- * - Gerenciar estado global
- * - Implementar lógica de autenticação
- *
- * 🧠 Contexto Enterprise:
- * - Componente puramente apresentacional
- * - Seguro para reutilização em white-label
- * - Compatível com LGPD e auditorias (sem tracking embutido)
+ * 🎯 Objetivo visual:
+ * - Sensação enterprise
+ * - Branding forte e silencioso
+ * - CTA elegante com brilho estratégico
  */
 
 export default function PublicHeader() {
   return (
     <header
       className="
-        fixed top-0 z-50 w-full
+        fixed inset-x-0 top-0 z-50
         border-b border-white/10
-        bg-black/40 backdrop-blur
+        bg-black/30 backdrop-blur-xl
       "
     >
       <div
@@ -38,22 +28,43 @@ export default function PublicHeader() {
           px-6
         "
       >
-        {/* Branding
-            Mantido simples para fácil white-label */}
-        <span className="text-xl font-bold tracking-tight">
-          LeadyIA
-        </span>
+        {/* Branding */}
+        <div className="flex items-center gap-2">
+          <span className="text-xl font-semibold tracking-tight text-white">
+            Leady<span className="text-brand-blue">IA</span>
+          </span>
+        </div>
 
-        {/* CTA primário
-            Link simples por enquanto (sem rota ou tracking) */}
+        {/* CTA */}
         <a
           href="#"
           className="
-            rounded-lg bg-indigo-600
-            px-5 py-2 font-semibold
-            transition hover:bg-indigo-500
+            group relative inline-flex items-center
+            rounded-xl px-6 py-2.5
+            text-sm font-semibold text-white
+            transition-all duration-300
+            hover:-translate-y-0.5
+            focus:outline-none focus:ring-2 focus:ring-brand-blue/50
           "
+          style={{
+            background: "var(--cta-primary-bg)",
+            boxShadow: "var(--cta-primary-shadow)",
+          }}
         >
+          {/* Glow premium */}
+          <span
+            aria-hidden
+            className="
+              absolute inset-0 -z-10 rounded-xl
+              opacity-80 group-hover:opacity-100
+              transition-opacity duration-300
+            "
+            style={{
+              background: "var(--cta-primary-glow)",
+              filter: "blur(36px)",
+            }}
+          />
+
           Começar agora
         </a>
       </div>

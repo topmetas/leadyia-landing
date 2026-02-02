@@ -1,49 +1,51 @@
 /**
  * =========================================================
- * 🔄 HOW IT WORKS — LEADYIA (ENTERPRISE FLOW)
+ * 🔄 COMO FUNCIONA — LEADYIA
  * =========================================================
  *
- * Este módulo explica o Leadyia como SISTEMA,
- * não como ferramenta.
+ * Aqui o cliente PRECISA entender:
+ * - O que acontece com cada lead
+ * - Por que isso gera mais vendas
+ * - O que ele perde se não usar
  */
 
 import React from "react";
 
 /**
  * =========================================================
- * 📘 PIPELINE COGNITIVO
+ * 📘 PASSO A PASSO SIMPLES
  * =========================================================
  */
 const STEPS = [
   {
     step: "01",
-    title: "Entrada de sinal",
+    title: "O cliente entra em contato",
     description:
-      "O lead interage de forma natural via site, WhatsApp ou API — sem fricção ou formulários.",
+      "O lead fala com sua empresa pelo site, WhatsApp ou canal que você já usa. Sem formulário chato. Sem perder conversa.",
   },
   {
     step: "02",
-    title: "Leitura de intenção",
+    title: "O LeadyIA entende o que ele quer",
     description:
-      "O sistema interpreta contexto, urgência e maturidade com base em sinais reais.",
+      "O sistema entende se a pessoa está só curiosa ou realmente pronta para comprar, analisando o que ela fala e como se comporta.",
   },
   {
     step: "03",
-    title: "Decision Engine",
+    title: "A melhor ação acontece sozinha",
     description:
-      "Um motor determinístico decide a melhor ação: educar, vender, escalar ou pausar.",
+      "O LeadyIA decide o que fazer: responder, explicar, qualificar, vender ou chamar um humano — tudo no tempo certo.",
   },
   {
     step: "04",
-    title: "Score dinâmico",
+    title: "Os melhores leads sobem",
     description:
-      "A pontuação evolui em tempo real conforme comportamento, linguagem e contexto.",
+      "Quem tem mais chance de fechar ganha prioridade automaticamente. Seu time foca só no que gera dinheiro.",
   },
   {
     step: "05",
-    title: "Conversão ou handoff",
+    title: "Venda feita ou lead entregue pronto",
     description:
-      "Venda automática ou entrega para o time humano com contexto completo e auditável.",
+      "Ou a venda acontece sozinha, ou o lead chega para seu time com histórico, contexto e intenção clara.",
   },
 ];
 
@@ -58,14 +60,14 @@ export default function HowItWorks() {
       "
     >
       {/* =====================================================
-          FUNDO INSTITUCIONAL (LIMPO, NÃO DECORATIVO)
+          FUNDO LIMPO — SISTEMA
          ===================================================== */}
       <div
         aria-hidden
         className="absolute inset-0 -z-10"
         style={{
           background:
-            "linear-gradient(to bottom, #ffffff 0%, #f8fafc 60%, #f1f5f9 100%)",
+            "linear-gradient(180deg, #ffffff 0%, #f8fafc 55%, #f1f5f9 100%)",
         }}
       />
 
@@ -73,16 +75,18 @@ export default function HowItWorks() {
         {/* ================= HEADER ================= */}
         <div className="max-w-3xl">
           <h2 className="text-4xl font-extrabold tracking-tight">
-            Como o LeadyIA opera
+            Como o LeadyIA funciona na prática
           </h2>
 
           <p className="mt-6 text-lg text-slate-600">
-            Um pipeline de decisão projetado como sistema — auditável,
-            previsível e orientado a conversão real.
+            Um sistema que atende seus clientes,
+            entende quem quer comprar
+            e ajuda sua empresa a vender mais,
+            sem depender de resposta humana o tempo todo.
           </p>
         </div>
 
-        {/* ================= PIPELINE ================= */}
+        {/* ================= STEPS ================= */}
         <div className="relative mt-24">
           {/* Linha de progressão (desktop) */}
           <div
@@ -106,7 +110,7 @@ export default function HowItWorks() {
 
 /**
  * =========================================================
- * 🧱 STEP — SISTEMA
+ * 🧱 STEP — BLOCO CLARO
  * =========================================================
  */
 function Step({ step, title, description }) {
@@ -117,7 +121,7 @@ function Step({ step, title, description }) {
         rounded-2xl bg-white
         p-8
         shadow-sm
-        transition
+        transition-all duration-300
         hover:-translate-y-1
         hover:shadow-md
       "
@@ -145,7 +149,7 @@ function Step({ step, title, description }) {
         {description}
       </p>
 
-      {/* Indicador de progressão */}
+      {/* Indicador */}
       <div
         aria-hidden
         className="

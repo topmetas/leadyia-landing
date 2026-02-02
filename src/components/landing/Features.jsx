@@ -3,43 +3,51 @@
  * ✨ FEATURES — LEADYIA WEBSITE
  * =========================================================
  *
- * 🎯 Função:
- * - Explicar o produto sem vender demais
- * - Transformar complexidade em clareza
- * - Reforçar autoridade técnica
+ * 📍 Caminho completo:
+ * src/components/landing/Features.jsx
  *
- * 🧠 Design:
- * - Mesmo DNA visual do Hero
- * - Cards leves, sem efeitos caros
- * - Pronto para escala
+ * 🎯 Responsabilidade:
+ * - Mostrar claramente COMO o LeadyIA ajuda o negócio a vender mais
+ * - Fazer o cliente entender o valor sem precisar conhecer tecnologia
+ * - Criar sensação de “isso deveria estar no meu site agora”
+ *
+ * ❌ O que este componente NÃO deve fazer:
+ * - Não falar de preço
+ * - Não usar termos técnicos difíceis
+ * - Não explicar arquitetura ou implementação
+ *
+ * 🧠 Nota estratégica:
+ * Aqui o visitante já gostou da ideia.
+ * Agora ele precisa entender POR QUE isso é melhor
+ * do que continuar atendendo leads manualmente.
  */
 
 import React from "react";
 
 const FEATURES = [
   {
-    title: "Qualificação Inteligente",
+    title: "Leads certos, na hora certa",
     description:
-      "O LeadyIA interpreta intenção real, elimina curiosos e prioriza leads prontos para compra.",
-    tag: "Lead Scoring",
+      "O LeadyIA conversa, entende o interesse real do visitante e destaca quem realmente quer comprar — sem você perder tempo com curiosos.",
+    tag: "Qualificação",
   },
   {
-    title: "Decision Engine",
+    title: "Conversas que se adaptam",
     description:
-      "Fluxos conversacionais adaptativos baseados em comportamento, contexto e histórico.",
-    tag: "IA aplicada",
+      "Cada resposta muda o caminho da conversa. O LeadyIA se ajusta ao comportamento do cliente, como um vendedor experiente faria.",
+    tag: "Inteligência",
   },
   {
-    title: "Auto-Sales & Handoff",
+    title: "Venda ou encaminhe automaticamente",
     description:
-      "Encaminhamento automático para vendas, CRM ou WhatsApp no momento exato.",
+      "Quando o lead está pronto, o LeadyIA age: direciona para vendas, CRM ou WhatsApp no momento certo.",
     tag: "Conversão",
   },
   {
-    title: "Auditoria & Controle",
+    title: "Controle total do processo",
     description:
-      "Cada decisão é rastreável, auditável e ajustável — sem caixa-preta.",
-    tag: "Governança",
+      "Você sabe exatamente o que o LeadyIA faz, por que faz e pode ajustar tudo. Sem surpresas, sem decisões escondidas.",
+    tag: "Transparência",
   },
 ];
 
@@ -47,10 +55,11 @@ export default function Features() {
   return (
     <section
       id="features"
-      className="relative overflow-hidden py-28 text-white"
+      className="relative overflow-hidden py-32 text-white"
     >
       {/* =====================================================
-          BACKGROUND BASE (MESMO DO HERO)
+          BACKGROUND BASE
+          Mesmo gradiente sistêmico do Hero
          ===================================================== */}
       <div
         aria-hidden
@@ -64,20 +73,25 @@ export default function Features() {
       <div className="mx-auto max-w-7xl px-6">
         {/* Header */}
         <div className="max-w-3xl">
+          <span className="mb-4 inline-block text-sm font-semibold uppercase tracking-wide text-brand-blue">
+            Como o LeadyIA ajuda seu negócio
+          </span>
+
           <h2 className="text-4xl font-extrabold tracking-tight">
-            Automação que entende contexto,
+            Mais leads qualificados.
             <br />
-            não apenas respostas
+            Menos trabalho manual.
           </h2>
 
-          <p className="mt-6 text-lg text-neutral-300">
-            O LeadyIA opera como um motor de decisão — não como um chatbot
-            roteirizado.
+          <p className="mt-6 text-lg leading-relaxed text-neutral-300">
+            O LeadyIA atua como um vendedor digital: conversa com seus visitantes,
+            entende o que eles querem e leva cada um para o próximo passo certo.
+            Tudo isso automaticamente.
           </p>
         </div>
 
         {/* Grid */}
-        <div className="mt-20 grid gap-8 md:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-24 grid gap-8 md:grid-cols-2 lg:grid-cols-4">
           {FEATURES.map((item) => (
             <FeatureCard key={item.title} {...item} />
           ))}
@@ -91,14 +105,23 @@ export default function Features() {
  * =========================================================
  * 🧱 FEATURE CARD
  * =========================================================
+ *
+ * 🎯 Responsabilidade:
+ * - Explicar um benefício real e concreto
+ * - Mostrar impacto direto no dia a dia do negócio
+ *
+ * 🧠 Princípio:
+ * Se um gestor não entender em 5 segundos,
+ * o texto está complexo demais.
  */
 function FeatureCard({ title, description, tag }) {
   return (
     <div
       className="
-        relative flex flex-col
-        rounded-2xl p-6
-        transition hover:-translate-y-1
+        group relative flex flex-col
+        rounded-2xl p-7
+        transition-all duration-300
+        hover:-translate-y-1
       "
       style={{
         background: "var(--gradient-card)",
@@ -106,25 +129,38 @@ function FeatureCard({ title, description, tag }) {
       }}
     >
       {/* Tag */}
-      <span className="
-        mb-4 w-fit rounded-full
-        bg-brand-blue/15
-        px-3 py-1
-        text-xs font-semibold
-        text-brand-blue
-      ">
+      <span
+        className="
+          mb-5 w-fit rounded-full
+          bg-brand-blue/10
+          px-3 py-1
+          text-xs font-semibold
+          tracking-wide
+          text-brand-blue
+        "
+      >
         {tag}
       </span>
 
       {/* Title */}
-      <h3 className="text-lg font-semibold">
+      <h3 className="text-lg font-semibold tracking-tight">
         {title}
       </h3>
 
       {/* Description */}
-      <p className="mt-3 text-sm leading-relaxed text-neutral-300">
+      <p className="mt-4 text-sm leading-relaxed text-neutral-300">
         {description}
       </p>
+
+      {/* Divider sistêmico */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-x-0 bottom-0 h-px opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+        style={{
+          background:
+            "var(--gradient-divider, linear-gradient(90deg, transparent, rgba(255,255,255,0.12), transparent))",
+        }}
+      />
     </div>
   );
 }
