@@ -1,101 +1,100 @@
 /**
  * =========================================================
- * 💰 PRICING — LEADYIA (ENTERPRISE GRADE)
+ * 💰 PRICING — LEADYIA WEBSITE (FINAL)
  * =========================================================
  *
- * 📁 src/components/landing/Pricing.jsx
- *
- * ✔ Sem utilitários experimentais
- * ✔ Gradiente via Design System
- * ✔ Performance-first
- * ✔ Produção ready
+ * ✔ Sem framer-motion
+ * ✔ Microinterações via CSS
+ * ✔ CTA com glow ativo
+ * ✔ Visual institucional premium
  */
 
 import React from "react";
 
-/* =========================================================
- * 📦 DEFINIÇÃO DE PLANOS
- * ======================================================= */
-const plans = [
+const PLANS = [
   {
     name: "Starter",
-    price: "R$ 97/mês",
-    scoreLimit: "Até 30 pontos",
-    description: "Validação inicial e captura de leads",
+    price: "R$ 97 / mês",
+    subtitle: "Para validar e estruturar",
+    description:
+      "Ideal para iniciar automação de leads e entender padrões reais de intenção.",
     features: [
-      "Widget básico",
-      "Lead scoring simples",
-      "Dashboard básico",
+      "Widget inteligente",
+      "Lead scoring essencial",
+      "Dashboard operacional",
       "Suporte community",
     ],
-    cta: "Começar agora",
+    cta: "Solicitar demo",
+    variant: "secondary",
   },
   {
     name: "Growth",
-    price: "R$ 297/mês",
-    scoreLimit: "Até 70 pontos",
-    description: "Automação de vendas orientada por IA",
+    price: "R$ 297 / mês",
+    subtitle: "Para escalar conversão",
+    description:
+      "IA aplicada à qualificação, priorização e aceleração do funil comercial.",
     features: [
       "Decision Engine completo",
-      "Lead Qualification avançado",
+      "Qualificação avançada",
       "Auto-handoff (CRM / WhatsApp)",
       "Auto-Sales Engine",
       "Suporte prioritário",
     ],
     highlight: true,
     cta: "Ativar crescimento",
+    variant: "primary",
   },
   {
     name: "Enterprise",
     price: "Sob consulta",
-    scoreLimit: "Ilimitado",
-    description: "Escala máxima e white-label",
+    subtitle: "Para operação em larga escala",
+    description:
+      "Arquitetura sob medida para ambientes complexos e multi-tenant.",
     features: [
       "FSM conversacional customizada",
-      "RAG + IA privada",
+      "IA privada + RAG",
       "White-label completo",
-      "SLA e suporte dedicado",
-      "Integrações sob medida",
+      "SLA dedicado",
+      "Integrações customizadas",
     ],
     cta: "Falar com vendas",
+    variant: "outline",
   },
 ];
 
 export default function Pricing() {
   return (
-    <section className="relative overflow-hidden text-white">
-      {/* =====================================================
-          BACKGROUND PREMIUM — DESIGN SYSTEM
-          -----------------------------------------------------
-          ✔ Um único gradiente
-          ✔ Zero utilitário experimental
-          ✔ Zero conflito
-      ===================================================== */}
+    <section
+      id="pricing"
+      className="relative overflow-hidden py-32"
+    >
+      {/* Background herdado do Hero */}
       <div
         aria-hidden
         className="absolute inset-0 -z-10"
-        style={{
-          background:
-            "linear-gradient(180deg, #0f172a 0%, #020617 50%, #000000 100%)",
-        }}
+        style={{ background: "var(--gradient-hero)" }}
       />
+      <div className="absolute inset-0 -z-10 bg-black/40" />
 
-      {/* ================= HEADER ================= */}
-      <div className="px-6 pt-28 text-center">
-        <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight">
-          Planos alinhados ao seu pipeline de vendas
-        </h1>
+      <div className="mx-auto max-w-7xl px-6">
+        {/* Header */}
+        <div className="mx-auto max-w-3xl text-center">
+          <h2 className="text-4xl font-extrabold tracking-tight text-white">
+            Planos que evoluem com
+            <br />
+            a maturidade do seu funil
+          </h2>
 
-        <p className="mx-auto mt-6 max-w-2xl text-lg text-neutral-300">
-          Você paga conforme a maturidade real dos seus leads — não por volume
-          vazio.
-        </p>
-      </div>
+          <p className="mt-6 text-lg text-neutral-300">
+            Você não paga por volume.
+            <br />
+            Paga por inteligência aplicada.
+          </p>
+        </div>
 
-      {/* ================= GRID ================= */}
-      <div className="px-6 pb-36 pt-20">
-        <div className="mx-auto grid max-w-7xl gap-8 md:grid-cols-3">
-          {plans.map((plan) => (
+        {/* Grid */}
+        <div className="mt-20 grid gap-8 md:grid-cols-3">
+          {PLANS.map((plan) => (
             <PlanCard key={plan.name} plan={plan} />
           ))}
         </div>
@@ -105,52 +104,65 @@ export default function Pricing() {
 }
 
 /* =========================================================
- * 🧱 PLAN CARD — OTIMIZADO
- * ======================================================= */
+ * 🧱 PLAN CARD
+ * ========================================================= */
+
 function PlanCard({ plan }) {
   const {
     name,
     price,
-    scoreLimit,
+    subtitle,
     description,
     features,
-    highlight,
     cta,
+    highlight,
+    variant,
   } = plan;
 
   return (
     <div
-      className={[
-        "relative flex flex-col rounded-2xl p-8 border transition",
-        "bg-neutral-900/80 backdrop-blur-sm",
-        "hover:-translate-y-1 hover:border-neutral-500",
-        highlight
-          ? "border-brand-blue shadow-lg shadow-brand-blue/20"
-          : "border-neutral-800",
-      ].join(" ")}
+      className={`
+        group relative flex flex-col rounded-2xl p-8
+        backdrop-blur-xl
+        transition-all duration-300
+        hover:-translate-y-1
+        ${highlight ? "ring-1 ring-brand-blue/50" : ""}
+      `}
+      style={{
+        background: "var(--gradient-card)",
+        border: "1px solid rgba(255,255,255,0.14)",
+      }}
     >
+      {/* Glow hover */}
+      <div
+        aria-hidden
+        className="
+          pointer-events-none absolute inset-0 rounded-2xl
+          opacity-0 transition-opacity duration-300
+          group-hover:opacity-100
+        "
+        style={{
+          background: "var(--gradient-glow)",
+          filter: "blur(80px)",
+        }}
+      />
+
       {/* Badge */}
       {highlight && (
-        <span className="absolute -top-4 left-1/2 -translate-x-1/2 rounded-full bg-brand-blue px-4 py-1 text-xs font-bold text-black">
-          Mais popular
+        <span className="absolute -top-4 left-1/2 -translate-x-1/2 rounded-full bg-brand-blue px-4 py-1 text-xs font-semibold text-black">
+          Mais escolhido
         </span>
       )}
 
-      {/* Header */}
-      <h3 className="text-xl font-bold">{name}</h3>
+      <h3 className="text-xl font-bold text-white">{name}</h3>
+      <p className="mt-1 text-sm text-neutral-400">{subtitle}</p>
 
-      <p className="mt-4 text-3xl font-extrabold">{price}</p>
-
-      <p className="mt-1 text-sm text-neutral-400">
-        Lead Score: {scoreLimit}
-      </p>
-
+      <p className="mt-6 text-3xl font-extrabold text-white">{price}</p>
       <p className="mt-4 text-sm text-neutral-300">{description}</p>
 
-      {/* Features */}
       <ul className="mt-6 space-y-3 text-sm">
         {features.map((feature) => (
-          <li key={feature} className="flex gap-2 text-neutral-200">
+          <li key={feature} className="flex gap-3 text-neutral-200">
             <span className="text-brand-blue">✔</span>
             {feature}
           </li>
@@ -158,12 +170,58 @@ function PlanCard({ plan }) {
       </ul>
 
       {/* CTA */}
-      <button
-        className="mt-10 w-full rounded-xl bg-brand-blue py-3 font-semibold text-black transition hover:opacity-90"
-        type="button"
-      >
-        {cta}
-      </button>
+      <div className="mt-10">
+        {variant === "primary" && (
+          <button
+            className="
+              relative w-full rounded-xl py-3 font-semibold text-black
+              transition-all duration-300
+              hover:-translate-y-0.5
+              focus:outline-none focus:ring-2 focus:ring-brand-blue/60
+            "
+            style={{
+              background: "var(--cta-primary-bg)",
+              boxShadow: "var(--cta-primary-shadow)",
+            }}
+          >
+            {/* Glow fix (não apagado) */}
+            <span
+              aria-hidden
+              className="absolute inset-0 -z-10 rounded-xl"
+              style={{
+                background: "var(--cta-primary-glow)",
+                filter: "blur(32px)",
+                opacity: 1,
+              }}
+            />
+            {cta}
+          </button>
+        )}
+
+        {variant === "secondary" && (
+          <button
+            className="
+              w-full rounded-xl py-3 font-semibold text-white
+              transition hover:bg-white/20
+            "
+            style={{ background: "var(--cta-secondary-bg)" }}
+          >
+            {cta}
+          </button>
+        )}
+
+        {variant === "outline" && (
+          <button
+            className="
+              w-full rounded-xl border py-3 font-semibold text-white
+              transition hover:bg-white/10
+            "
+            style={{ borderColor: "var(--cta-outline-border)" }}
+          >
+            {cta}
+          </button>
+        )}
+      </div>
     </div>
   );
 }

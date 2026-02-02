@@ -41,7 +41,7 @@ export default function PublicHeader() {
         {/* Branding
             Mantido simples para fácil white-label */}
         <span className="text-xl font-bold tracking-tight">
-          Leadyia
+          LeadyIA
         </span>
 
         {/* CTA primário

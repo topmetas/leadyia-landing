@@ -6,32 +6,50 @@
  * 📁 Caminho:
  * src/components/landing/SocialProof.jsx
  *
- * 🎯 Objetivo:
- * - Provar valor com métricas claras e escaneáveis
- * - Reduzir risco percebido pelo decisor
- * - Reforçar autoridade antes da conversão
+ * 🎯 Responsabilidade:
+ * - Provar impacto com métricas claras
+ * - Reduzir risco percebido por decisores
+ * - Reforçar autoridade antes de Pricing / CTA
  *
- * 🧠 Contexto:
- * - Seção estratégica da landing
- * - Entra após Features / HowItWorks
- * - Prepara o terreno para Pricing e CTA
+ * 🧠 Leitura-alvo:
+ * - CEOs, CTOs, Heads de Vendas e Produto
+ *
+ * 📐 Decisão de design:
+ * - Métrica como dado, não marketing
+ * - Silencioso, escaneável, institucional
  */
 
 import React from "react";
 
 /**
  * =========================================================
- * 📈 MÉTRICAS DE IMPACTO
+ * 📈 MÉTRICAS DE IMPACTO (AGREGADAS)
  * =========================================================
  *
- * - Valores agregados e facilmente escaneáveis
- * - Linguagem orientada a benefício de negócio
+ * - Valores focados em benefício de negócio
+ * - Linguagem objetiva, sem exagero
  */
 const METRICS = [
-  { value: "+38%", label: "Aumento na conversão de leads" },
-  { value: "-52%", label: "Redução no tempo de qualificação" },
-  { value: "24/7", label: "Atendimento contínuo" },
-  { value: "100%", label: "Rastreabilidade do funil" },
+  {
+    value: "+38%",
+    label: "Aumento na conversão de leads",
+    description: "Mais intenção convertida em pipeline real.",
+  },
+  {
+    value: "-52%",
+    label: "Redução no tempo de qualificação",
+    description: "Menos esforço humano, mais velocidade.",
+  },
+  {
+    value: "24/7",
+    label: "Atendimento contínuo",
+    description: "Cobertura total sem custo marginal.",
+  },
+  {
+    value: "100%",
+    label: "Rastreabilidade do funil",
+    description: "Decisões explicáveis, dados auditáveis.",
+  },
 ];
 
 export default function SocialProof() {
@@ -40,14 +58,16 @@ export default function SocialProof() {
       id="results"
       className="
         relative
+        overflow-hidden
         bg-white
         text-slate-900
-        py-28
+        py-32
         px-6
-        overflow-hidden
       "
     >
-      {/* Background decorativo sutil (Tailwind v4 canonical) */}
+      {/* =====================================================
+          Fundo sutil para separação sem ruído visual
+         ===================================================== */}
       <div
         aria-hidden
         className="
@@ -61,35 +81,40 @@ export default function SocialProof() {
       <div className="mx-auto max-w-7xl">
         {/* ================= HEADER ================= */}
         <div className="max-w-3xl">
-          <span className="text-sm font-semibold uppercase tracking-wide text-brand-blue">
+          <span className="text-xs font-semibold uppercase tracking-widest text-brand-blue/80">
             Prova de valor
           </span>
 
-          <h2 className="mt-3 text-3xl md:text-4xl font-extrabold">
-            Resultados mensuráveis
+          <h2 className="mt-4 text-3xl md:text-4xl font-extrabold tracking-tight">
+            Resultados mensuráveis,
+            <br className="hidden md:block" />
+            impacto real no funil
           </h2>
 
-          <p className="mt-4 text-lg text-slate-600">
-            O Leadyia acelera decisões, elimina ruído no funil de vendas
-            e transforma intenção em ação com previsibilidade.
+          <p className="mt-6 text-lg text-slate-600">
+            O LeadyIA elimina ruído operacional,
+            acelera decisões e transforma intenção
+            em ação com previsibilidade.
           </p>
         </div>
 
         {/* ================= METRICS GRID ================= */}
-        <div className="mt-20 grid grid-cols-2 gap-8 md:grid-cols-4">
+        <div className="mt-20 grid grid-cols-2 gap-6 md:grid-cols-4">
           {METRICS.map((metric) => (
             <MetricCard
               key={metric.label}
               value={metric.value}
               label={metric.label}
+              description={metric.description}
             />
           ))}
         </div>
 
         {/* ================= FOOTNOTE ================= */}
-        <p className="mt-14 max-w-3xl text-sm text-slate-500">
+        <p className="mt-16 max-w-3xl text-sm leading-relaxed text-slate-500">
           * Métricas observadas em operações com automação ativa,
-          comparando períodos pré e pós implementação do Leadyia.
+          comparando períodos pré e pós implementação.
+          Resultados podem variar conforme contexto e volume.
         </p>
       </div>
     </section>
@@ -98,48 +123,55 @@ export default function SocialProof() {
 
 /**
  * =========================================================
- * 🔢 METRIC CARD
+ * 🔢 METRIC CARD — ENTERPRISE
  * =========================================================
  *
- * 🎯 Responsabilidade:
- * - Exibir UMA métrica de impacto
- * - Ser escaneável em até 2 segundos
+ * 🎯 Função:
+ * - Exibir UMA métrica clara
+ * - Permitir leitura em até 2 segundos
  *
- * 🧱 Design rationale:
- * - Valor com alto contraste
- * - Texto claro e direto ao benefício
- * - Animação sutil para feedback visual
+ * 🧠 Microinteração:
+ * - Hover discreto = feedback de solidez
+ * - Sem exagero visual
  */
-function MetricCard({ value, label }) {
+function MetricCard({ value, label, description }) {
   return (
     <div
       className="
         group
+        relative
         rounded-2xl
-        border border-slate-200
+        border
+        border-slate-200
         bg-slate-50
         p-8
-        text-center
         transition
+        duration-300
         hover:-translate-y-1
-        hover:shadow-lg
+        hover:shadow-md
       "
     >
+      {/* Valor */}
       <div
         className="
           text-4xl
           font-extrabold
+          tracking-tight
           text-brand-blue
-          transition
-          group-hover:scale-105
         "
       >
         {value}
       </div>
 
-      <div className="mt-3 text-sm font-medium text-slate-600">
+      {/* Label */}
+      <div className="mt-3 text-sm font-semibold text-slate-700">
         {label}
       </div>
+
+      {/* Descrição */}
+      <p className="mt-2 text-sm leading-relaxed text-slate-500">
+        {description}
+      </p>
     </div>
   );
 }

@@ -3,34 +3,61 @@
  * 🛡️ TRUST & ENTERPRISE READINESS — LEADYIA
  * =========================================================
  *
- * 📄 Arquivo: Trust.jsx
- * 📁 Caminho: src/components/landing/Trust.jsx
+ * 📄 Arquivo:
+ * src/components/landing/Trust.jsx
  *
  * 🎯 Responsabilidade:
  * - Construir confiança técnica e estratégica
- * - Comunicar robustez, previsibilidade e controle
  * - Reduzir risco percebido por decisores enterprise
+ * - Posicionar Leadyia como infraestrutura, não ferramenta
  *
- * 🚫 O que este componente NÃO deve fazer:
- * - Prometer features específicas de planos
- * - Substituir documentação técnica
- * - Executar lógica de negócio
+ * 🧠 Leitura-alvo:
+ * - CTOs, Heads de Produto, RevOps, Vendas
  *
- * 🧠 Contexto Enterprise:
- * - Seção crítica da landing
- * - Consumida por CTOs, Heads de Produto e Vendas
- * - Ponte entre Social Proof → Pricing
+ * 📐 Decisão de design:
+ * - Dark section = robustez + previsibilidade
+ * - Cards silenciosos, sem hype
+ * - Microinterações como feedback de controle
  */
 
 import React from "react";
 
-const TRUST_POINTS = [
-  "Arquitetura determinística e auditável",
-  "Separação clara entre decisão, IA e execução",
-  "Multi-tenant e white-label",
-  "Logs, métricas e histórico por conversa",
-  "Integração nativa com CRM, APIs e WhatsApp",
-  "Pronto para escala enterprise",
+/**
+ * =========================================================
+ * 🔐 PILARES DE CONFIANÇA
+ * =========================================================
+ */
+const TRUST_PILLARS = [
+  {
+    title: "Arquitetura determinística",
+    description:
+      "Cada decisão é rastreável, auditável e previsível — sem comportamento emergente fora de controle.",
+  },
+  {
+    title: "Separação clara de responsabilidades",
+    description:
+      "IA, decisão e execução são camadas independentes, evitando acoplamento e risco sistêmico.",
+  },
+  {
+    title: "Multi-tenant & white-label",
+    description:
+      "Projetado desde o núcleo para múltiplos clientes, marcas e ambientes isolados.",
+  },
+  {
+    title: "Observabilidade completa",
+    description:
+      "Logs, métricas e histórico por conversa para análise, compliance e melhoria contínua.",
+  },
+  {
+    title: "Integração enterprise-ready",
+    description:
+      "APIs, CRMs, WhatsApp e fluxos existentes sem fricção ou dependência proprietária.",
+  },
+  {
+    title: "Escala previsível",
+    description:
+      "Infraestrutura preparada para alto volume sem degradação de decisão ou latência.",
+  },
 ];
 
 export default function Trust() {
@@ -39,14 +66,16 @@ export default function Trust() {
       id="trust"
       className="
         relative
+        overflow-hidden
         bg-neutral-900
         text-white
-        py-28
+        py-32
         px-6
-        overflow-hidden
       "
     >
-      {/* Gradiente de fundo sutil para profundidade */}
+      {/* =====================================================
+          Fundo com profundidade (silencioso e institucional)
+         ===================================================== */}
       <div
         aria-hidden
         className="
@@ -61,32 +90,39 @@ export default function Trust() {
       <div className="mx-auto max-w-7xl">
         {/* ================= HEADER ================= */}
         <div className="max-w-3xl">
-          <span className="text-sm font-semibold uppercase tracking-wide text-brand-blue">
-            Enterprise-grade
+          <span className="text-xs font-semibold uppercase tracking-widest text-brand-blue/80">
+            Trust & Enterprise Readiness
           </span>
 
-          <h2 className="mt-3 text-3xl md:text-4xl font-extrabold">
-            Construído para escala e controle
+          <h2 className="mt-4 text-3xl md:text-4xl font-extrabold tracking-tight">
+            Construído para controle,
+            <br className="hidden md:block" />
+            escala e previsibilidade
           </h2>
 
-          <p className="mt-5 text-lg text-neutral-400">
-            O Leadyia foi projetado como infraestrutura de vendas,
-            não como um experimento de IA.
+          <p className="mt-6 text-lg text-neutral-400">
+            O Leadyia não é um chatbot.
+            É uma camada de decisão projetada como infraestrutura
+            para times que não podem errar.
           </p>
         </div>
 
-        {/* ================= TRUST GRID ================= */}
-        <ul className="mt-16 grid gap-6 md:grid-cols-2">
-          {TRUST_POINTS.map((item) => (
-            <TrustItem key={item} text={item} />
+        {/* ================= GRID ================= */}
+        <div className="mt-20 grid gap-6 md:grid-cols-2">
+          {TRUST_PILLARS.map((pillar) => (
+            <TrustCard
+              key={pillar.title}
+              title={pillar.title}
+              description={pillar.description}
+            />
           ))}
-        </ul>
+        </div>
 
         {/* ================= FOOTNOTE ================= */}
-        <p className="mt-14 max-w-3xl text-sm text-neutral-500">
+        <p className="mt-16 max-w-3xl text-sm leading-relaxed text-neutral-500">
           Arquitetura pensada para ambientes regulados,
-          times grandes e decisões orientadas por dados —
-          sem abrir mão de performance ou flexibilidade.
+          múltiplos stakeholders e decisões orientadas por dados —
+          sem comprometer performance, segurança ou flexibilidade.
         </p>
       </div>
     </section>
@@ -95,47 +131,58 @@ export default function Trust() {
 
 /**
  * =========================================================
- * 🔐 TRUST ITEM
+ * 🧱 TRUST CARD — ENTERPRISE
  * =========================================================
  *
- * 🎯 Responsabilidade:
- * - Representar um pilar de confiança técnica
- * - Ser facilmente escaneável por decisores
+ * 🎯 Função:
+ * - Comunicar solidez técnica
+ * - Ser escaneável em segundos
  *
- * 🧱 Design rationale:
- * - Card escuro para reforçar robustez
- * - Destaque visual sutil, sem marketing exagerado
+ * 🧠 Microinteração:
+ * - Hover sutil = sensação de controle
+ * - Nada agressivo ou “marketing”
  */
-function TrustItem({ text }) {
+function TrustCard({ title, description }) {
   return (
-    <li
+    <div
       className="
         group
-        flex items-start gap-4
+        relative
         rounded-2xl
-        bg-neutral-800/80
+        border
+        border-white/5
+        bg-neutral-800/70
         p-6
         transition
+        duration-300
+        hover:border-brand-blue/40
         hover:bg-neutral-800
-        hover:translate-x-1
       "
     >
-      {/* Indicador visual */}
-      <span
+      {/* Indicador lateral */}
+      <div
+        aria-hidden
         className="
-          mt-2
-          h-2.5
-          w-2.5
+          absolute
+          left-0
+          top-6
+          h-12
+          w-1
           rounded-full
-          bg-brand-blue
-          shrink-0
+          bg-brand-blue/60
+          opacity-0
+          transition
+          group-hover:opacity-100
         "
       />
 
-      {/* Conteúdo */}
-      <span className="text-neutral-200 leading-relaxed">
-        {text}
-      </span>
-    </li>
+      <h3 className="text-lg font-semibold tracking-tight">
+        {title}
+      </h3>
+
+      <p className="mt-3 text-sm leading-relaxed text-neutral-400">
+        {description}
+      </p>
+    </div>
   );
 }

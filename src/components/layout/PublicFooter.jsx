@@ -34,7 +34,7 @@ export default function PublicFooter() {
         "
       >
         <p>
-          © 2026 Leadyia. Todos os direitos reservados.
+          © 2026 LeadyIA. Todos os direitos reservados.
         </p>
 
         <p className="mt-4">

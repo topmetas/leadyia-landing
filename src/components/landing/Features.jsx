@@ -1,104 +1,86 @@
 /**
  * =========================================================
- * 🧩 FEATURES SECTION — LEADYIA
+ * ✨ FEATURES — LEADYIA WEBSITE
  * =========================================================
  *
- * 📄 Arquivo:
- * src/components/landing/Features.jsx
+ * 🎯 Função:
+ * - Explicar o produto sem vender demais
+ * - Transformar complexidade em clareza
+ * - Reforçar autoridade técnica
  *
- * 🎯 Responsabilidade:
- * - Exibir os principais diferenciais do produto
- * - Comunicar valor técnico de forma clara, escaneável e hierárquica
- * - Apoiar a conversão dentro da landing page
- *
- * 🚫 O que este componente NÃO deve fazer:
- * - Definir rotas
- * - Controlar navegação
- * - Gerenciar estado global
- *
- * 🧠 Contexto Enterprise:
- * - Seção interna da Home (âncora #features)
- * - Conteúdo estático, previsível e performático
- * - Preparado para expansão, A/B tests e personalização futura
- *
- * 📌 Decisão técnica:
- * - Uso exclusivo de utilitários CANÔNICOS do Tailwind v4
- * - Gradiente decorativo com fallback inline
+ * 🧠 Design:
+ * - Mesmo DNA visual do Hero
+ * - Cards leves, sem efeitos caros
+ * - Pronto para escala
  */
 
 import React from "react";
+
+const FEATURES = [
+  {
+    title: "Qualificação Inteligente",
+    description:
+      "O LeadyIA interpreta intenção real, elimina curiosos e prioriza leads prontos para compra.",
+    tag: "Lead Scoring",
+  },
+  {
+    title: "Decision Engine",
+    description:
+      "Fluxos conversacionais adaptativos baseados em comportamento, contexto e histórico.",
+    tag: "IA aplicada",
+  },
+  {
+    title: "Auto-Sales & Handoff",
+    description:
+      "Encaminhamento automático para vendas, CRM ou WhatsApp no momento exato.",
+    tag: "Conversão",
+  },
+  {
+    title: "Auditoria & Controle",
+    description:
+      "Cada decisão é rastreável, auditável e ajustável — sem caixa-preta.",
+    tag: "Governança",
+  },
+];
 
 export default function Features() {
   return (
     <section
       id="features"
-      className="
-        relative
-        bg-white
-        text-slate-900
-        py-28
-        px-6
-        overflow-hidden
-      "
+      className="relative overflow-hidden py-28 text-white"
     >
       {/* =====================================================
-          Gradiente decorativo superior (não funcional)
-          Tailwind v4 canonical + fallback inline
+          BACKGROUND BASE (MESMO DO HERO)
          ===================================================== */}
       <div
-        aria-hidden="true"
-        className="
-          absolute inset-0 -z-10
-          bg-linear-to-b
-          from-slate-100
-          via-transparent
-          to-transparent
-        "
-        style={{
-          background:
-            "linear-gradient(to bottom, #f1f5f9 0%, rgba(241,245,249,0) 70%)",
-        }}
+        aria-hidden
+        className="absolute inset-0 -z-10"
+        style={{ background: "var(--gradient-hero)" }}
       />
 
-      <div className="mx-auto max-w-7xl">
-        {/* ================= HEADER DA SEÇÃO ================= */}
-        <div className="mx-auto max-w-3xl text-center">
-          <h2 className="text-4xl md:text-5xl font-bold tracking-tight">
-            Um motor completo de conversão
+      {/* =====================================================
+          CONTEÚDO
+         ===================================================== */}
+      <div className="mx-auto max-w-7xl px-6">
+        {/* Header */}
+        <div className="max-w-3xl">
+          <h2 className="text-4xl font-extrabold tracking-tight">
+            Automação que entende contexto,
+            <br />
+            não apenas respostas
           </h2>
 
-          <p className="mt-6 text-lg md:text-xl text-slate-600">
-            Cada módulo do Leadyia foi projetado para operar como parte
-            de um sistema de vendas inteligente, previsível e escalável.
+          <p className="mt-6 text-lg text-neutral-300">
+            O LeadyIA opera como um motor de decisão — não como um chatbot
+            roteirizado.
           </p>
         </div>
 
-        {/* ================= GRID DE FEATURES =================
-            Estrutura previsível, fácil de manter e expandir */}
-        <div className="mt-20 grid gap-12 md:grid-cols-2">
-          <Feature
-            index="01"
-            title="Decision Engine (FSM)"
-            desc="Controle determinístico da conversa baseado em intenção, contexto e estágio do funil."
-          />
-
-          <Feature
-            index="02"
-            title="Lead Scoring em Tempo Real"
-            desc="Pontuação progressiva baseada em micro-sinais reais de compra."
-          />
-
-          <Feature
-            index="03"
-            title="Auto-Sales Inteligente"
-            desc="O bot vende sozinho quando detecta timing real de decisão."
-          />
-
-          <Feature
-            index="04"
-            title="Auto-Handoff para Vendas"
-            desc="Encaminhamento automático com histórico, score e intenção completa."
-          />
+        {/* Grid */}
+        <div className="mt-20 grid gap-8 md:grid-cols-2 lg:grid-cols-4">
+          {FEATURES.map((item) => (
+            <FeatureCard key={item.title} {...item} />
+          ))}
         </div>
       </div>
     </section>
@@ -107,78 +89,42 @@ export default function Features() {
 
 /**
  * =========================================================
- * 🔹 FEATURE CARD — ENTERPRISE
+ * 🧱 FEATURE CARD
  * =========================================================
- *
- * 🎯 Responsabilidade:
- * - Representar UMA feature individual
- * - Garantir leitura rápida e hierarquia visual clara
- *
- * 🚫 O que este componente NÃO deve fazer:
- * - Conhecer layout global
- * - Executar lógica de negócio
- *
- * 🧠 Nota arquitetural:
- * - Componente local por design
- * - Evita abstração prematura
- * - Pronto para promoção a componente global
  */
-function Feature({ index, title, desc }) {
+function FeatureCard({ title, description, tag }) {
   return (
     <div
       className="
-        group
-        relative
-        rounded-2xl
-        border
-        border-slate-200
-        bg-slate-50
-        p-8
-        transition
-        hover:border-brand-blue
-        hover:shadow-lg
+        relative flex flex-col
+        rounded-2xl p-6
+        transition hover:-translate-y-1
       "
+      style={{
+        background: "var(--gradient-card)",
+        border: "1px solid rgba(255,255,255,0.12)",
+      }}
     >
-      {/* Índice visual (ordem cognitiva) */}
-      <span
-        className="
-          absolute
-          -top-4
-          left-6
-          rounded-full
-          bg-brand-blue
-          px-3
-          py-1
-          text-xs
-          font-semibold
-          text-white
-        "
-      >
-        {index}
+      {/* Tag */}
+      <span className="
+        mb-4 w-fit rounded-full
+        bg-brand-blue/15
+        px-3 py-1
+        text-xs font-semibold
+        text-brand-blue
+      ">
+        {tag}
       </span>
 
-      {/* Conteúdo */}
-      <h3 className="mt-4 text-xl font-semibold tracking-tight">
+      {/* Title */}
+      <h3 className="text-lg font-semibold">
         {title}
       </h3>
 
-      <p className="mt-4 text-slate-600 leading-relaxed">
-        {desc}
+      {/* Description */}
+      <p className="mt-3 text-sm leading-relaxed text-neutral-300">
+        {description}
       </p>
-
-      {/* Linha de reforço visual */}
-      <div
-        aria-hidden="true"
-        className="
-          mt-6
-          h-1
-          w-12
-          rounded-full
-          bg-brand-blue/30
-          transition
-          group-hover:bg-brand-blue
-        "
-      />
     </div>
   );
 }

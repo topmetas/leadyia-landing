@@ -1,92 +1,121 @@
+/**
+ * =========================================================
+ * 🧠 USE CASES — LEADYIA WEBSITE
+ * =========================================================
+ *
+ * 🎯 Função:
+ * - Demonstrar aplicabilidade real do produto
+ * - Conectar IA → vendas → operação
+ * - Ajudar o decisor a se enxergar no produto
+ *
+ * 🧠 Design:
+ * - Institucional, estratégico
+ * - Mesmo sistema visual do Hero
+ * - Cards leves, rápidos e previsíveis
+ */
+
+import React from "react";
+
+const USE_CASES = [
+  {
+    title: "SaaS B2B",
+    highlight: "Conversão previsível",
+    description:
+      "Qualificação automática de leads, ativação inteligente de trials e handoff para vendas apenas quando há intenção real.",
+  },
+  {
+    title: "Agências",
+    highlight: "Filtro de intenção",
+    description:
+      "Identificação de decisores, separação entre curiosos e compradores e priorização de oportunidades de alto ticket.",
+  },
+  {
+    title: "Enterprise & B2B Complexo",
+    highlight: "Vendas assistidas",
+    description:
+      "Educação progressiva do lead, redução de fricção técnica e ativação automática de vendas humanas no momento certo.",
+  },
+  {
+    title: "Startups em Escala",
+    highlight: "Escala sem headcount",
+    description:
+      "Um único bot operando como SDR, pré-vendas e qualificador 24/7, sem aumentar custo operacional.",
+  },
+];
+
 export default function UseCases() {
   return (
     <section
-      className="relative bg-black text-white py-28 px-6 overflow-hidden"
+      id="use-cases"
+      className="relative overflow-hidden py-28 text-white"
     >
-      {/* background decorativo (AJUSTADO – sem bg-gradient-to-b) */}
+      {/* =====================================================
+          BACKGROUND BASE (PADRÃO LANDING)
+         ===================================================== */}
       <div
         aria-hidden
         className="absolute inset-0 -z-10"
-        style={{
-          background:
-            "linear-gradient(to bottom, rgb(23,23,23), rgb(0,0,0))",
-        }}
+        style={{ background: "var(--gradient-hero)" }}
       />
 
-      <div className="max-w-7xl mx-auto">
+      <div className="mx-auto max-w-7xl px-6">
         {/* Header */}
         <div className="max-w-3xl">
           <h2 className="text-3xl md:text-4xl font-extrabold tracking-tight">
-            Casos de Uso Reais
+            Casos de uso reais,
+            <br />
+            sem scripts engessados
           </h2>
 
-          <p className="mt-4 text-lg text-neutral-400">
-            O Leadyia se adapta ao modelo de negócio, ao ciclo de vendas
-            e ao nível de maturidade do lead — sem scripts engessados.
+          <p className="mt-6 text-lg text-neutral-300">
+            O LeadyIA se adapta ao modelo de negócio, ao ciclo de vendas
+            e à maturidade do lead — não o contrário.
           </p>
         </div>
 
         {/* Grid */}
-        <div className="mt-16 grid gap-8 md:grid-cols-2 lg:grid-cols-4">
-          {[
-            {
-              title: "SaaS B2B",
-              text:
-                "Qualificação automática de leads, trial inteligente e handoff para vendas apenas quando o lead está pronto.",
-              highlight: "Conversão + LTV",
-            },
-            {
-              title: "Agências",
-              text:
-                "Identifica intenção de orçamento, separa curiosos de decisores e prioriza leads de alto ticket.",
-              highlight: "Filtro de intenção",
-            },
-            {
-              title: "Produtos Enterprise",
-              text:
-                "Reduz fricção no funil, educa leads técnicos e ativa vendas assistidas automaticamente.",
-              highlight: "Vendas complexas",
-            },
-            {
-              title: "Startups em Escala",
-              text:
-                "Um único bot operando como SDR, pré-vendas e qualificador 24/7.",
-              highlight: "Escala sem headcount",
-            },
-          ].map((item) => (
-            <div
-              key={item.title}
-              className="
-                group relative flex flex-col
-                rounded-2xl border border-neutral-800
-                bg-neutral-900 p-6
-                transition hover:-translate-y-1 hover:border-brand-blue
-              "
-            >
-              {/* Tag */}
-              <span className="mb-4 inline-block w-fit rounded-full bg-brand-blue/10 px-3 py-1 text-xs font-semibold text-brand-blue">
-                {item.highlight}
-              </span>
-
-              {/* Conteúdo */}
-              <h3 className="text-lg font-semibold">
-                {item.title}
-              </h3>
-
-              <p className="mt-3 text-sm leading-relaxed text-neutral-400">
-                {item.text}
-              </p>
-
-              {/* CTA discreto */}
-              <div className="mt-auto pt-6">
-                <span className="text-xs font-semibold text-brand-blue opacity-0 transition group-hover:opacity-100">
-                  Ver aplicação →
-                </span>
-              </div>
-            </div>
+        <div className="mt-20 grid gap-8 md:grid-cols-2 lg:grid-cols-4">
+          {USE_CASES.map((item) => (
+            <UseCaseCard key={item.title} item={item} />
           ))}
         </div>
       </div>
     </section>
+  );
+}
+
+/**
+ * =========================================================
+ * 🧱 USE CASE CARD
+ * =========================================================
+ */
+function UseCaseCard({ item }) {
+  const { title, highlight, description } = item;
+
+  return (
+    <div
+      className="
+        flex flex-col rounded-2xl p-6
+        transition hover:-translate-y-1
+      "
+      style={{
+        background: "var(--gradient-card)",
+        border: "1px solid rgba(255,255,255,0.12)",
+      }}
+    >
+      {/* Tag estratégica */}
+      <span className="mb-4 w-fit rounded-full bg-brand-blue/10 px-3 py-1 text-xs font-semibold text-brand-blue">
+        {highlight}
+      </span>
+
+      {/* Conteúdo */}
+      <h3 className="text-lg font-semibold">
+        {title}
+      </h3>
+
+      <p className="mt-3 text-sm leading-relaxed text-neutral-300">
+        {description}
+      </p>
+    </div>
   );
 }
