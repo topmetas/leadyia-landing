@@ -2,28 +2,25 @@
 <html lang="pt-BR">
   <head>
     <meta charset="UTF-8" />
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <title>LeadyIA — Automação de Leads com IA</title>
 
-    <!-- Font -->
+    <!-- FONT -->
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
       rel="stylesheet"
     />
 
-    <!--
-      ⚠ Em produção ideal: mover CSP para header HTTP (NGINX/Vercel)
-    -->
+    <!-- CSP CORRIGIDA PARA WIDGET CDN -->
     <meta
       http-equiv="Content-Security-Policy"
       content="
         default-src 'self';
-        script-src 'self' https://widgetwl.leadyia.com https://api.leadyia.com 'unsafe-inline';
-        connect-src 'self' https://api.leadyia.com https://dashboard.leadyia.com https://widgetwl.leadyia.com;
-        img-src 'self' data: https://widgetwl.leadyia.com;
-        style-src 'self' https://fonts.googleapis.com https://widgetwl.leadyia.com 'unsafe-inline';
+        script-src 'self' https://widget.leadyia.com https://api.leadyia.com;
+        connect-src 'self' https://api.leadyia.com https://dashboard.leadyia.com https://widget.leadyia.com;
+        img-src 'self' data: https://widget.leadyia.com;
+        style-src 'self' https://fonts.googleapis.com https://widget.leadyia.com 'unsafe-inline';
         font-src https://fonts.gstatic.com;
         frame-src https://dashboard.leadyia.com;
       "
@@ -37,62 +34,14 @@
     <script type="module" src="/src/main.jsx"></script>
 
     <!-- ===================================================== -->
-    <!-- ✅ LEADYIA WIDGET — PRODUÇÃO VERSIONADA -->
+    <!-- LEADYIA WIDGET (CDN ENTERPRISE MODE) -->
     <!-- ===================================================== -->
-    <script>
-      (function () {
-        try {
-          const ENABLE_WIDGET = true;
-          if (!ENABLE_WIDGET) return;
 
-          /**
-           * ⚠ Nunca usar "latest" em produção.
-           * Use versão fixa para evitar quebra silenciosa.
-           */
-          const WIDGET_VERSION = "2.0.1"; // ajuste conforme versão real existente
+    <script
+      src="https://widget.leadyia.com/cdn/loader/widget-loader.js"
+      data-tenant="699ce2809e85df0e734f7d57"
+      async
+    ></script>
 
-          /**
-           * Contrato oficial esperado pelo widget.bundle.js
-           * window.__WIDGET_CONFIG__
-           */
-          window.__WIDGET_CONFIG__ = Object.freeze({
-            tenantId: "699ce2809e85df0e734f7d57",
-            apiKey:
-              "8e5d54dc166bbd411daedd5c5ff2e2531973614300bd9342a15de600f1f50b8e",
-            apiUrl: "https://api.leadyia.com",
-            dashboardUrl: "https://dashboard.leadyia.com",
-            environment: "production",
-            version: WIDGET_VERSION,
-          });
-
-          if (!window.__WIDGET_CONFIG__.tenantId) {
-            console.error("[LeadyIA] tenantId não definido.");
-            return;
-          }
-
-          const script = document.createElement("script");
-
-          script.src = `https://widgetwl.leadyia.com/versions/${WIDGET_VERSION}/widget.bundle.js`;
-
-          script.defer = true; // previsível e seguro
-
-          script.onload = function () {
-            console.info("[LeadyIA] Widget carregado com sucesso.");
-          };
-
-          script.onerror = function (err) {
-            console.error(
-              "[LeadyIA] Falha ao carregar widget. Verifique publicação da versão:",
-              WIDGET_VERSION,
-              err
-            );
-          };
-
-          document.body.appendChild(script);
-        } catch (err) {
-          console.error("[LeadyIA] Erro crítico no loader:", err);
-        }
-      })();
-    </script>
   </body>
 </html>
