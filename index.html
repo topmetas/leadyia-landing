@@ -37,12 +37,17 @@
     <!-- LEADYIA WIDGET (CDN ENTERPRISE MODE) -->
     <!-- ===================================================== -->
 
- <script src="https://widget.leadyia.com/cdn/v1/widget.v1.0.0.js"></script>
 <script>
-  window.LeadyIA.init({
-    clientId: "6969b5053077dca7a1a214b1",
-    theme: "dark"
-  });
+  function loadLeadyIA() {
+    if (window.LeadyIA) {
+      window.LeadyIA.init({
+        clientId: "6969b5053077dca7a1a214b1",
+        theme: "dark"
+      });
+    } else {
+      setTimeout(loadLeadyIA, 50);
+    }
+  }
 </script>
 
   </body>
