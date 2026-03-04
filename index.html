@@ -36,26 +36,13 @@
     <!-- ===================================================== -->
     <!-- LEADYIA WIDGET -->
     <!-- ===================================================== -->
-
-    <script>
-  (function () {
-    var script = document.createElement("script");
-    script.src = "https://widget.leadyia.com/v1/widget.js";
-    script.async = true;
-
-    script.onload = function () {
-      if (window.__LEADYIA_INIT__) {
-        window.__LEADYIA_INIT__("init", {
-          clientId: "69a86f6daffb6c89fbdb0349",
-          theme: "dark"
-        });
-      } else {
-        console.error("LeadyIA: init não encontrado.");
-      }
-    };
-
-    document.head.appendChild(script);
-  })();
+     
+<script 
+  src="https://widget.leadyia.com/v1/widget.js"
+  data-tenant="69a86f6daffb6c89fbdb0349"
+  data-theme="dark"
+  async>
 </script>
+
   </body>
 </html>
