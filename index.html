@@ -12,12 +12,12 @@
       rel="stylesheet"
     />
 
-    <!-- CSP CORRIGIDA PARA WIDGET CDN -->
+    <!-- CSP AJUSTADA PARA MODELO SaaS WIDGET -->
     <meta
       http-equiv="Content-Security-Policy"
       content="
         default-src 'self';
-        script-src 'self' https://widget.leadyia.com https://api.leadyia.com;
+        script-src 'self' https://widget.leadyia.com https://api.leadyia.com 'unsafe-inline';
         connect-src 'self' https://api.leadyia.com https://dashboard.leadyia.com https://widget.leadyia.com;
         img-src 'self' data: https://widget.leadyia.com;
         style-src 'self' https://fonts.googleapis.com https://widget.leadyia.com 'unsafe-inline';
@@ -30,15 +30,40 @@
   <body data-layout="landing">
     <div id="root"></div>
 
-    <!-- React App -->
+    <!-- React App (Vite injecta automaticamente no build) -->
     <script type="module" src="/src/main.jsx"></script>
 
     <!-- ===================================================== -->
-    <!-- LEADYIA WIDGET (CDN ENTERPRISE MODE) -->
+    <!-- LEADYIA WIDGET — MODELO SaaS PROFISSIONAL -->
     <!-- ===================================================== -->
 
-<script src="https://widget.leadyia.com/cdn/v1/widget.v1.0.0.js"></script>
-<script src="/cdn-init.js"></script>
+    <script>
+      (function (w, d, s, o, f, js, fjs) {
+        w["LeadyIAObject"] = o;
+        w[o] =
+          w[o] ||
+          function () {
+            (w[o].q = w[o].q || []).push(arguments);
+          };
+
+        js = d.createElement(s);
+        fjs = d.getElementsByTagName(s)[0];
+        js.async = true;
+        js.src = f;
+        fjs.parentNode.insertBefore(js, fjs);
+      })(
+        window,
+        document,
+        "script",
+        "LeadyIA",
+        "https://widget.leadyia.com/cdn/v1/widget.v1.0.0.js"
+      );
+
+      LeadyIA("init", {
+        clientId: "6969b5053077dca7a1a214b1",
+        theme: "dark"
+      });
+    </script>
 
   </body>
 </html>
