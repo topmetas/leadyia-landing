@@ -12,7 +12,7 @@
       rel="stylesheet"
     />
 
-    <!-- CSP AJUSTADA PARA MODELO SaaS WIDGET -->
+    <!-- CSP AJUSTADA -->
     <meta
       http-equiv="Content-Security-Policy"
       content="
@@ -27,19 +27,18 @@
     />
   </head>
 
-  <body data-layout="landing">
+  <body>
     <div id="root"></div>
 
-    <!-- React App (Vite injecta automaticamente no build) -->
+    <!-- React App -->
     <script type="module" src="/src/main.jsx"></script>
 
     <!-- ===================================================== -->
-    <!-- LEADYIA WIDGET — MODELO SaaS PROFISSIONAL -->
+    <!-- LEADYIA WIDGET -->
     <!-- ===================================================== -->
 
     <script>
       (function (w, d, s, o, f, js, fjs) {
-        w["LeadyIAObject"] = o;
         w[o] =
           w[o] ||
           function () {
@@ -56,7 +55,7 @@
         document,
         "script",
         "LeadyIA",
-        "https://widget.leadyia.com/cdn/v1/widget.v1.0.0.js"
+        "https://widget.leadyia.com/loader.js"
       );
 
       LeadyIA("init", {
@@ -64,6 +63,5 @@
         theme: "dark"
       });
     </script>
-
   </body>
 </html>
