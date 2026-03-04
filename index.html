@@ -38,30 +38,24 @@
     <!-- ===================================================== -->
 
     <script>
-      (function (w, d, s, o, f, js, fjs) {
-        w[o] =
-          w[o] ||
-          function () {
-            (w[o].q = w[o].q || []).push(arguments);
-          };
+  (function () {
+    var script = document.createElement("script");
+    script.src = "https://widget.leadyia.com/v1/widget.js";
+    script.async = true;
 
-        js = d.createElement(s);
-        fjs = d.getElementsByTagName(s)[0];
-        js.async = true;
-        js.src = f;
-        fjs.parentNode.insertBefore(js, fjs);
-      })(
-        window,
-        document,
-        "script",
-        "LeadyIA",
-        "https://widget.leadyia.com/loader.js"
-      );
+    script.onload = function () {
+      if (window.__LEADYIA_INIT__) {
+        window.__LEADYIA_INIT__("init", {
+          clientId: "6969b5053077dca7a1a214b1",
+          theme: "dark"
+        });
+      } else {
+        console.error("LeadyIA: init não encontrado.");
+      }
+    };
 
-      LeadyIA("init", {
-        clientId: "6969b5053077dca7a1a214b1",
-        theme: "dark"
-      });
-    </script>
+    document.head.appendChild(script);
+  })();
+</script>
   </body>
 </html>
