@@ -1,223 +1,251 @@
-/**
- * =========================================================
- * 💰 PRICING — LEADYIA (REFINED / ENTERPRISE)
- * =========================================================
- */
-
 import React from "react";
+
+const REGISTER_URL = "https://dashboard.leadyia.com/register";
 
 const PLANS = [
   {
     name: "Starter",
-    price: "R$ 97 / mês",
-    subtitle: "Para quem decidiu parar de perder oportunidades",
-    description:
-      "Ideal para empresas que já entenderam que responder rápido não basta. Aqui você começa a transformar conversas em decisão.",
+    price: "R$ 97",
+    period: "/mês",
+    bots: "1 bot",
+    messages: "5.000 mensagens/mês",
     features: [
       "Widget conversacional inteligente",
       "Identificação básica de intenção",
       "Lead scoring essencial",
-      "Visão clara no dashboard",
-      "Suporte via comunidade",
+      "Captura automática de leads",
+      "Histórico completo de conversas",
+      "Integração com WhatsApp",
+      "Respostas automatizadas",
     ],
-    cta: "Solicitar demonstração",
     variant: "secondary",
   },
   {
-    name: "Growth",
-    price: "R$ 297 / mês",
-    subtitle: "Onde empresas sérias evoluem",
-    description:
-      "Escolhido por times que não aceitam mais perder leads qualificados por falta de contexto, prioridade ou timing.",
+    name: "Pro",
+    price: "R$ 297",
+    period: "/mês",
+    bots: "5 bots",
+    messages: "20.000 mensagens/mês",
     features: [
+      "Tudo do Starter",
       "Decision Engine completo",
       "Qualificação avançada por intenção",
       "Auto-handoff para CRM e WhatsApp",
-      "Auto-Sales Engine ativo",
-      "Prioridade no suporte",
+      "Automações avançadas",
+      "Segmentação inteligente de leads",
     ],
     highlight: true,
-    cta: "Ativar crescimento",
+    badge: "Mais Popular",
     variant: "primary",
   },
   {
-    name: "Enterprise",
-    price: "Sob consulta",
-    subtitle: "Quando vendas viram sistema crítico",
-    description:
-      "Para organizações que tratam aquisição, decisão e conversão como infraestrutura estratégica.",
+    name: "Business",
+    price: "R$ 597",
+    period: "/mês",
+    bots: "15 bots",
+    messages: "50.000 mensagens/mês",
     features: [
+      "Tudo do Pro",
       "Fluxos conversacionais sob medida",
-      "IA privada com RAG dedicado",
-      "White-label completo",
-      "SLA enterprise",
-      "Integrações estratégicas",
+      "Playbooks personalizados",
+      "Roteamento inteligente de leads",
+      "Analytics avançado",
+      "Controle granular de permissões",
     ],
-    cta: "Falar com especialistas",
+    variant: "secondary",
+  },
+  {
+    name: "Enterprise",
+    price: "R$ 997",
+    period: "/mês",
+    bots: "Bots ilimitados",
+    messages: "Mensagens ilimitadas",
+    features: [
+      "Tudo do Business",
+      "IA privada com RAG dedicado",
+      "Infraestrutura dedicada",
+      "SLA enterprise 99.9%",
+      "Integrações estratégicas",
+      "Gerente técnico dedicado",
+    ],
     variant: "outline",
   },
 ];
 
 export default function Pricing() {
   return (
-    <section id="pricing" className="relative overflow-hidden py-32">
-      {/* Fundo alinhado ao Hero */}
+    <section
+      id="pricing"
+      className="relative overflow-hidden py-36 px-6 text-white"
+    >
       <div
         aria-hidden
         className="absolute inset-0 -z-20"
         style={{ background: "var(--gradient-hero)" }}
       />
+
       <div
         aria-hidden
         className="absolute inset-0 -z-10"
-        style={{ background: "rgba(0,0,0,0.45)" }}
+        style={{ background: "rgba(0,0,0,0.55)" }}
       />
 
-      <div className="mx-auto max-w-7xl px-6">
-        {/* Header */}
-        <header className="mx-auto max-w-3xl text-center">
-          <h2 className="text-4xl font-extrabold tracking-tight text-white">
-            Empresas líderes
+      <div className="mx-auto max-w-7xl">
+
+        {/* HEADER */}
+
+        <div className="mx-auto max-w-3xl text-center">
+
+          <span className="text-xs uppercase tracking-[0.3em] text-brand-blue font-semibold">
+            Planos
+          </span>
+
+          <h2 className="mt-6 text-4xl md:text-5xl font-extrabold tracking-tight text-white">
+            Escale sua operação
             <br />
-            não escolhem soluções comuns
+            com previsibilidade
           </h2>
 
-          <p className="mt-6 text-lg text-neutral-300">
-            O LeadyIA não é sobre volume.
-            <br />
-            É sobre decidir antes do concorrente.
+          <p className="mt-6 text-lg text-white">
+            O plano certo para cada estágio do crescimento da sua empresa.
           </p>
-        </header>
 
-        {/* Cards */}
-        <div className="mt-20 grid gap-8 md:grid-cols-3">
+        </div>
+
+        {/* GRID PLANOS */}
+
+        <div className="mt-24 grid gap-8 md:grid-cols-2 lg:grid-cols-4">
+
           {PLANS.map((plan) => (
             <PlanCard key={plan.name} plan={plan} />
           ))}
+
         </div>
 
-        {/* Nota racional */}
-        <p className="mt-16 text-center text-sm text-neutral-400">
-          Empresas que demoram para estruturar decisão perdem até{" "}
-          <span className="font-semibold text-white">
-            38% dos leads qualificados
-          </span>.
-        </p>
       </div>
     </section>
   );
 }
 
-/* =========================================================
- * 🧱 PLAN CARD — REFINADO
- * ========================================================= */
 function PlanCard({ plan }) {
+
   const {
     name,
     price,
-    subtitle,
-    description,
+    period,
+    bots,
+    messages,
     features,
-    cta,
     highlight,
+    badge,
     variant,
   } = plan;
 
   return (
     <div
       className={`
-        group relative flex flex-col rounded-2xl p-8
+        group relative flex flex-col
+        rounded-2xl p-8
         transition-all duration-300
         hover:-translate-y-1
-        ${highlight ? "scale-[1.03]" : ""}
+        ${highlight ? "scale-[1.05]" : ""}
       `}
       style={{
         background: "rgba(255,255,255,0.06)",
         border: highlight
           ? "1px solid rgba(59,130,246,0.45)"
-          : "1px solid rgba(255,255,255,0.14)",
+          : "1px solid rgba(255,255,255,0.15)",
         backdropFilter: "blur(14px)",
       }}
     >
-      {/* Glow só no plano principal */}
-      {highlight && (
-        <div
-          aria-hidden
-          className="pointer-events-none absolute inset-0 rounded-2xl"
-          style={{
-            background: "var(--gradient-glow)",
-            filter: "blur(80px)",
-            opacity: 0.35,
-          }}
-        />
-      )}
 
-      {/* Badge */}
       {highlight && (
-        <span className="absolute -top-4 left-1/2 -translate-x-1/2 rounded-full bg-brand-blue px-4 py-1 text-xs font-semibold text-black">
-          Mais escolhido
+        <span className="absolute -top-4 left-1/2 -translate-x-1/2 rounded-full bg-brand-blue px-4 py-1 text-xs font-semibold text-white">
+          {badge}
         </span>
       )}
 
-      {/* Conteúdo */}
       <h3 className="text-lg font-semibold text-white">{name}</h3>
-      <p className="mt-1 text-sm text-neutral-400">{subtitle}</p>
 
-      <p className="mt-6 text-3xl font-extrabold text-white">{price}</p>
-      <p className="mt-4 text-sm leading-relaxed text-neutral-300">
-        {description}
+      <p className="mt-6 text-3xl font-extrabold text-white">
+        {price}
+        <span className="text-sm text-white ml-1">
+          {period}
+        </span>
+      </p>
+
+      <p className="mt-4 text-sm text-white">
+        🤖 {bots}
+      </p>
+
+      <p className="text-sm text-white">
+        💬 {messages}
       </p>
 
       <ul className="mt-6 space-y-3 text-sm">
+
         {features.map((feature) => (
-          <li key={feature} className="flex gap-3 text-neutral-200">
+          <li
+            key={feature}
+            className="flex gap-3 text-white"
+          >
             <span className="text-brand-blue">✔</span>
             {feature}
           </li>
         ))}
+
       </ul>
 
-      {/* CTA */}
-      <div className="mt-10">
+      <a
+        href={REGISTER_URL}
+        className="mt-10 block"
+      >
+
         {variant === "primary" && (
           <button
-            className="relative w-full rounded-xl py-3 text-sm font-semibold text-black transition-all hover:-translate-y-0.5"
+            className="
+            relative w-full rounded-xl py-3 text-sm font-semibold
+            text-white transition-all hover:-translate-y-0.5
+            "
             style={{
               background: "var(--cta-primary-bg)",
               boxShadow: "var(--cta-primary-shadow)",
             }}
           >
-            <span
-              aria-hidden
-              className="absolute inset-0 -z-10 rounded-xl"
-              style={{
-                background: "var(--cta-primary-glow)",
-                filter: "blur(28px)",
-                opacity: 0.9,
-              }}
-            />
-            {cta}
+            Criar conta
           </button>
         )}
 
         {variant === "secondary" && (
           <button
-            className="w-full rounded-xl py-3 text-sm font-medium text-white transition hover:bg-white/15"
-            style={{ background: "rgba(255,255,255,0.08)" }}
+            className="
+            w-full rounded-xl py-3 text-sm font-medium
+            text-white transition hover:bg-white/15
+            "
+            style={{
+              background: "rgba(255,255,255,0.08)",
+            }}
           >
-            {cta}
+            Criar conta
           </button>
         )}
 
         {variant === "outline" && (
           <button
-            className="w-full rounded-xl border py-3 text-sm font-medium text-white transition hover:bg-white/10"
-            style={{ borderColor: "rgba(255,255,255,0.25)" }}
+            className="
+            w-full rounded-xl border py-3 text-sm font-medium
+            text-white transition hover:bg-white/10
+            "
+            style={{
+              borderColor: "rgba(255,255,255,0.25)",
+            }}
           >
-            {cta}
+            Criar conta
           </button>
         )}
-      </div>
+
+      </a>
+
     </div>
   );
 }

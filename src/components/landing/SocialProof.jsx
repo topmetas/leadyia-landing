@@ -3,106 +3,108 @@
  * 📊 RESULTADOS REAIS — LEADYIA
  * =========================================================
  *
- * 📁 Caminho:
- * src/components/landing/SocialProof.jsx
- *
- * 🎯 Responsabilidade:
- * - Mostrar impacto real no negócio
- * - Deixar claro o ganho financeiro e operacional
- * - Tirar o medo de “ser mais uma ferramenta”
- *
- * 🧠 Regra de ouro:
- * Se o visitante não entende em 5 segundos,
- * este componente falhou.
+ * Seção otimizada para conversão.
+ * Inspirada em landing pages de Big Tech SaaS.
  */
 
 import React from "react";
 
 /**
  * =========================================================
- * 📈 RESULTADOS QUE O CLIENTE SENTE
+ * 📈 MÉTRICAS PRINCIPAIS
  * =========================================================
- *
- * Linguagem simples:
- * - Mais vendas
- * - Menos tempo perdido
- * - Atendimento que não para
- * - Controle total
  */
+
 const METRICS = [
   {
     value: "+38%",
     label: "Mais vendas convertidas",
     description:
-      "Mais pessoas certas chegando até o final do funil.",
+      "Mais visitantes avançando até o momento de compra.",
   },
   {
     value: "-52%",
-    label: "Menos tempo perdido com leads frios",
+    label: "Menos tempo perdido",
     description:
-      "O time fala só com quem realmente quer comprar.",
+      "Seu time conversa apenas com quem realmente quer comprar.",
   },
   {
     value: "24/7",
-    label: "Atendimento que nunca para",
+    label: "Atendimento contínuo",
     description:
-      "Seu negócio vende mesmo fora do horário comercial.",
+      "Seu negócio responde clientes mesmo fora do horário comercial.",
   },
   {
     value: "100%",
-    label: "Visibilidade sobre cada conversa",
+    label: "Controle sobre conversas",
     description:
-      "Você sabe por que cada decisão foi tomada.",
+      "Você entende exatamente como cada lead foi atendido.",
   },
 ];
+
+/**
+ * =========================================================
+ * 📊 SOCIAL PROOF SECTION
+ * =========================================================
+ */
 
 export default function SocialProof() {
   return (
     <section
       id="results"
-      className="
-        relative
-        overflow-hidden
-        py-32
-        px-6
-        text-slate-900
-      "
+      className="relative overflow-hidden py-36 px-6 text-slate-900"
     >
       {/* =====================================================
-          FUNDO MAIS VIVO, MAS LIMPO
+          BACKGROUND SISTÊMICO
          ===================================================== */}
+
       <div
         aria-hidden
         className="absolute inset-0 -z-10"
         style={{
           background:
-            "linear-gradient(180deg, #f8fafc 0%, #ffffff 60%)",
+            "linear-gradient(180deg,#f8fafc 0%,#ffffff 55%,#f1f5f9 100%)",
+        }}
+      />
+
+      {/* glow superior */}
+      <div
+        aria-hidden
+        className="absolute left-1/2 top-0 -translate-x-1/2 blur-3xl opacity-40"
+        style={{
+          width: 600,
+          height: 400,
+          background:
+            "radial-gradient(circle, rgba(37,99,235,0.18), transparent 70%)",
         }}
       />
 
       <div className="mx-auto max-w-7xl">
+
         {/* ================= HEADER ================= */}
+
         <div className="max-w-3xl">
-          <span className="text-xs font-semibold uppercase tracking-widest text-brand-blue">
-            Resultados na prática
+
+          <span className="text-xs font-semibold uppercase tracking-[0.25em] text-brand-blue">
+            Resultados reais
           </span>
 
-          <h2 className="mt-4 text-3xl md:text-4xl font-extrabold tracking-tight">
+          <h2 className="mt-5 text-4xl font-extrabold tracking-tight md:text-5xl">
             Menos conversa perdida.
-            <br className="hidden md:block" />
-            Mais dinheiro entrando.
+            <br />
+            Mais vendas acontecendo.
           </h2>
 
-          <p className="mt-6 text-lg text-slate-600">
-            O LeadyIA trabalha para que sua empresa
-            responda mais rápido,
-            foque nos clientes certos
-            e venda mais sem aumentar o time.
+          <p className="mt-6 text-lg leading-relaxed text-slate-600">
+            O LeadyIA responde visitantes, identifica quem realmente quer comprar
+            e conduz cada lead até o próximo passo certo.
           </p>
+
         </div>
 
         {/* ================= MÉTRICAS ================= */}
-        <div className="mt-20 grid grid-cols-2 gap-6 md:grid-cols-4">
+
+        <div className="mt-24 grid gap-8 md:grid-cols-2 lg:grid-cols-4">
           {METRICS.map((metric) => (
             <MetricCard
               key={metric.label}
@@ -112,11 +114,13 @@ export default function SocialProof() {
         </div>
 
         {/* ================= FOOTNOTE ================= */}
-        <p className="mt-16 max-w-3xl text-sm leading-relaxed text-slate-500">
+
+        <p className="mt-20 max-w-3xl text-sm leading-relaxed text-slate-500">
           * Resultados observados em operações reais usando o LeadyIA.
-          Os números variam conforme volume, mercado e estratégia,
-          mas o ganho de eficiência é consistente.
+          Os ganhos variam conforme volume de leads, mercado e estratégia,
+          mas a melhoria de eficiência é consistente.
         </p>
+
       </div>
     </section>
   );
@@ -124,57 +128,65 @@ export default function SocialProof() {
 
 /**
  * =========================================================
- * 🔢 METRIC CARD — CLARO E DIRETO
+ * 🔢 METRIC CARD
  * =========================================================
- *
- * Princípio:
- * - Um número
- * - Uma frase simples
- * - Um benefício óbvio
  */
+
 function MetricCard({ value, label, description }) {
   return (
     <div
       className="
-        group
-        relative
-        rounded-2xl
-        bg-white
-        p-8
-        shadow-sm
-        transition-all
-        duration-300
-        hover:-translate-y-1
-        hover:shadow-lg
+        group relative flex flex-col
+        rounded-3xl
+        p-10
+        transition-all duration-300
+        hover:-translate-y-2
       "
       style={{
+        background: "white",
         border: "1px solid rgba(15,23,42,0.08)",
+        boxShadow:
+          "0 10px 40px rgba(15,23,42,0.06)",
       }}
     >
-      {/* Glow sutil */}
+      {/* glow hover */}
+
       <div
         aria-hidden
-        className="absolute inset-0 -z-10 rounded-2xl opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+        className="
+          absolute inset-0 -z-10 rounded-3xl
+          opacity-0
+          transition-opacity duration-300
+          group-hover:opacity-100
+        "
         style={{
           background:
-            "radial-gradient(60% 60% at 50% 0%, rgba(59,130,246,0.15), transparent 70%)",
+            "radial-gradient(60% 60% at 50% 0%, rgba(37,99,235,0.2), transparent 70%)",
         }}
       />
 
-      {/* Valor */}
-      <div className="text-4xl font-extrabold tracking-tight text-brand-blue">
+      {/* número */}
+
+      <div className="text-5xl font-extrabold tracking-tight text-brand-blue">
         {value}
       </div>
 
-      {/* Label */}
-      <div className="mt-3 text-sm font-semibold text-slate-800">
+      {/* divider */}
+
+      <div className="mt-6 h-px w-full bg-slate-200" />
+
+      {/* label */}
+
+      <div className="mt-6 text-base font-semibold text-slate-900">
         {label}
       </div>
 
-      {/* Descrição */}
-      <p className="mt-2 text-sm leading-relaxed text-slate-600">
+      {/* description */}
+
+      <p className="mt-3 text-sm leading-relaxed text-slate-600">
         {description}
       </p>
+
     </div>
   );
 }

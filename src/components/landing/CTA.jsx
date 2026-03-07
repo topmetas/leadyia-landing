@@ -1,136 +1,147 @@
-/**
- * =========================================================
- * 🎯 FINAL CTA — LEADYIA WEBSITE (ENTERPRISE)
- * =========================================================
- *
- * 📄 Arquivo:
- * src/components/landing/CTA.jsx
- *
- * 🎯 Função:
- * - Encerrar a landing com autoridade estratégica
- * - Tornar a decisão óbvia para o decisor
- * - Mostrar o custo de NÃO agir
- *
- * 🧠 Princípio:
- * - Sem pressão artificial
- * - Sem urgência falsa
- * - Apenas lógica de negócio clara
- */
-
 import React from "react";
 
 export default function CTA() {
   return (
-    <section
-      id="cta"
-      className="
-        relative
-        overflow-hidden
-        py-36
-        text-white
-      "
-    >
-      {/* =====================================================
-          BACKGROUND — CONTINUIDADE DO HERO
-         ===================================================== */}
+    <section id="cta" className="relative overflow-hidden py-40 text-white">
+
+      {/* BACKGROUND */}
+
       <div
         aria-hidden
-        className="absolute inset-0 -z-10"
+        className="absolute inset-0 -z-30"
         style={{ background: "var(--gradient-hero)" }}
       />
 
-      {/* Glow inferior (encerramento visual) */}
+      <div
+        aria-hidden
+        className="absolute inset-0 -z-20"
+        style={{
+          background:
+            "radial-gradient(55% 40% at 50% 60%, rgba(59,130,246,0.35), transparent 70%)",
+        }}
+      />
+
       <div
         aria-hidden
         className="absolute inset-0 -z-10"
         style={{
           background:
-            "radial-gradient(60% 45% at 50% 100%, rgba(59,130,246,0.22), transparent 70%)",
+            "linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0.55) 100%)",
         }}
       />
 
       <div className="mx-auto max-w-6xl px-6 text-center">
-        {/* =====================================================
-            HEADLINE — DECISÃO FINAL
-           ===================================================== */}
-        <h2 className="text-4xl md:text-5xl font-extrabold tracking-tight">
+
+        {/* HEADLINE */}
+
+        <h2 className="text-4xl md:text-6xl font-extrabold tracking-tight leading-tight">
           Enquanto você decide,
           <br className="hidden md:block" />
-          seus leads já estão decidindo
+          <span className="text-brand-blue">
+            seus leads já estão decidindo
+          </span>
         </h2>
 
-        {/* =====================================================
-            SUBHEADLINE — POR QUE NÃO FICAR DE FORA
-           ===================================================== */}
+        {/* SUBHEADLINE */}
+
         <p className="mx-auto mt-8 max-w-3xl text-lg leading-relaxed text-neutral-300">
-          Cada conversa não qualificada é uma oportunidade perdida.
-          Cada atraso na resposta reduz intenção.
-          O Leadyia garante que nenhuma decisão importante
-          aconteça tarde demais.
+          Cada conversa não qualificada representa oportunidade perdida.
+          O <span className="text-white font-semibold">LeadyIA</span> garante
+          que intenção, prioridade e decisão aconteçam no momento certo.
         </p>
 
-        {/* =====================================================
-            CTAs
-           ===================================================== */}
-        <div className="mt-16 flex flex-col items-center justify-center gap-5 sm:flex-row">
-          {/* CTA Primário */}
+        {/* STATS */}
+
+        <div className="mt-14 grid grid-cols-1 gap-8 sm:grid-cols-3 text-center">
+          <Stat number="38%" label="menos leads perdidos" />
+          <Stat number="3x" label="mais velocidade de resposta" />
+          <Stat number="24/7" label="qualificação automática" />
+        </div>
+
+        {/* BOTÕES */}
+
+        <div className="mt-16 flex flex-col items-center justify-center gap-6 sm:flex-row">
+
+          {/* BOTÃO AZUL */}
+
           <a
-            href="#demo"
+            href="https://dashboard.leadyia.com/register"
             className="
+              relative
               inline-flex
               items-center
               justify-center
               rounded-xl
-              bg-brand-blue
-              px-12
+              px-14
               py-4
               text-lg
               font-semibold
               text-white
               transition
-              hover:opacity-90
-              focus-visible:outline-none
-              focus-visible:ring-2
-              focus-visible:ring-brand-blue
-              focus-visible:ring-offset-2
-              focus-visible:ring-offset-neutral-900
+              hover:-translate-y-0.5
             "
+            style={{
+              background: "var(--cta-primary-bg)",
+              boxShadow: "var(--cta-primary-shadow)",
+            }}
           >
-            Solicitar demonstração
+            <span
+              aria-hidden
+              className="absolute inset-0 -z-10 rounded-xl"
+              style={{
+                background: "var(--cta-primary-glow)",
+                filter: "blur(32px)",
+                opacity: 0.9,
+              }}
+            />
+            Criar conta agora
           </a>
 
-          {/* CTA Secundário */}
+          {/* BOTÃO OUTLINE */}
+
           <a
-            href="#pricing"
+            href="https://dashboard.leadyia.com/register"
             className="
               inline-flex
               items-center
               justify-center
               rounded-xl
               border
-              px-12
+              px-14
               py-4
               text-lg
               font-semibold
+              text-white
               transition
-              hover:bg-white/5
+              hover:bg-white/10
             "
             style={{
-              borderColor: "rgba(255,255,255,0.25)",
-              color: "var(--color-text)",
+              borderColor: "rgba(255,255,255,0.28)",
             }}
           >
-            Avaliar planos
+            Começar teste
           </a>
+
         </div>
 
-        {/* =====================================================
-            MICROCOPY — REDUÇÃO DE RISCO
-           ===================================================== */}
+        {/* TRUST */}
+
         <p className="mt-14 text-sm text-neutral-400">
-          ✔️ Sem compromisso • ✔️ Setup guiado • ✔️ IA auditável e controlável
+          ✔ Setup guiado • ✔ IA auditável • ✔ Sem contrato obrigatório
         </p>
+
       </div>
     </section>
+  );
+}
+
+/* STATS COMPONENT */
+
+function Stat({ number, label }) {
+  return (
+    <div className="space-y-2">
+      <p className="text-3xl font-bold text-white">{number}</p>
+      <p className="text-sm text-neutral-400">{label}</p>
+    </div>
   );
 }

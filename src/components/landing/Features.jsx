@@ -1,53 +1,52 @@
 /**
  * =========================================================
- * ✨ FEATURES — LEADYIA WEBSITE
+ * ✨ FEATURES — LEADYIA WEBSITE (BIG TECH SaaS)
  * =========================================================
  *
- * 📍 Caminho completo:
- * src/components/landing/Features.jsx
- *
- * 🎯 Responsabilidade:
- * - Mostrar claramente COMO o LeadyIA ajuda o negócio a vender mais
- * - Fazer o cliente entender o valor sem precisar conhecer tecnologia
- * - Criar sensação de “isso deveria estar no meu site agora”
- *
- * ❌ O que este componente NÃO deve fazer:
- * - Não falar de preço
- * - Não usar termos técnicos difíceis
- * - Não explicar arquitetura ou implementação
- *
- * 🧠 Nota estratégica:
- * Aqui o visitante já gostou da ideia.
- * Agora ele precisa entender POR QUE isso é melhor
- * do que continuar atendendo leads manualmente.
+ * Mostra como o LeadyIA transforma visitantes
+ * em oportunidades de venda automaticamente.
  */
 
 import React from "react";
 
+const DASHBOARD_REGISTER = "https://dashboard.leadyia.com/register";
+
 const FEATURES = [
   {
-    title: "Leads certos, na hora certa",
+    title: "Capture leads automaticamente",
     description:
-      "O LeadyIA conversa, entende o interesse real do visitante e destaca quem realmente quer comprar — sem você perder tempo com curiosos.",
+      "O widget LeadyIA inicia conversas com visitantes no momento certo e captura oportunidades antes que elas abandonem seu site.",
+    tag: "Aquisição",
+  },
+  {
+    title: "Identifique quem realmente quer comprar",
+    description:
+      "O LeadyIA analisa o comportamento do visitante e identifica quais leads têm maior probabilidade de conversão.",
     tag: "Qualificação",
   },
   {
-    title: "Conversas que se adaptam",
+    title: "Converse como um vendedor experiente",
     description:
-      "Cada resposta muda o caminho da conversa. O LeadyIA se ajusta ao comportamento do cliente, como um vendedor experiente faria.",
+      "Cada resposta muda o caminho da conversa. A IA se adapta ao contexto do cliente e conduz a interação naturalmente.",
     tag: "Inteligência",
   },
   {
-    title: "Venda ou encaminhe automaticamente",
+    title: "Encaminhe leads no momento certo",
     description:
-      "Quando o lead está pronto, o LeadyIA age: direciona para vendas, CRM ou WhatsApp no momento certo.",
+      "Quando o visitante está pronto para avançar, o LeadyIA envia automaticamente para vendas, CRM ou WhatsApp.",
     tag: "Conversão",
+  },
+  {
+    title: "Integre com seu fluxo de vendas",
+    description:
+      "Sincronize leads com seu CRM, ferramentas de marketing e equipes comerciais sem processos manuais.",
+    tag: "Integração",
   },
   {
     title: "Controle total do processo",
     description:
-      "Você sabe exatamente o que o LeadyIA faz, por que faz e pode ajustar tudo. Sem surpresas, sem decisões escondidas.",
-    tag: "Transparência",
+      "Você acompanha cada interação, entende o comportamento dos leads e ajusta o fluxo conforme seu negócio evolui.",
+    tag: "Controle",
   },
 ];
 
@@ -57,44 +56,59 @@ export default function Features() {
       id="features"
       className="relative overflow-hidden py-32 text-white"
     >
-      {/* =====================================================
-          BACKGROUND BASE
-          Mesmo gradiente sistêmico do Hero
-         ===================================================== */}
+      {/* Background */}
       <div
         aria-hidden
         className="absolute inset-0 -z-10"
         style={{ background: "var(--gradient-hero)" }}
       />
 
-      {/* =====================================================
-          CONTEÚDO
-         ===================================================== */}
       <div className="mx-auto max-w-7xl px-6">
+
         {/* Header */}
         <div className="max-w-3xl">
           <span className="mb-4 inline-block text-sm font-semibold uppercase tracking-wide text-brand-blue">
-            Como o LeadyIA ajuda seu negócio
+            Automação inteligente de vendas
           </span>
 
           <h2 className="text-4xl font-extrabold tracking-tight">
-            Mais leads qualificados.
+            Seu site começa a vender
             <br />
-            Menos trabalho manual.
+            mesmo quando você não está online
           </h2>
 
           <p className="mt-6 text-lg leading-relaxed text-neutral-300">
-            O LeadyIA atua como um vendedor digital: conversa com seus visitantes,
-            entende o que eles querem e leva cada um para o próximo passo certo.
-            Tudo isso automaticamente.
+            O LeadyIA transforma visitantes em oportunidades reais de negócio.
+            Ele conversa, entende o interesse do cliente e conduz cada lead
+            para o próximo passo automaticamente.
           </p>
         </div>
 
-        {/* Grid */}
-        <div className="mt-24 grid gap-8 md:grid-cols-2 lg:grid-cols-4">
+        {/* GRID */}
+        <div className="mt-24 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
           {FEATURES.map((item) => (
             <FeatureCard key={item.title} {...item} />
           ))}
+        </div>
+
+        {/* CTA secundário */}
+        <div className="mt-20 text-center">
+          <a
+            href={DASHBOARD_REGISTER}
+            className="
+              inline-flex items-center justify-center
+              rounded-xl px-8 py-4
+              text-sm font-semibold
+              transition hover:-translate-y-0.5
+            "
+            style={{
+              background: "var(--cta-primary-bg)",
+              boxShadow: "var(--cta-primary-shadow)",
+              color: "#000",
+            }}
+          >
+            Criar conta gratuita
+          </a>
         </div>
       </div>
     </section>
@@ -105,15 +119,8 @@ export default function Features() {
  * =========================================================
  * 🧱 FEATURE CARD
  * =========================================================
- *
- * 🎯 Responsabilidade:
- * - Explicar um benefício real e concreto
- * - Mostrar impacto direto no dia a dia do negócio
- *
- * 🧠 Princípio:
- * Se um gestor não entender em 5 segundos,
- * o texto está complexo demais.
  */
+
 function FeatureCard({ title, description, tag }) {
   return (
     <div
@@ -128,6 +135,20 @@ function FeatureCard({ title, description, tag }) {
         border: "1px solid rgba(255,255,255,0.12)",
       }}
     >
+      {/* Glow hover */}
+      <div
+        aria-hidden
+        className="
+          pointer-events-none absolute inset-0 rounded-2xl
+          opacity-0 transition-opacity duration-300
+          group-hover:opacity-100
+        "
+        style={{
+          background:
+            "radial-gradient(circle at top, rgba(59,130,246,0.18), transparent 70%)",
+        }}
+      />
+
       {/* Tag */}
       <span
         className="
@@ -152,13 +173,17 @@ function FeatureCard({ title, description, tag }) {
         {description}
       </p>
 
-      {/* Divider sistêmico */}
+      {/* Divider */}
       <div
         aria-hidden
-        className="pointer-events-none absolute inset-x-0 bottom-0 h-px opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+        className="
+          pointer-events-none absolute inset-x-0 bottom-0 h-px
+          opacity-0 transition-opacity duration-300
+          group-hover:opacity-100
+        "
         style={{
           background:
-            "var(--gradient-divider, linear-gradient(90deg, transparent, rgba(255,255,255,0.12), transparent))",
+            "linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent)",
         }}
       />
     </div>
