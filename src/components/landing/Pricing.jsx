@@ -1,6 +1,12 @@
+/**
+ * =========================================================
+ * 💰 PRICING — LEADYIA (REFINADO VISUAL + CONVERSÃO)
+ * =========================================================
+ */
+
 import React from "react";
 
-const REGISTER_URL = "https://dashboard.leadyia.com/register";
+const REGISTER_URL = "https://dashboard.leadyia.com/auth/register";
 
 const PLANS = [
   {
@@ -76,50 +82,65 @@ export default function Pricing() {
   return (
     <section
       id="pricing"
-      className="relative overflow-hidden py-36 px-6 text-white"
+      className="relative overflow-hidden py-36 px-6 text-slate-900"
     >
+      {/* BACKGROUND MAIS LEVE */}
       <div
         aria-hidden
         className="absolute inset-0 -z-20"
-        style={{ background: "var(--gradient-hero)" }}
+        style={{
+          background:
+            "linear-gradient(180deg,#0f172a 0%,#111827 40%,#0f172a 100%)",
+        }}
       />
 
+      {/* OVERLAY MAIS SUAVE */}
       <div
         aria-hidden
         className="absolute inset-0 -z-10"
-        style={{ background: "rgba(0,0,0,0.55)" }}
+        style={{
+          background: "rgba(15,23,42,0.25)",
+        }}
       />
 
-      <div className="mx-auto max-w-7xl">
+      {/* GLOW */}
+      <div
+        aria-hidden
+        className="absolute left-1/2 top-0 -translate-x-1/2 blur-3xl opacity-30"
+        style={{
+          width: 800,
+          height: 400,
+          background:
+            "radial-gradient(circle, rgba(59,130,246,0.25), transparent 70%)",
+        }}
+      />
+
+      <div className="relative z-10 mx-auto max-w-7xl">
 
         {/* HEADER */}
 
-        <div className="mx-auto max-w-3xl text-center">
-
+        <div className="mx-auto max-w-3xl text-center text-white">
           <span className="text-xs uppercase tracking-[0.3em] text-brand-blue font-semibold">
             Planos
           </span>
 
-          <h2 className="mt-6 text-4xl md:text-5xl font-extrabold tracking-tight text-white">
+          <h2 className="mt-6 text-4xl md:text-5xl font-extrabold tracking-tight">
             Escale sua operação
             <br />
             com previsibilidade
           </h2>
 
-          <p className="mt-6 text-lg text-white">
-            O plano certo para cada estágio do crescimento da sua empresa.
+          <p className="mt-6 text-lg text-slate-300">
+            Escolha o plano ideal e comece a converter mais leads hoje.
           </p>
-
         </div>
 
-        {/* GRID PLANOS */}
+        {/* GRID */}
 
         <div className="mt-24 grid gap-8 md:grid-cols-2 lg:grid-cols-4">
-
           {PLANS.map((plan) => (
             <PlanCard key={plan.name} plan={plan} />
           ))}
-
         </div>
 
       </div>
@@ -127,8 +148,11 @@ export default function Pricing() {
   );
 }
 
-function PlanCard({ plan }) {
+/* =========================================================
+ * PLAN CARD
+ * ========================================================= */
 
+function PlanCard({ plan }) {
   const {
     name,
     price,
@@ -147,20 +171,21 @@ function PlanCard({ plan }) {
         group relative flex flex-col
         rounded-2xl p-8
         transition-all duration-300
-        hover:-translate-y-1
+        hover:-translate-y-2
         ${highlight ? "scale-[1.05]" : ""}
       `}
       style={{
-        background: "rgba(255,255,255,0.06)",
+        background: highlight
+          ? "rgba(255,255,255,0.12)"
+          : "rgba(255,255,255,0.08)",
         border: highlight
-          ? "1px solid rgba(59,130,246,0.45)"
+          ? "1px solid rgba(59,130,246,0.6)"
           : "1px solid rgba(255,255,255,0.15)",
-        backdropFilter: "blur(14px)",
+        backdropFilter: "blur(16px)",
       }}
     >
-
       {highlight && (
-        <span className="absolute -top-4 left-1/2 -translate-x-1/2 rounded-full bg-brand-blue px-4 py-1 text-xs font-semibold text-white">
+        <span className="absolute -top-4 left-1/2 -translate-x-1/2 rounded-full bg-brand-blue px-4 py-1 text-xs font-semibold text-white shadow-lg">
           {badge}
         </span>
       )}
@@ -169,43 +194,27 @@ function PlanCard({ plan }) {
 
       <p className="mt-6 text-3xl font-extrabold text-white">
         {price}
-        <span className="text-sm text-white ml-1">
-          {period}
-        </span>
+        <span className="text-sm text-slate-300 ml-1">{period}</span>
       </p>
 
-      <p className="mt-4 text-sm text-white">
-        🤖 {bots}
-      </p>
-
-      <p className="text-sm text-white">
-        💬 {messages}
-      </p>
+      <p className="mt-4 text-sm text-slate-300">🤖 {bots}</p>
+      <p className="text-sm text-slate-300">💬 {messages}</p>
 
       <ul className="mt-6 space-y-3 text-sm">
-
         {features.map((feature) => (
-          <li
-            key={feature}
-            className="flex gap-3 text-white"
-          >
+          <li key={feature} className="flex gap-3 text-slate-200">
             <span className="text-brand-blue">✔</span>
             {feature}
           </li>
         ))}
-
       </ul>
 
-      <a
-        href={REGISTER_URL}
-        className="mt-10 block"
-      >
-
+      <a href={REGISTER_URL} className="mt-10 block">
         {variant === "primary" && (
           <button
             className="
-            relative w-full rounded-xl py-3 text-sm font-semibold
-            text-white transition-all hover:-translate-y-0.5
+              relative w-full rounded-xl py-3 text-sm font-semibold
+              text-white transition-all hover:-translate-y-0.5
             "
             style={{
               background: "var(--cta-primary-bg)",
@@ -219,11 +228,11 @@ function PlanCard({ plan }) {
         {variant === "secondary" && (
           <button
             className="
-            w-full rounded-xl py-3 text-sm font-medium
-            text-white transition hover:bg-white/15
+              w-full rounded-xl py-3 text-sm font-medium
+              text-white transition hover:bg-white/20
             "
             style={{
-              background: "rgba(255,255,255,0.08)",
+              background: "rgba(255,255,255,0.12)",
             }}
           >
             Criar conta
@@ -233,19 +242,17 @@ function PlanCard({ plan }) {
         {variant === "outline" && (
           <button
             className="
-            w-full rounded-xl border py-3 text-sm font-medium
-            text-white transition hover:bg-white/10
+              w-full rounded-xl border py-3 text-sm font-medium
+              text-white transition hover:bg-white/10
             "
             style={{
-              borderColor: "rgba(255,255,255,0.25)",
+              borderColor: "rgba(255,255,255,0.35)",
             }}
           >
-            Criar conta
+            Falar com vendas
           </button>
         )}
-
       </a>
-
     </div>
   );
 }

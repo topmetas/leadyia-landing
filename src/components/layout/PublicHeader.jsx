@@ -6,13 +6,15 @@
  * 📄 Arquivo: PublicHeader.jsx
  * 📁 Caminho: src/components/layout/PublicHeader.jsx
  *
- * 🎯 Objetivo visual:
- * - Sensação enterprise
- * - Branding forte e silencioso
- * - CTA elegante com brilho estratégico
+ * 🎯 Ajuste realizado:
+ * - CTA "Começar agora" agora aponta para o link real de registro
+ * - Removido uso de alias (@/)
+ * - Código simples, direto e seguro
  */
 
 export default function PublicHeader() {
+  const CTA_LINK = "https://dashboard.leadyia.com/auth/register";
+
   return (
     <header
       className="
@@ -37,7 +39,7 @@ export default function PublicHeader() {
 
         {/* CTA */}
         <a
-          href="#"
+          href={CTA_LINK}
           className="
             group relative inline-flex items-center
             rounded-xl px-6 py-2.5
