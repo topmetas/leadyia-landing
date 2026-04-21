@@ -3,10 +3,19 @@
     {
       "source": "/(.*)",
       "has": [
-        { "type": "host", "value": "leadyia.com" }
+        {
+          "type": "host",
+          "value": "leadyia.com"
+        }
       ],
       "destination": "https://www.leadyia.com/$1",
       "permanent": true
+    }
+  ],
+  "rewrites": [
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
     }
   ]
 }
