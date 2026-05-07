@@ -178,21 +178,30 @@ export default function Hero() {
           {/* Conversation */}
           <div className="space-y-3 text-sm">
             <div className="rounded-lg bg-white/10 p-3">
-              Cliente: Gostaria de entender qual plano é ideal para minha empresa.
+              Cliente: Quero automatizar meu atendimento sem perder oportunidades.
             </div>
 
             <div className="rounded-lg bg-brand-blue/20 p-3">
-              LeadyIA: Posso analisar seu cenário e recomendar o plano ideal para
-              o seu volume de leads e equipe.
+              LeadyIA: Posso responder visitantes automaticamente, qualificar leads
+              e encaminhar apenas os contatos com maior intenção para sua equipe.
             </div>
 
             <div className="rounded-lg bg-white/10 p-3">
-              Cliente: Temos cerca de 800 visitantes por dia.
+              Cliente: Hoje demoramos muito para responder e acabamos perdendo vendas.
             </div>
 
             <div className="rounded-lg bg-brand-blue/20 p-3">
-              LeadyIA: Entendido. Vou priorizar leads com alta intenção e enviar
-              automaticamente para seu time de vendas.
+              LeadyIA: Entendido. Vou iniciar respostas em tempo real, capturar os
+              dados dos visitantes e manter seu funil ativo 24h por dia.
+            </div>
+
+            <div className="rounded-lg bg-white/10 p-3">
+              Cliente: Consigo integrar com meu CRM e WhatsApp?
+            </div>
+
+            <div className="rounded-lg bg-brand-blue/20 p-3">
+              LeadyIA: Sim. Posso sincronizar automaticamente com CRM, WhatsApp,
+              formulários e sua operação comercial.
             </div>
           </div>
 
