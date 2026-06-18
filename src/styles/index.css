@@ -7,9 +7,11 @@
  * - Tailwind v4 DEVE ser o primeiro import
  * - Tokens depois
  * - Sistema de gradientes ANTES do global
+ * - Public shell por último para finalizar header/footer premium
  */
 
 @import "./tailwind.css";
 @import "./tokens.css";
 @import "./gradient.system.css";
 @import "./global.css";
+@import "./public-shell.css";

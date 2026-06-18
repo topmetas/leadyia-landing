@@ -1,78 +1,62 @@
 /**
  * =========================================================
- * 🧠 USE CASES — LEADYIA WEBSITE
+ * Arquivo: UseCases.jsx
+ * Caminho: landing/src/components/landing/UseCases.jsx
+ * Responsabilidade: mostrar casos de uso de alto valor, conectando dor, solução
+ * e resultado para diferentes tipos de operação.
+ * O que este módulo NÃO deve fazer: não decide playbook real do tenant e não busca
+ * dados externos. O objetivo é conversão e clareza comercial.
  * =========================================================
- *
- * Objetivo:
- * - Fazer o cliente se enxergar no produto
- * - Mostrar claramente onde ele ganha ou perde dinheiro
- * - Explicar o funcionamento sem termos técnicos
- *
- * Regra:
- * - Se não entender em 20s, está errado
  */
 
 import React from "react";
 
 const USE_CASES = [
   {
-    title: "SaaS B2B",
-    highlight: "Mais trials que viram clientes",
-    description:
-      "O LeadyIA conversa com o lead, entende se ele tem perfil de compra e só ativa vendas quando existe interesse real. Menos trial perdido, mais conversão.",
+    title: "Sites com muito tráfego e pouca conversão",
+    audience: "Marketing & Growth",
+    pain: "Visitantes entram, olham e vão embora sem deixar contato.",
+    solution: "O widget inicia conversa, entende intenção e captura oportunidade antes da saída.",
+    result: "Mais leads sem aumentar mídia",
   },
   {
-    title: "Agências",
-    highlight: "Menos curiosos, mais contratos",
-    description:
-      "O sistema separa quem só está pesquisando de quem realmente quer contratar. O time foca apenas em oportunidades com potencial de fechar.",
+    title: "Empresas que perdem vendas fora do horário",
+    audience: "Vendas 24/7",
+    pain: "O cliente chama à noite, no fim de semana ou durante pico de atendimento.",
+    solution: "A IA responde, qualifica, coleta contexto e encaminha o próximo passo automaticamente.",
+    result: "Menos oportunidade perdida",
   },
   {
-    title: "Enterprise & Vendas Complexas",
-    highlight: "Vendas no tempo certo",
-    description:
-      "O lead recebe explicações, tira dúvidas e amadurece sozinho. Quando está pronto, o LeadyIA chama o vendedor com todo o contexto.",
+    title: "Equipes comerciais sobrecarregadas",
+    audience: "Operação & CRM",
+    pain: "O time responde curiosos, perde tempo e deixa leads quentes esperando.",
+    solution: "Leads são classificados por intenção, canal, estágio e probabilidade de conversão.",
+    result: "Time focado no que fecha",
   },
   {
-    title: "Startups em Crescimento",
-    highlight: "Vender mais sem contratar mais",
-    description:
-      "Um único sistema atende, qualifica e organiza os leads 24/7. Você cresce a operação sem inflar o time ou perder controle.",
+    title: "Negócios com atendimento repetitivo",
+    audience: "Suporte & Recepção",
+    pain: "Perguntas sobre preço, localização, horário, produto, prazo e processo se repetem todo dia.",
+    solution: "RAG e playbooks respondem com consistência, mantendo atendimento humano para casos importantes.",
+    result: "Mais escala com menos retrabalho",
   },
 ];
 
 export default function UseCases() {
   return (
-    <section
-      id="use-cases"
-      className="relative overflow-hidden py-28 text-white"
-    >
-      {/* =====================================================
-          BACKGROUND BASE — gradient.system
-         ===================================================== */}
-      <div
-        aria-hidden
-        className="absolute inset-0 -z-10"
-        style={{ background: "var(--gradient-hero)" }}
-      />
-
-      <div className="mx-auto max-w-7xl px-6">
-        {/* Header */}
-        <div className="max-w-3xl">
-          <h2 className="text-3xl md:text-4xl font-extrabold tracking-tight">
-            Onde o LeadyIA faz
-            <br />
-            você ganhar dinheiro
-          </h2>
-
-          <p className="mt-6 text-lg text-neutral-300">
-            Se hoje leads chegam, conversam e somem — aqui está o que muda
-            quando existe um sistema decidindo o próximo passo.
+    <section id="use-cases" className="leadyia-usecase-section">
+      <div className="leadyia-conversion-container">
+        <div className="leadyia-conversion-headline-grid">
+          <div>
+            <span className="leadyia-section-kicker">Casos de uso</span>
+            <h2>Onde o LeadyIA muda o resultado da operação.</h2>
+          </div>
+          <p>
+            A plataforma atua onde existe intenção: antes do lead abandonar, antes do time perder tempo e antes da oportunidade esfriar.
           </p>
         </div>
 
-        {/* Grid */}
-        <div className="mt-20 grid gap-8 md:grid-cols-2 lg:grid-cols-4">
+        <div className="leadyia-usecase-grid">
           {USE_CASES.map((item) => (
             <UseCaseCard key={item.title} item={item} />
           ))}
@@ -82,39 +66,16 @@ export default function UseCases() {
   );
 }
 
-/**
- * =========================================================
- * 🧱 USE CASE CARD
- * =========================================================
- */
 function UseCaseCard({ item }) {
-  const { title, highlight, description } = item;
-
   return (
-    <div
-      className="
-        flex flex-col rounded-2xl p-6
-        transition-all duration-300
-        hover:-translate-y-1
-      "
-      style={{
-        background: "var(--gradient-card)",
-        border: "1px solid rgba(255,255,255,0.12)",
-      }}
-    >
-      {/* Tag de impacto */}
-      <span className="mb-4 w-fit rounded-full bg-brand-blue/10 px-3 py-1 text-xs font-semibold text-brand-blue">
-        {highlight}
-      </span>
-
-      {/* Conteúdo */}
-      <h3 className="text-lg font-semibold">
-        {title}
-      </h3>
-
-      <p className="mt-3 text-sm leading-relaxed text-neutral-300">
-        {description}
-      </p>
-    </div>
+    <article className="leadyia-usecase-card">
+      <div className="leadyia-usecase-tag">{item.audience}</div>
+      <h3>{item.title}</h3>
+      <div className="leadyia-usecase-lines">
+        <p><strong>Dor:</strong> {item.pain}</p>
+        <p><strong>LeadyIA:</strong> {item.solution}</p>
+      </div>
+      <div className="leadyia-usecase-result">{item.result}</div>
+    </article>
   );
 }

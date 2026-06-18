@@ -1,74 +1,125 @@
 /**
  * =========================================================
- * 🧭 PUBLIC HEADER — LEADYIA (PREMIUM)
+ * 🧭 PUBLIC HEADER — LEADYIA ENTERPRISE LANDING
  * =========================================================
  *
  * 📄 Arquivo: PublicHeader.jsx
- * 📁 Caminho: src/components/layout/PublicHeader.jsx
+ * 📁 Caminho: landing/src/components/layout/PublicHeader.jsx
  *
- * 🎯 Ajuste realizado:
- * - CTA "Começar agora" agora aponta para o link real de registro
- * - Removido uso de alias (@/)
- * - Código simples, direto e seguro
+ * 🎯 Responsabilidade:
+ * - Exibir o topo público premium da landing LeadyIA.
+ * - Guiar o visitante para demo, playbooks, ROI, planos, login e cadastro.
+ * - Manter uma navegação responsiva, acessível e compatível com Vercel/CDN.
+ *
+ * 🚫 O que este componente NÃO deve fazer:
+ * - Não autentica usuário.
+ * - Não cria checkout MercadoPago.
+ * - Não decide plano, tenant ou billing.
+ * - Não executa tracking sensível.
+ *
+ * 🧠 Por que existe assim:
+ * Em SaaS de alta conversão, o header precisa ser mais que “logo + botão”.
+ * Ele funciona como uma barra de confiança: mostra posicionamento, acesso ao
+ * produto e caminhos rápidos para as provas de valor da página.
+ * =========================================================
  */
 
+import { useEffect, useState } from "react";
+
+const DASHBOARD_LOGIN_URL = "https://dashboard.leadyia.com/auth/login";
+const DASHBOARD_REGISTER_URL = "https://dashboard.leadyia.com/auth/register";
+
+const NAV_ITEMS = [
+  { label: "Demonstração", href: "#demo-widget" },
+  { label: "Nichos", href: "#playbooks" },
+  { label: "ROI", href: "#roi-calculator" },
+  { label: "Planos", href: "#pricing" },
+];
+
 export default function PublicHeader() {
-  const CTA_LINK = "https://dashboard.leadyia.com/auth/register";
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setIsScrolled(window.scrollY > 12);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  const closeMenu = () => setMenuOpen(false);
 
   return (
     <header
-      className="
-        fixed inset-x-0 top-0 z-50
-        border-b border-white/10
-        bg-black/30 backdrop-blur-xl
-      "
+      className={`ly-public-header ${isScrolled ? "is-scrolled" : ""}`}
+      data-menu-open={menuOpen ? "true" : "false"}
     >
-      <div
-        className="
-          mx-auto flex h-20 max-w-7xl
-          items-center justify-between
-          px-6
-        "
-      >
-        {/* Branding */}
-        <div className="flex items-center gap-2">
-          <span className="text-xl font-semibold tracking-tight text-white">
-            Leady<span className="text-brand-blue">IA</span>
+      <div className="ly-public-header__shell">
+        <a className="ly-public-header__brand" href="#hero" onClick={closeMenu}>
+          <span className="ly-public-header__logo" aria-hidden="true">
+            <span className="ly-public-header__logo-core">L</span>
           </span>
-        </div>
 
-        {/* CTA */}
-        <a
-          href={CTA_LINK}
-          className="
-            group relative inline-flex items-center
-            rounded-xl px-6 py-2.5
-            text-sm font-semibold text-white
-            transition-all duration-300
-            hover:-translate-y-0.5
-            focus:outline-none focus:ring-2 focus:ring-brand-blue/50
-          "
-          style={{
-            background: "var(--cta-primary-bg)",
-            boxShadow: "var(--cta-primary-shadow)",
-          }}
-        >
-          {/* Glow premium */}
-          <span
-            aria-hidden
-            className="
-              absolute inset-0 -z-10 rounded-xl
-              opacity-80 group-hover:opacity-100
-              transition-opacity duration-300
-            "
-            style={{
-              background: "var(--cta-primary-glow)",
-              filter: "blur(36px)",
-            }}
-          />
-
-          Começar agora
+          <span className="ly-public-header__brand-copy">
+            <strong>
+              Leady<span>IA</span>
+            </strong>
+            <small>Recepcionista virtual inteligente</small>
+          </span>
         </a>
+
+        <nav className="ly-public-header__nav" aria-label="Navegação principal">
+          {NAV_ITEMS.map((item) => (
+            <a key={item.href} href={item.href} onClick={closeMenu}>
+              {item.label}
+            </a>
+          ))}
+        </nav>
+
+        <div className="ly-public-header__actions">
+          <a className="ly-public-header__login" href={DASHBOARD_LOGIN_URL}>
+            Entrar
+          </a>
+
+          <a className="ly-public-header__cta" href={DASHBOARD_REGISTER_URL}>
+            <span>Começar grátis</span>
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M5 12h12.2l-4.6-4.6L14 6l7 7-7 7-1.4-1.4 4.6-4.6H5v-2Z" />
+            </svg>
+          </a>
+
+          <button
+            className="ly-public-header__menu-button"
+            type="button"
+            aria-label={menuOpen ? "Fechar menu" : "Abrir menu"}
+            aria-expanded={menuOpen}
+            onClick={() => setMenuOpen((current) => !current)}
+          >
+            <span />
+            <span />
+          </button>
+        </div>
+      </div>
+
+      <div className="ly-public-header__mobile-panel" aria-hidden={!menuOpen}>
+        <div className="ly-public-header__mobile-card">
+          <div className="ly-public-header__mobile-kicker">Navegação rápida</div>
+
+          {NAV_ITEMS.map((item) => (
+            <a key={item.href} href={item.href} onClick={closeMenu}>
+              {item.label}
+            </a>
+          ))}
+
+          <div className="ly-public-header__mobile-actions">
+            <a href={DASHBOARD_LOGIN_URL} onClick={closeMenu}>
+              Entrar no dashboard
+            </a>
+            <a href={DASHBOARD_REGISTER_URL} onClick={closeMenu}>
+              Criar conta gratuita
+            </a>
+          </div>
+        </div>
       </div>
     </header>
   );

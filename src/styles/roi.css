@@ -1,0 +1,224 @@
+/**
+ * =========================================================
+ * Arquivo: roi.css
+ * Caminho: landing/src/styles/roi.css
+ * Responsabilidade: ROI Calculator e Social Proof Premium.
+ * =========================================================
+ */
+
+.ly-roi {
+  padding: 104px 24px;
+  color: #fff;
+  background:
+    radial-gradient(circle at 18% 22%, rgba(59, 130, 246, 0.22), transparent 28%),
+    linear-gradient(135deg, #020617, #111827);
+}
+
+.ly-roi__container {
+  display: grid;
+  grid-template-columns: minmax(0, 0.8fr) minmax(360px, 0.95fr);
+  gap: 48px;
+  align-items: center;
+  max-width: 1120px;
+  margin: 0 auto;
+}
+
+.ly-roi__copy span,
+.ly-social-premium__header span {
+  color: #93c5fd;
+  font-size: 12px;
+  font-weight: 950;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+}
+
+.ly-roi__copy h2,
+.ly-social-premium__header h2 {
+  margin: 14px 0 0;
+  font-size: clamp(34px, 5vw, 56px);
+  line-height: 1;
+  letter-spacing: -0.06em;
+  font-weight: 950;
+}
+
+.ly-roi__copy p {
+  margin: 18px 0 0;
+  color: #cbd5e1;
+  font-size: 18px;
+  line-height: 1.7;
+}
+
+.ly-roi__panel {
+  padding: 24px;
+  border-radius: 30px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  backdrop-filter: blur(20px);
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.3);
+}
+
+.ly-roi__panel label {
+  display: block;
+  margin-bottom: 22px;
+}
+
+.ly-roi__panel label span,
+.ly-roi__panel label strong {
+  display: flex;
+  justify-content: space-between;
+  font-weight: 900;
+}
+
+.ly-roi__panel label span { color: #cbd5e1; }
+.ly-roi__panel label strong { margin: 7px 0 10px; font-size: 22px; }
+
+.ly-roi__panel input[type="range"] {
+  width: 100%;
+  accent-color: #60a5fa;
+}
+
+.ly-roi__results {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin-top: 10px;
+}
+
+.ly-roi__card {
+  padding: 16px;
+  border-radius: 18px;
+  background: rgba(15, 23, 42, 0.54);
+  border: 1px solid rgba(148, 163, 184, 0.14);
+}
+
+.ly-roi__card span {
+  display: block;
+  color: #94a3b8;
+  font-size: 12px;
+  font-weight: 900;
+}
+
+.ly-roi__card strong {
+  display: block;
+  margin-top: 8px;
+  font-size: 24px;
+  letter-spacing: -0.03em;
+}
+
+.ly-roi__card.is-highlight {
+  background: linear-gradient(135deg, rgba(37, 99, 235, 0.4), rgba(124, 58, 237, 0.32));
+}
+
+.ly-roi__disclaimer {
+  margin: 18px 0 0;
+  color: #94a3b8;
+  font-size: 12px;
+  line-height: 1.55;
+}
+
+.ly-roi__cta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 50px;
+  margin-top: 18px;
+  border-radius: 16px;
+  color: #fff;
+  text-decoration: none;
+  font-weight: 950;
+  background: linear-gradient(135deg, #2563eb, #7c3aed);
+}
+
+.ly-social-premium {
+  padding: 104px 24px;
+  color: #0f172a;
+  background: #fff;
+}
+
+.ly-social-premium__container {
+  max-width: 1120px;
+  margin: 0 auto;
+}
+
+.ly-social-premium__header {
+  max-width: 760px;
+  text-align: center;
+  margin: 0 auto;
+}
+
+.ly-social-premium__header span { color: #2563eb; }
+
+.ly-social-premium__metrics {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+  margin-top: 42px;
+}
+
+.ly-social-premium__metrics div,
+.ly-social-premium__testimonials article {
+  border-radius: 24px;
+  border: 1px solid #e2e8f0;
+  background: #f8fafc;
+  box-shadow: 0 20px 50px rgba(15, 23, 42, 0.06);
+}
+
+.ly-social-premium__metrics div {
+  padding: 22px;
+  text-align: center;
+}
+
+.ly-social-premium__metrics strong {
+  display: block;
+  color: #2563eb;
+  font-size: 34px;
+  font-weight: 950;
+  letter-spacing: -0.06em;
+}
+
+.ly-social-premium__metrics span {
+  display: block;
+  margin-top: 6px;
+  color: #475569;
+  font-weight: 800;
+}
+
+.ly-social-premium__testimonials {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+  margin-top: 18px;
+}
+
+.ly-social-premium__testimonials article {
+  padding: 24px;
+}
+
+.ly-social-premium__testimonials p {
+  margin: 0 0 18px;
+  color: #334155;
+  line-height: 1.65;
+}
+
+.ly-social-premium__testimonials strong,
+.ly-social-premium__testimonials span {
+  display: block;
+}
+
+.ly-social-premium__testimonials span {
+  margin-top: 3px;
+  color: #64748b;
+  font-size: 13px;
+  font-weight: 800;
+}
+
+@media (max-width: 920px) {
+  .ly-roi__container { grid-template-columns: 1fr; }
+  .ly-social-premium__metrics { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .ly-social-premium__testimonials { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 560px) {
+  .ly-roi, .ly-social-premium { padding: 78px 16px; }
+  .ly-roi__results, .ly-social-premium__metrics { grid-template-columns: 1fr; }
+}

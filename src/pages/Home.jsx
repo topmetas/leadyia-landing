@@ -1,30 +1,40 @@
 /**
  * =========================================================
- * 🏠 HOME PAGE — LEADYIA
+ * Arquivo: Home.jsx
+ * Caminho: landing/src/pages/Home.jsx
+ * Responsabilidade: orquestrar a landing pública premium consolidada.
+ * O que este módulo NÃO deve fazer: não autentica, não processa checkout e não
+ * decide plano. Ele organiza seções de conversão e direciona para cadastro.
  * =========================================================
- *
- * Responsabilidade:
- * - Página principal de vendas
- * - Orquestrar componentes de landing page
  */
 
 import PublicLayout from "../components/layout/PublicLayout";
-import Hero from "../components/landing/Hero";
+
+import HeroPremium from "../components/HeroPremium";
+import DemoWidgetShowcase from "../components/DemoWidgetShowcase";
+import ROICalculator from "../components/ROICalculator";
+import PlaybookShowcase from "../components/PlaybookShowcase";
+import SocialProofPremium from "../components/SocialProofPremium";
+
 import Features from "../components/landing/Features";
 import HowItWorks from "../components/landing/HowItWorks";
 import UseCases from "../components/landing/UseCases";
-import SocialProof from "../components/landing/SocialProof";
 import Pricing from "../components/landing/Pricing";
 import CTA from "../components/landing/CTA";
+
+import "../styles/conversion.css";
 
 export default function Home() {
   return (
     <PublicLayout>
-      <Hero />
+      <HeroPremium />
+      <DemoWidgetShowcase />
+      <ROICalculator />
+      <PlaybookShowcase />
       <Features />
       <HowItWorks />
       <UseCases />
-      <SocialProof />
+      <SocialProofPremium />
       <Pricing />
       <CTA />
     </PublicLayout>

@@ -1,163 +1,87 @@
 /**
  * =========================================================
- * 🔄 COMO FUNCIONA — LEADYIA
+ * Arquivo: HowItWorks.jsx
+ * Caminho: landing/src/components/landing/HowItWorks.jsx
+ * Responsabilidade: explicar o fluxo operacional premium do LeadyIA de forma
+ * simples, visual e orientada a decisão.
+ * O que este módulo NÃO deve fazer: não simula IA real e não cria lead. A seção
+ * apenas demonstra o processo para aumentar confiança e conversão.
  * =========================================================
- *
- * Aqui o cliente PRECISA entender:
- * - O que acontece com cada lead
- * - Por que isso gera mais vendas
- * - O que ele perde se não usar
  */
 
 import React from "react";
 
-/**
- * =========================================================
- * 📘 PASSO A PASSO SIMPLES
- * =========================================================
- */
 const STEPS = [
   {
-    step: "01",
-    title: "O cliente entra em contato",
+    number: "01",
+    title: "O visitante chega com uma intenção",
     description:
-      "O lead fala com sua empresa pelo site, WhatsApp ou canal que você já usa. Sem formulário chato. Sem perder conversa.",
+      "Ele pergunta sobre preço, produto, serviço, agenda, suporte ou simplesmente começa uma conversa no site.",
+    signal: "Entrada",
   },
   {
-    step: "02",
-    title: "O LeadyIA entende o que ele quer",
+    number: "02",
+    title: "A IA entende o contexto do negócio",
     description:
-      "O sistema entende se a pessoa está só curiosa ou realmente pronta para comprar, analisando o que ela fala e como se comporta.",
+      "O playbook, a base RAG, o histórico e o segmento do tenant orientam a resposta sem perder a identidade da marca.",
+    signal: "Contexto",
   },
   {
-    step: "03",
-    title: "A melhor ação acontece sozinha",
+    number: "03",
+    title: "A conversa vira lead qualificado",
     description:
-      "O LeadyIA decide o que fazer: responder, explicar, qualificar, vender ou chamar um humano — tudo no tempo certo.",
+      "O LeadyIA identifica interesse, urgência, objeção e estágio comercial para priorizar quem merece atenção.",
+    signal: "Qualificação",
   },
   {
-    step: "04",
-    title: "Os melhores leads sobem",
+    number: "04",
+    title: "A próxima ação aparece no momento certo",
     description:
-      "Quem tem mais chance de fechar ganha prioridade automaticamente. Seu time foca só no que gera dinheiro.",
+      "Comprar, agendar, ver planos, falar no WhatsApp ou chamar humano: a ação vem com CTA rastreável e sem improviso.",
+    signal: "Conversão",
   },
   {
-    step: "05",
-    title: "Venda feita ou lead entregue pronto",
+    number: "05",
+    title: "Tudo aparece no dashboard",
     description:
-      "Ou a venda acontece sozinha, ou o lead chega para seu time com histórico, contexto e intenção clara.",
+      "Conversas, leads, revenue, operações, RAG, integrações e auditoria ficam organizados para o tenant decidir melhor.",
+    signal: "Controle",
   },
 ];
 
 export default function HowItWorks() {
   return (
-    <section
-      id="how-it-works"
-      className="
-        relative overflow-hidden
-        bg-slate-50 text-slate-900
-        py-32 px-6
-      "
-    >
-      {/* =====================================================
-          FUNDO LIMPO — SISTEMA
-         ===================================================== */}
-      <div
-        aria-hidden
-        className="absolute inset-0 -z-10"
-        style={{
-          background:
-            "linear-gradient(180deg, #ffffff 0%, #f8fafc 55%, #f1f5f9 100%)",
-        }}
-      />
-
-      <div className="mx-auto max-w-7xl">
-        {/* ================= HEADER ================= */}
-        <div className="max-w-3xl">
-          <h2 className="text-4xl font-extrabold tracking-tight">
-            Como o LeadyIA funciona na prática
-          </h2>
-
-          <p className="mt-6 text-lg text-slate-600">
-            Um sistema que atende seus clientes,
-            entende quem quer comprar
-            e ajuda sua empresa a vender mais,
-            sem depender de resposta humana o tempo todo.
+    <section id="how-it-works" className="leadyia-flow-section">
+      <div className="leadyia-conversion-container">
+        <div className="leadyia-flow-header">
+          <span className="leadyia-section-kicker">Como funciona na prática</span>
+          <h2>Da primeira mensagem ao próximo passo comercial.</h2>
+          <p>
+            Um fluxo simples para o cliente, mas poderoso para a empresa: atendimento,
+            inteligência e conversão trabalhando juntos em tempo real.
           </p>
         </div>
 
-        {/* ================= STEPS ================= */}
-        <div className="relative mt-24">
-          {/* Linha de progressão (desktop) */}
-          <div
-            aria-hidden
-            className="
-              absolute top-10 left-0 right-0
-              hidden h-px bg-slate-200 md:block
-            "
-          />
-
-          <div className="grid gap-12 md:grid-cols-5">
-            {STEPS.map((item) => (
-              <Step key={item.step} {...item} />
-            ))}
-          </div>
+        <div className="leadyia-flow-board">
+          {STEPS.map((step, index) => (
+            <FlowStep key={step.number} step={step} isLast={index === STEPS.length - 1} />
+          ))}
         </div>
       </div>
     </section>
   );
 }
 
-/**
- * =========================================================
- * 🧱 STEP — BLOCO CLARO
- * =========================================================
- */
-function Step({ step, title, description }) {
+function FlowStep({ step, isLast }) {
   return (
-    <div
-      className="
-        relative flex flex-col
-        rounded-2xl bg-white
-        p-8
-        shadow-sm
-        transition-all duration-300
-        hover:-translate-y-1
-        hover:shadow-md
-      "
-    >
-      {/* Número */}
-      <span
-        className="
-          mb-6 inline-flex w-fit
-          rounded-full
-          bg-brand-blue/10
-          px-4 py-1
-          text-sm font-semibold
-          text-brand-blue
-        "
-      >
-        {step}
-      </span>
-
-      {/* Conteúdo */}
-      <h3 className="text-lg font-semibold tracking-tight">
-        {title}
-      </h3>
-
-      <p className="mt-4 text-sm leading-relaxed text-slate-600">
-        {description}
-      </p>
-
-      {/* Indicador */}
-      <div
-        aria-hidden
-        className="
-          mt-8 h-1 w-12
-          rounded-full
-          bg-brand-blue/30
-        "
-      />
-    </div>
+    <article className="leadyia-flow-step">
+      <div className="leadyia-flow-number">{step.number}</div>
+      <div className="leadyia-flow-content">
+        <span>{step.signal}</span>
+        <h3>{step.title}</h3>
+        <p>{step.description}</p>
+      </div>
+      {!isLast && <div className="leadyia-flow-connector" aria-hidden />}
+    </article>
   );
 }

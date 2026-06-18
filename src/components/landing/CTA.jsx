@@ -1,147 +1,68 @@
+/**
+ * =========================================================
+ * Arquivo: CTA.jsx
+ * Caminho: landing/src/components/landing/CTA.jsx
+ * Responsabilidade: fechar a landing com um CTA premium, orientado a urgência,
+ * confiança e criação de conta.
+ * O que este módulo NÃO deve fazer: não processa pagamento, não autentica usuário
+ * e não promete resultado garantido. Ele conduz para o cadastro/checkout.
+ * =========================================================
+ */
+
 import React from "react";
+
+const REGISTER_URL = "https://dashboard.leadyia.com/register";
+const PRICING_ANCHOR = "#pricing";
 
 export default function CTA() {
   return (
-    <section id="cta" className="relative overflow-hidden py-40 text-white">
+    <section id="cta" className="leadyia-final-cta-section">
+      <div className="leadyia-final-orb leadyia-final-orb-a" aria-hidden />
+      <div className="leadyia-final-orb leadyia-final-orb-b" aria-hidden />
 
-      {/* BACKGROUND */}
+      <div className="leadyia-final-cta-card">
+        <div className="leadyia-final-badge">Pronto para vender e atender melhor</div>
 
-      <div
-        aria-hidden
-        className="absolute inset-0 -z-30"
-        style={{ background: "var(--gradient-hero)" }}
-      />
-
-      <div
-        aria-hidden
-        className="absolute inset-0 -z-20"
-        style={{
-          background:
-            "radial-gradient(55% 40% at 50% 60%, rgba(59,130,246,0.35), transparent 70%)",
-        }}
-      />
-
-      <div
-        aria-hidden
-        className="absolute inset-0 -z-10"
-        style={{
-          background:
-            "linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0.55) 100%)",
-        }}
-      />
-
-      <div className="mx-auto max-w-6xl px-6 text-center">
-
-        {/* HEADLINE */}
-
-        <h2 className="text-4xl md:text-6xl font-extrabold tracking-tight leading-tight">
-          Enquanto você decide,
-          <br className="hidden md:block" />
-          <span className="text-brand-blue">
-            seus leads já estão decidindo
-          </span>
+        <h2>
+          Transforme cada conversa em uma oportunidade mensurável.
         </h2>
 
-        {/* SUBHEADLINE */}
-
-        <p className="mx-auto mt-8 max-w-3xl text-lg leading-relaxed text-neutral-300">
-          Cada conversa não qualificada representa oportunidade perdida.
-          O <span className="text-white font-semibold">LeadyIA</span> garante
-          que intenção, prioridade e decisão aconteçam no momento certo.
+        <p>
+          Ative uma recepcionista virtual com IA para responder, qualificar, vender,
+          agendar e entregar contexto para sua equipe — sem depender de atendimento manual o tempo todo.
         </p>
 
-        {/* STATS */}
-
-        <div className="mt-14 grid grid-cols-1 gap-8 sm:grid-cols-3 text-center">
-          <Stat number="38%" label="menos leads perdidos" />
-          <Stat number="3x" label="mais velocidade de resposta" />
-          <Stat number="24/7" label="qualificação automática" />
+        <div className="leadyia-final-stats">
+          <Stat number="24/7" label="atendimento ativo" />
+          <Stat number="3x" label="resposta mais rápida" />
+          <Stat number="+38%" label="menos leads perdidos" />
         </div>
 
-        {/* BOTÕES */}
-
-        <div className="mt-16 flex flex-col items-center justify-center gap-6 sm:flex-row">
-
-          {/* BOTÃO AZUL */}
-
-          <a
-            href="https://dashboard.leadyia.com/register"
-            className="
-              relative
-              inline-flex
-              items-center
-              justify-center
-              rounded-xl
-              px-14
-              py-4
-              text-lg
-              font-semibold
-              text-white
-              transition
-              hover:-translate-y-0.5
-            "
-            style={{
-              background: "var(--cta-primary-bg)",
-              boxShadow: "var(--cta-primary-shadow)",
-            }}
-          >
-            <span
-              aria-hidden
-              className="absolute inset-0 -z-10 rounded-xl"
-              style={{
-                background: "var(--cta-primary-glow)",
-                filter: "blur(32px)",
-                opacity: 0.9,
-              }}
-            />
+        <div className="leadyia-final-actions">
+          <a href={REGISTER_URL} className="leadyia-primary-cta leadyia-final-primary">
             Criar conta agora
           </a>
-
-          {/* BOTÃO OUTLINE */}
-
-          <a
-            href="https://dashboard.leadyia.com/register"
-            className="
-              inline-flex
-              items-center
-              justify-center
-              rounded-xl
-              border
-              px-14
-              py-4
-              text-lg
-              font-semibold
-              text-white
-              transition
-              hover:bg-white/10
-            "
-            style={{
-              borderColor: "rgba(255,255,255,0.28)",
-            }}
-          >
-            Começar teste
+          <a href={PRICING_ANCHOR} className="leadyia-secondary-cta leadyia-final-secondary">
+            Ver planos
           </a>
-
         </div>
 
-        {/* TRUST */}
-
-        <p className="mt-14 text-sm text-neutral-400">
-          ✔ Setup guiado • ✔ IA auditável • ✔ Sem contrato obrigatório
-        </p>
-
+        <div className="leadyia-final-trust">
+          <span>Setup guiado</span>
+          <span>Multi-playbook</span>
+          <span>LGPD</span>
+          <span>Sem contrato obrigatório</span>
+        </div>
       </div>
     </section>
   );
 }
 
-/* STATS COMPONENT */
-
 function Stat({ number, label }) {
   return (
-    <div className="space-y-2">
-      <p className="text-3xl font-bold text-white">{number}</p>
-      <p className="text-sm text-neutral-400">{label}</p>
+    <div className="leadyia-final-stat">
+      <strong>{number}</strong>
+      <span>{label}</span>
     </div>
   );
 }

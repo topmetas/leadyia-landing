@@ -1,79 +1,214 @@
-import { useState } from "react";
+/**
+ * =========================================================
+ * Página: Register Premium Multi-Playbook
+ * Caminho: landing/src/pages/Register.jsx
+ * =========================================================
+ *
+ * Responsabilidade:
+ * - Capturar intenção de cadastro na landing pública.
+ * - Coletar segmento, site e plano desejado antes do dashboard.
+ * - Encaminhar o usuário para dashboard.leadyia.com com contexto útil.
+ *
+ * O que este arquivo NÃO deve fazer:
+ * - Não cria senha.
+ * - Não cria tenant diretamente.
+ * - Não decide plano ativo ou libera billing.
+ *
+ * Por quê:
+ * Cadastro público deve ser leve e de alta conversão. O dashboard continua
+ * responsável por autenticação, criação do tenant e onboarding completo.
+ * =========================================================
+ */
 
-const DASHBOARD_REGISTER =
-  "https://dashboard.leadyia.com/register";
+import { useMemo, useState } from "react";
+import PublicHeader from "../components/layout/PublicHeader";
+import PublicFooter from "../components/layout/PublicFooter";
+import {
+  REGISTER_SEGMENTS,
+  getPlaybookBySegment,
+  getRegisterSegmentById,
+} from "../data/registerSegments";
+import { createRegisterIntent } from "../services/registerIntent.service";
+import "../styles/register.css";
+
+const DEFAULT_PLAN = "pro_br_brl";
+
+function getInitialPlan() {
+  try {
+    const params = new URLSearchParams(window.location.search);
+    return params.get("plan") || DEFAULT_PLAN;
+  } catch {
+    return DEFAULT_PLAN;
+  }
+}
 
 export default function Register() {
   const [form, setForm] = useState({
     name: "",
     email: "",
     company: "",
+    website: "",
+    segment: "education",
+    plan: getInitialPlan(),
   });
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
 
-  function handleChange(e) {
-    setForm({
-      ...form,
-      [e.target.name]: e.target.value,
-    });
+  const selectedSegment = useMemo(
+    () => getRegisterSegmentById(form.segment),
+    [form.segment]
+  );
+
+  function handleChange(event) {
+    const { name, value } = event.target;
+    setForm((current) => ({ ...current, [name]: value }));
   }
 
-  function handleSubmit(e) {
-    e.preventDefault();
+  async function handleSubmit(event) {
+    event.preventDefault();
+    setError("");
 
-    const params = new URLSearchParams({
-      name: form.name,
-      email: form.email,
-      company: form.company,
+    if (!form.name.trim() || !form.email.trim() || !form.company.trim()) {
+      setError("Preencha nome, email e empresa para continuar.");
+      return;
+    }
+
+    setLoading(true);
+
+    const playbook = getPlaybookBySegment(form.segment);
+    const result = await createRegisterIntent({
+      ...form,
+      playbook,
     });
 
-    window.location.href =
-      `${DASHBOARD_REGISTER}?${params.toString()}`;
+    setLoading(false);
+
+    if (result?.registerUrl) {
+      window.location.href = result.registerUrl;
+      return;
+    }
+
+    setError("Não foi possível continuar agora. Tente novamente em instantes.");
   }
 
   return (
-    <div className="min-h-screen bg-slate-950 text-white flex items-center justify-center px-6">
-      <div className="w-full max-w-md bg-white/5 border border-white/10 rounded-2xl p-8">
+    <div className="register-premium-page">
+      <PublicHeader />
 
-        <h1 className="text-3xl font-bold mb-2">
-          Criar conta LeadyIA
-        </h1>
+      <main className="register-premium-shell">
+        <section className="register-premium-copy" aria-label="Cadastro LeadyIA">
+          <span className="register-premium-badge">Teste grátis • Multi-playbook • IA para negócios</span>
 
-        <p className="text-white/70 mb-8">
-          Ative sua IA de vendas em minutos.
-        </p>
+          <h1>
+            Crie sua conta e receba uma IA pronta para o seu segmento.
+          </h1>
 
-        <form
-          onSubmit={handleSubmit}
-          className="space-y-4"
-        >
-          <input
-            name="name"
-            placeholder="Seu nome"
-            onChange={handleChange}
-            className="w-full rounded-xl px-4 py-3 bg-black/30 border border-white/10"
-          />
+          <p>
+            O LeadyIA usa seu segmento para configurar o playbook inicial,
+            orientar o widget e acelerar o onboarding no dashboard.
+          </p>
 
-          <input
-            name="email"
-            placeholder="Email"
-            onChange={handleChange}
-            className="w-full rounded-xl px-4 py-3 bg-black/30 border border-white/10"
-          />
+          <div className="register-premium-proof-grid">
+            <article>
+              <strong>2 min</strong>
+              <span>para iniciar</span>
+            </article>
+            <article>
+              <strong>24h</strong>
+              <span>de atendimento</span>
+            </article>
+            <article>
+              <strong>IA + CRM</strong>
+              <span>em um painel</span>
+            </article>
+          </div>
 
-          <input
-            name="company"
-            placeholder="Empresa"
-            onChange={handleChange}
-            className="w-full rounded-xl px-4 py-3 bg-black/30 border border-white/10"
-          />
+          <div className="register-premium-preview-card">
+            <span>Playbook selecionado</span>
+            <h2>{selectedSegment.label}</h2>
+            <p>{selectedSegment.headline}</p>
+            <small>Exemplo: “{selectedSegment.example}”</small>
+          </div>
+        </section>
 
-          <button
-            className="w-full rounded-xl py-3 font-semibold bg-blue-600 hover:bg-blue-500"
-          >
-            Continuar
-          </button>
-        </form>
-      </div>
+        <section className="register-premium-card" aria-label="Formulário de cadastro">
+          <div className="register-premium-card-header">
+            <p>Comece agora</p>
+            <h2>Dados iniciais</h2>
+          </div>
+
+          <form onSubmit={handleSubmit} className="register-premium-form">
+            <label>
+              Seu nome
+              <input
+                name="name"
+                value={form.name}
+                onChange={handleChange}
+                placeholder="Ex.: Osvaldo Alves"
+                autoComplete="name"
+              />
+            </label>
+
+            <label>
+              Email corporativo
+              <input
+                name="email"
+                type="email"
+                value={form.email}
+                onChange={handleChange}
+                placeholder="voce@empresa.com"
+                autoComplete="email"
+              />
+            </label>
+
+            <label>
+              Empresa
+              <input
+                name="company"
+                value={form.company}
+                onChange={handleChange}
+                placeholder="Nome da empresa"
+                autoComplete="organization"
+              />
+            </label>
+
+            <label>
+              Site da empresa
+              <input
+                name="website"
+                value={form.website}
+                onChange={handleChange}
+                placeholder="https://suaempresa.com.br"
+                inputMode="url"
+              />
+            </label>
+
+            <label>
+              Segmento principal
+              <select name="segment" value={form.segment} onChange={handleChange}>
+                {REGISTER_SEGMENTS.map((segment) => (
+                  <option key={segment.id} value={segment.id}>
+                    {segment.label}
+                  </option>
+                ))}
+              </select>
+            </label>
+
+            {error ? <div className="register-premium-error">{error}</div> : null}
+
+            <button type="submit" disabled={loading}>
+              {loading ? "Preparando seu onboarding..." : "Continuar para criar conta"}
+            </button>
+
+            <p className="register-premium-security">
+              Você continuará no dashboard seguro da LeadyIA para criar senha,
+              confirmar o tenant e finalizar o plano escolhido.
+            </p>
+          </form>
+        </section>
+      </main>
+
+      <PublicFooter />
     </div>
   );
 }
