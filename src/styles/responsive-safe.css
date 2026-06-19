@@ -1,0 +1,266 @@
+
+/**
+ * =========================================================
+ * Fase 21G / v376 — Responsive Safe Polish
+ * ---------------------------------------------------------
+ * Camada defensiva de responsividade para landing pública.
+ * Não altera regras de negócio, rotas, checkout ou widget.
+ * =========================================================
+ */
+
+html {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: clip;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: clip;
+}
+
+#root {
+  min-width: 0;
+  width: 100%;
+  max-width: 100%;
+}
+
+img,
+svg,
+video,
+canvas,
+iframe {
+  max-width: 100%;
+}
+
+button,
+a,
+input,
+select,
+textarea {
+  -webkit-tap-highlight-color: transparent;
+}
+
+.ly-public-header__shell,
+.ly-public-footer__shell,
+.ly-hero-premium__container,
+.ly-demo-widget__container,
+.register-premium-shell,
+.lp-pricing-container,
+.ly-playbooks__container,
+.ly-roi__container {
+  max-width: min(1180px, calc(100% - 32px));
+}
+
+@supports (width: 100dvw) {
+  .ly-public-header__shell,
+  .ly-public-footer__shell {
+    width: min(1180px, calc(100dvw - 28px));
+  }
+}
+
+.ly-hero-premium,
+.ly-demo-widget,
+.lp-pricing-section,
+.register-premium-page {
+  overflow-x: clip;
+}
+
+.ly-hero-premium__container,
+.ly-demo-widget__grid,
+.register-premium-shell,
+.lp-pricing-grid {
+  min-width: 0;
+}
+
+.ly-hero-premium__panel,
+.ly-demo-widget__phone,
+.register-premium-card,
+.lp-pricing-card {
+  min-width: 0;
+  max-width: 100%;
+}
+
+.ly-hero-premium__cta,
+.lp-pricing-cta,
+.register-premium-form button,
+.ly-public-footer__cta-actions a,
+.ly-public-header__mobile-actions a {
+  min-width: 0;
+  text-align: center;
+  white-space: normal;
+}
+
+.register-premium-form input,
+.register-premium-form select,
+.register-premium-form textarea {
+  min-width: 0;
+  box-sizing: border-box;
+}
+
+@media (max-width: 980px) {
+  .ly-hero-premium {
+    padding-top: 112px;
+  }
+
+  .ly-hero-premium__container,
+  .ly-demo-widget__grid,
+  .register-premium-shell {
+    grid-template-columns: 1fr;
+  }
+
+  .ly-hero-premium__panel {
+    margin-inline: auto;
+    width: min(560px, 100%);
+  }
+}
+
+@media (max-width: 720px) {
+  .ly-public-header__shell {
+    width: min(100%, calc(100dvw - 20px));
+    padding-inline: 10px;
+  }
+
+  .ly-public-header__brand {
+    min-width: 0;
+  }
+
+  .ly-public-header__brand-copy strong {
+    max-width: 42vw;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .ly-public-header__mobile-panel {
+    max-height: calc(100dvh - 92px);
+    overflow-y: auto;
+    overscroll-behavior: contain;
+  }
+
+  .ly-public-footer__shell {
+    width: min(100%, calc(100dvw - 24px));
+  }
+}
+
+@media (max-width: 640px) {
+  .ly-hero-premium {
+    padding: 98px 16px 64px;
+  }
+
+  .ly-hero-premium h1,
+  .register-premium-copy h1 {
+    letter-spacing: -0.055em;
+    line-height: 0.96;
+  }
+
+  .ly-hero-premium__subtitle,
+  .ly-demo-widget__header p,
+  .ly-demo-widget__copy p,
+  .register-premium-copy p {
+    font-size: 1rem;
+    line-height: 1.62;
+  }
+
+  .ly-hero-premium__segments,
+  .ly-hero-premium__trust {
+    gap: 8px;
+  }
+
+  .ly-hero-premium__segments span,
+  .ly-hero-premium__trust span {
+    max-width: 100%;
+  }
+
+  .ly-hero-premium__flow {
+    flex-wrap: wrap;
+    justify-content: flex-start;
+  }
+
+  .ly-hero-premium__flow span:nth-child(even) {
+    display: none;
+  }
+
+  .ly-demo-widget__phone {
+    border-radius: 26px;
+    padding: 14px;
+  }
+
+  .ly-demo-widget__message {
+    max-width: 94%;
+  }
+
+  .lp-pricing-section {
+    padding: 78px 14px;
+  }
+
+  .lp-pricing-container,
+  .register-premium-shell {
+    max-width: calc(100% - 22px);
+    width: calc(100% - 22px);
+  }
+
+  .lp-pricing-card,
+  .register-premium-card {
+    border-radius: 24px;
+  }
+
+  .register-premium-page {
+    min-height: 100dvh;
+  }
+
+  .register-premium-shell {
+    min-height: auto;
+    padding-top: 106px;
+  }
+}
+
+@media (max-width: 420px) {
+  .ly-public-header__logo,
+  .ly-public-footer__logo {
+    width: 38px;
+    height: 38px;
+    border-radius: 14px;
+  }
+
+  .ly-public-header__brand-copy strong {
+    max-width: 36vw;
+    font-size: 0.96rem;
+  }
+
+  .ly-public-header__shell {
+    height: 58px;
+    border-radius: 18px;
+  }
+
+  .ly-public-header__menu-button {
+    width: 40px;
+    height: 40px;
+    border-radius: 13px;
+  }
+
+  .ly-hero-premium {
+    padding-top: 90px;
+  }
+
+  .ly-hero-premium__panel,
+  .register-premium-card,
+  .lp-pricing-card {
+    padding: 16px;
+  }
+
+  .ly-hero-premium__chat-card {
+    gap: 10px;
+    padding: 13px;
+  }
+}
+
+@media (max-height: 680px) and (max-width: 920px) {
+  .ly-hero-premium,
+  .register-premium-shell {
+    padding-top: 88px;
+  }
+}
