@@ -566,3 +566,473 @@
     flex-direction: column;
   }
 }
+
+/* =========================================================
+ * Fase 1 — Header: Playbooks ao vivo
+ * ========================================================= */
+.ly-public-header__dropdown {
+  position: relative;
+}
+
+.ly-public-header__dropdown-trigger {
+  display: inline-flex !important;
+  align-items: center;
+  gap: 6px;
+}
+
+.ly-public-header__dropdown-trigger span {
+  color: rgba(147, 197, 253, 0.9);
+  font-weight: 900;
+}
+
+.ly-public-header__dropdown-panel {
+  position: absolute;
+  top: calc(100% + 12px);
+  left: 50%;
+  min-width: 230px;
+  padding: 10px;
+  border: 1px solid rgba(148, 163, 184, 0.18);
+  border-radius: 20px;
+  background:
+    linear-gradient(135deg, rgba(15, 23, 42, 0.98), rgba(7, 11, 20, 0.96)),
+    radial-gradient(circle at 20% 0%, rgba(59, 130, 246, 0.18), transparent 34%);
+  box-shadow: 0 26px 78px rgba(0, 0, 0, 0.38);
+  backdrop-filter: blur(22px);
+  transform: translate(-50%, 8px);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 150ms ease, transform 150ms ease, visibility 150ms ease;
+}
+
+.ly-public-header__dropdown:hover .ly-public-header__dropdown-panel,
+.ly-public-header__dropdown:focus-within .ly-public-header__dropdown-panel {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translate(-50%, 0);
+}
+
+.ly-public-header__dropdown-panel a {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 11px 12px;
+  border-radius: 14px;
+  color: rgba(226, 232, 240, 0.84);
+  text-decoration: none;
+  font-size: 0.86rem;
+  font-weight: 800;
+}
+
+.ly-public-header__dropdown-panel a:hover {
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.ly-public-header__mobile-group {
+  margin: 12px 0 2px;
+  padding: 10px 12px 0;
+  color: #93c5fd;
+  font-size: 0.74rem;
+  font-weight: 900;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+@media (max-width: 980px) {
+  .ly-public-header__dropdown {
+    display: none;
+  }
+}
+
+/* =========================================================
+ * Ajuste final: header mais organizado e dropdown alinhado.
+ * Mantém o visual premium, mas evita que os itens do menu
+ * empurrem o último nicho para fora da tela.
+ * ========================================================= */
+.ly-public-header__shell {
+  width: min(1260px, calc(100vw - 28px));
+}
+
+.ly-public-header__nav {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.ly-public-header__dropdown {
+  position: relative;
+}
+
+.ly-public-header__dropdown-trigger {
+  display: inline-flex !important;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+}
+
+.ly-public-header__dropdown-panel {
+  position: absolute;
+  top: calc(100% + 12px);
+  left: 50%;
+  transform: translateX(-50%) translateY(8px);
+  width: min(390px, calc(100vw - 42px));
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+  padding: 12px;
+  border: 1px solid rgba(148, 163, 184, 0.18);
+  border-radius: 22px;
+  background:
+    linear-gradient(135deg, rgba(8, 13, 24, 0.98), rgba(12, 18, 32, 0.94)),
+    radial-gradient(circle at 20% 0%, rgba(59, 130, 246, 0.18), transparent 40%);
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.38);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 160ms ease, transform 160ms ease, visibility 160ms ease;
+  z-index: 120;
+}
+
+.ly-public-header__dropdown:hover .ly-public-header__dropdown-panel,
+.ly-public-header__dropdown:focus-within .ly-public-header__dropdown-panel {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translateX(-50%) translateY(0);
+}
+
+.ly-public-header__dropdown-panel a {
+  display: grid;
+  grid-template-columns: 26px minmax(0, 1fr);
+  align-items: center;
+  gap: 8px;
+  padding: 11px 10px;
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  background: rgba(255, 255, 255, 0.045);
+}
+
+.ly-public-header__dropdown-panel a strong {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+@media (max-width: 1100px) {
+  .ly-public-header__brand-copy small {
+    display: none;
+  }
+
+  .ly-public-header__nav a,
+  .ly-public-header__login {
+    padding-inline: 9px;
+    font-size: 0.82rem;
+  }
+}
+
+
+/* =========================================================
+ * Footer premium expandido — canais, agenda, Pix e nichos
+ * ========================================================= */
+
+.ly-public-footer__conversion-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+  margin-top: 22px;
+}
+
+.ly-public-footer__mini-panel {
+  padding: clamp(18px, 2.8vw, 26px);
+  border-radius: 28px;
+  border: 1px solid rgba(148, 163, 184, 0.14);
+  background:
+    linear-gradient(135deg, rgba(15, 23, 42, 0.66), rgba(15, 23, 42, 0.34)),
+    radial-gradient(circle at 16% 0%, rgba(37, 99, 235, 0.16), transparent 42%);
+  box-shadow:
+    0 20px 70px rgba(0, 0, 0, 0.22),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+}
+
+.ly-public-footer__mini-head {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  margin-bottom: 16px;
+}
+
+.ly-public-footer__mini-head > span {
+  width: 42px;
+  height: 42px;
+  display: grid;
+  place-items: center;
+  border-radius: 15px;
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+.ly-public-footer__mini-head strong {
+  display: block;
+  color: #ffffff;
+  font-size: 1rem;
+  letter-spacing: -0.025em;
+}
+
+.ly-public-footer__mini-head small {
+  display: block;
+  margin-top: 4px;
+  color: rgba(203, 213, 225, 0.68);
+  line-height: 1.45;
+}
+
+.ly-public-footer__chips-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.ly-public-footer__chip-card {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  column-gap: 9px;
+  row-gap: 1px;
+  align-items: center;
+  min-height: 68px;
+  padding: 12px;
+  border-radius: 18px;
+  text-decoration: none;
+  color: inherit;
+  background: rgba(255, 255, 255, 0.045);
+  border: 1px solid rgba(255, 255, 255, 0.075);
+  transition: transform 160ms ease, border-color 160ms ease, background 160ms ease;
+}
+
+.ly-public-footer__chip-card:hover {
+  transform: translateY(-1px);
+  border-color: rgba(96, 165, 250, 0.28);
+  background: rgba(255, 255, 255, 0.065);
+}
+
+.ly-public-footer__chip-card > span {
+  grid-row: span 2;
+  width: 34px;
+  height: 34px;
+  display: grid;
+  place-items: center;
+  border-radius: 12px;
+  background: rgba(96, 165, 250, 0.12);
+}
+
+.ly-public-footer__chip-card strong {
+  color: rgba(248, 250, 252, 0.96);
+  font-size: 0.86rem;
+  line-height: 1.1;
+}
+
+.ly-public-footer__chip-card small {
+  color: rgba(203, 213, 225, 0.62);
+  font-size: 0.74rem;
+  line-height: 1.25;
+}
+
+.ly-public-footer__proof-note {
+  margin-top: 20px;
+  padding: 15px;
+  border-radius: 20px;
+  background: rgba(37, 99, 235, 0.09);
+  border: 1px solid rgba(96, 165, 250, 0.14);
+}
+
+.ly-public-footer__proof-note strong {
+  display: block;
+  color: #ffffff;
+  font-size: 0.9rem;
+  margin-bottom: 4px;
+}
+
+.ly-public-footer__proof-note span {
+  display: block;
+  color: rgba(203, 213, 225, 0.7);
+  font-size: 0.84rem;
+  line-height: 1.55;
+}
+
+.ly-public-footer__links-grid {
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+}
+
+@media (max-width: 1120px) {
+  .ly-public-footer__links-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 860px) {
+  .ly-public-footer__conversion-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .ly-public-footer__chips-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 720px) {
+  .ly-public-footer__links-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* =========================================================
+ * Conversion Booster — seção incremental de alta conversão
+ * ========================================================= */
+
+.ly-conversion-booster {
+  position: relative;
+  padding: clamp(56px, 8vw, 108px) 0;
+  overflow: hidden;
+}
+
+.ly-conversion-booster::before {
+  content: "";
+  position: absolute;
+  inset: auto -12% 0 -12%;
+  height: 70%;
+  background:
+    radial-gradient(circle at 20% 40%, rgba(37, 99, 235, 0.12), transparent 34%),
+    radial-gradient(circle at 80% 20%, rgba(124, 58, 237, 0.12), transparent 38%);
+  pointer-events: none;
+}
+
+.ly-conversion-booster__shell {
+  position: relative;
+  width: min(1180px, calc(100vw - 32px));
+  margin: 0 auto;
+}
+
+.ly-conversion-booster__header {
+  max-width: 760px;
+  margin-bottom: 28px;
+}
+
+.ly-conversion-booster__header span {
+  display: inline-flex;
+  margin-bottom: 12px;
+  color: #93c5fd;
+  font-weight: 900;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-size: 0.78rem;
+}
+
+.ly-conversion-booster__header h2 {
+  margin: 0;
+  color: #ffffff;
+  font-size: clamp(2rem, 4vw, 3.45rem);
+  line-height: 0.98;
+  letter-spacing: -0.065em;
+}
+
+.ly-conversion-booster__header p {
+  max-width: 690px;
+  margin: 16px 0 0;
+  color: rgba(203, 213, 225, 0.76);
+  line-height: 1.75;
+  font-size: 1rem;
+}
+
+.ly-conversion-booster__grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.ly-conversion-booster__step {
+  min-height: 230px;
+  padding: 22px;
+  border-radius: 28px;
+  border: 1px solid rgba(148, 163, 184, 0.14);
+  background:
+    linear-gradient(180deg, rgba(15, 23, 42, 0.74), rgba(15, 23, 42, 0.38)),
+    rgba(255, 255, 255, 0.035);
+  box-shadow: 0 18px 54px rgba(0, 0, 0, 0.18);
+}
+
+.ly-conversion-booster__step small {
+  display: inline-flex;
+  margin-bottom: 34px;
+  color: #60a5fa;
+  font-weight: 950;
+  letter-spacing: -0.05em;
+  font-size: 1.3rem;
+}
+
+.ly-conversion-booster__step h3 {
+  margin: 0;
+  color: #ffffff;
+  font-size: 1.08rem;
+  letter-spacing: -0.035em;
+}
+
+.ly-conversion-booster__step p {
+  margin: 10px 0 0;
+  color: rgba(203, 213, 225, 0.68);
+  line-height: 1.62;
+  font-size: 0.92rem;
+}
+
+.ly-conversion-booster__outcomes {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.ly-conversion-booster__outcome {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  column-gap: 10px;
+  row-gap: 2px;
+  align-items: center;
+  padding: 16px;
+  border-radius: 22px;
+  background: rgba(255, 255, 255, 0.055);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+}
+
+.ly-conversion-booster__outcome span {
+  grid-row: span 2;
+  width: 38px;
+  height: 38px;
+  display: grid;
+  place-items: center;
+  border-radius: 14px;
+  background: rgba(96, 165, 250, 0.12);
+}
+
+.ly-conversion-booster__outcome strong {
+  color: #ffffff;
+  font-size: 0.92rem;
+  line-height: 1.1;
+}
+
+.ly-conversion-booster__outcome small {
+  color: rgba(203, 213, 225, 0.62);
+  font-size: 0.76rem;
+}
+
+@media (max-width: 1040px) {
+  .ly-conversion-booster__grid,
+  .ly-conversion-booster__outcomes {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .ly-conversion-booster__grid,
+  .ly-conversion-booster__outcomes {
+    grid-template-columns: 1fr;
+  }
+}

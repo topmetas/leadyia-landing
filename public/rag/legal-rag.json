@@ -1,0 +1,80 @@
+{
+  "niche": "legal",
+  "domains": ["juridico.leadyia.com", "legal.leadyia.com", "advocacia.leadyia.com"],
+  "tenantPlaceholder": "TENANT_ID_LEGAL",
+  "positioning": "LeadyIA para advocacia: atendimento inicial, triagem jurídica, qualificação, agendamento de consulta e Pix opcional para consulta paga.",
+  "businessRules": [
+    "Não prometer ganho de causa.",
+    "Não substituir advogado humano.",
+    "Não dar aconselhamento jurídico definitivo.",
+    "Não calcular valores definitivos sem documentos.",
+    "Coletar contexto e encaminhar para consulta quando necessário.",
+    "Gerar Pix apenas quando o escritório configurar consulta paga ou sinal."
+  ],
+  "services": [
+    "Direito Trabalhista",
+    "Direito Previdenciário",
+    "Direito de Família",
+    "Direito do Consumidor",
+    "Direito Empresarial",
+    "Consulta jurídica inicial",
+    "Triagem de documentos",
+    "Agendamento com advogado"
+  ],
+  "intents": [
+    "agendar_consulta_juridica",
+    "triagem_trabalhista",
+    "triagem_previdenciaria",
+    "triagem_familia",
+    "triagem_consumidor",
+    "triagem_empresarial",
+    "pix_consulta_juridica",
+    "falar_com_advogado"
+  ],
+  "ctaPolicy": {
+    "initialDoubt": ["Fazer triagem", "Agendar consulta", "Falar com advogado"],
+    "appointmentIntent": ["Agendar consulta", "Enviar documentos"],
+    "paidConsultation": ["Pagar consulta por Pix", "Falar com recepção"],
+    "sensitiveCase": ["Falar com advogado", "Enviar relato do caso"]
+  },
+  "faq": [
+    {
+      "question": "A IA pode dar orientação jurídica definitiva?",
+      "answer": "Não. A IA faz atendimento inicial, coleta informações e orienta próximos passos de forma informativa. A análise jurídica definitiva deve ser feita por advogado."
+    },
+    {
+      "question": "A IA pode agendar consulta com advogado?",
+      "answer": "Sim. Quando o visitante demonstra intenção, a IA coleta dados essenciais e encaminha para agendamento conforme a disponibilidade configurada."
+    },
+    {
+      "question": "É possível cobrar consulta por Pix?",
+      "answer": "Sim. Se o escritório configurar cobrança de consulta inicial, a IA pode gerar Pix e manter a consulta como pré-reservada até confirmação de pagamento."
+    },
+    {
+      "question": "Quais áreas jurídicas a IA pode atender?",
+      "answer": "A IA pode fazer triagem em áreas como trabalhista, previdenciário, família, consumidor, empresarial e outras áreas configuradas pelo escritório."
+    },
+    {
+      "question": "A IA pode prometer ganho de causa?",
+      "answer": "Não. O atendimento jurídico responsável nunca deve prometer resultado. A IA pode explicar que cada caso depende de análise documental e avaliação profissional."
+    },
+    {
+      "question": "Como o advogado recebe o caso?",
+      "answer": "O advogado pode receber um resumo com área jurídica, urgência, relato do lead, documentos mencionados, contato e próxima ação sugerida."
+    }
+  ],
+  "conversationExamples": [
+    {
+      "user": "Fui demitido e quero saber se tenho direitos.",
+      "assistant": "Entendi. Posso fazer uma triagem inicial. Você recebeu aviso prévio, FGTS e termo de rescisão? Também posso agendar uma consulta trabalhista."
+    },
+    {
+      "user": "Meu benefício do INSS foi negado.",
+      "assistant": "Posso ajudar a organizar as informações. Você tem a carta de indeferimento e sabe a data da negativa? Um advogado pode avaliar recurso ou nova solicitação."
+    },
+    {
+      "user": "Quero iniciar um divórcio.",
+      "assistant": "Certo. O divórcio pode ser consensual ou litigioso. Há filhos menores ou bens a partilhar? Posso encaminhar para uma consulta com especialista."
+    }
+  ]
+}

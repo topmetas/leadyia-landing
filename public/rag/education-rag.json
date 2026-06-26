@@ -1,0 +1,77 @@
+{
+  "niche": "education",
+  "site": "educacao.leadyia.com",
+  "tenantPlaceholder": "TENANT_ID_EDUCATION",
+  "purpose": "Landing demonstrativa da LeadyIA para educação, escolas, cursos, mentorias e atendimento pedagógico, funcionando como portfólio comercial e base de conhecimento RAG.",
+  "rules": [
+    "Atender com linguagem acolhedora, pedagógica e objetiva.",
+    "Não prometer resultados educacionais absolutos.",
+    "Não diagnosticar dificuldades de aprendizagem.",
+    "Agendar diagnóstico, visita, reunião ou aula experimental quando houver intenção clara.",
+    "Gerar Pix apenas quando matrícula, sinal, avaliação ou reserva estiverem configurados.",
+    "Encaminhar casos sensíveis para equipe humana."
+  ],
+  "intents": [
+    "matricula",
+    "visita_escolar",
+    "aula_experimental",
+    "diagnostico_pedagogico",
+    "curso",
+    "reforco_escolar",
+    "psicopedagogia",
+    "valores_horarios",
+    "documentos_matricula",
+    "produtos_educacionais"
+  ],
+  "ctas": [
+    "Agendar visita",
+    "Agendar diagnóstico",
+    "Ver cursos",
+    "Fazer matrícula",
+    "Reservar vaga",
+    "Falar com coordenação",
+    "Tirar dúvidas"
+  ],
+  "faq": [
+    {
+      "question": "A IA pode atender pais interessados em matrícula?",
+      "answer": "Sim. A IA pode explicar etapas de matrícula, coletar idade, série, turno desejado, contato do responsável e encaminhar para visita, reunião ou inscrição."
+    },
+    {
+      "question": "A IA pode agendar uma visita à escola ou aula experimental?",
+      "answer": "Sim. Quando o módulo de agenda está configurado, a IA pode sugerir horários, criar pré-agendamento e enviar confirmação para a equipe."
+    },
+    {
+      "question": "A IA pode cobrar Pix de matrícula ou reserva?",
+      "answer": "Sim, se o tenant tiver pagamento habilitado. O Pix pode ser usado para sinal, matrícula, reserva de vaga, avaliação ou aula experimental, conforme regra da instituição."
+    },
+    {
+      "question": "A IA pode responder dúvidas pedagógicas?",
+      "answer": "Sim, desde que a base de conhecimento esteja configurada. Ela pode explicar metodologia, rotina, avaliação, acompanhamento, material e objetivos de aprendizagem."
+    },
+    {
+      "question": "A IA pode falar sobre dificuldades de aprendizagem?",
+      "answer": "Sim, com cuidado. Ela pode acolher a dúvida, coletar informações básicas e orientar o agendamento com profissional, sem diagnosticar ou prometer resultado."
+    },
+    {
+      "question": "A IA substitui professor, coordenação ou psicopedagogo?",
+      "answer": "Não. Ela automatiza o primeiro atendimento, organiza informações e encaminha casos importantes para a equipe educacional responsável."
+    },
+    {
+      "question": "A IA pode indicar curso ou turma ideal?",
+      "answer": "Sim. Com base em idade, objetivo, nível, disponibilidade e interesse, ela pode sugerir curso, turma, trilha ou atendimento mais adequado."
+    },
+    {
+      "question": "A IA pode informar valores e horários?",
+      "answer": "Sim, desde que essas informações estejam cadastradas no RAG ou nas configurações. Ela pode explicar planos, mensalidades, turmas e condições."
+    },
+    {
+      "question": "A IA pode atender escola, curso online e mentoria?",
+      "answer": "Sim. O playbook educacional pode ser adaptado para escolas, cursos livres, reforço, mentorias, psicopedagogia e produtos educacionais digitais."
+    },
+    {
+      "question": "O que acontece quando a IA não sabe responder?",
+      "answer": "Ela deve reconhecer a limitação, coletar contato e encaminhar para coordenação, secretaria, professor ou atendimento humano."
+    }
+  ]
+}

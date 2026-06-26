@@ -1,0 +1,21 @@
+{
+  "niche": "realestate",
+  "tenantPlaceholder": "TENANT_ID_REALESTATE",
+  "site": "imobiliaria.leadyia.com",
+  "purpose": "Demonstração de IA para imobiliárias, corretores e incorporadoras.",
+  "services": [
+    "captação de leads interessados em imóveis",
+    "qualificação por tipo de imóvel, cidade, bairro e faixa de valor",
+    "agendamento de visitas presenciais ou online",
+    "envio de imóveis compatíveis com o perfil do lead",
+    "encaminhamento para corretor com resumo do atendimento",
+    "pré-reserva ou sinal por Pix quando configurado"
+  ],
+  "faq": [
+    {"question":"A IA agenda visitas a imóveis?","answer":"Sim. A IA pode coletar nome, contato, tipo de imóvel, região, orçamento e melhor período para visita. Depois cria uma pré-reserva ou encaminha o corretor."},
+    {"question":"A IA consegue qualificar compradores e locatários?","answer":"Sim. Ela identifica se o lead quer comprar, alugar, vender ou visitar, além de entender bairro, faixa de preço, número de quartos e urgência."},
+    {"question":"Posso usar Pix para confirmar visita?","answer":"Sim, quando a imobiliária configurar essa regra. O Pix pode ser usado como sinal de reserva ou confirmação de visita premium."},
+    {"question":"A IA mostra imóveis do catálogo?","answer":"Sim. Quando integrada ao catálogo, CRM ou base RAG, ela pode sugerir imóveis compatíveis com o perfil do interessado."},
+    {"question":"O corretor recebe resumo da conversa?","answer":"Sim. A IA pode gerar um resumo com interesse, orçamento, localização desejada, objeções e próxima ação recomendada."}
+  ]
+}

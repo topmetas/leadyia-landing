@@ -1,0 +1,65 @@
+{
+  "tenantId": "TENANT_ID_ESTETICA",
+  "niche": "aesthetics",
+  "site": "estetica.leadyia.com",
+  "purpose": "Base RAG para landing demo de estética da LeadyIA.",
+  "positioning": "IA para clínicas de estética venderem procedimentos, qualificarem leads e agendarem avaliações automaticamente.",
+  "safety_rules": [
+    "Não prometer resultado estético.",
+    "Não definir protocolo sem avaliação profissional.",
+    "Não substituir profissional responsável.",
+    "Conduzir dúvidas sensíveis para atendimento humano.",
+    "Usar Pix somente quando avaliação, horário ou pacote exigirem sinal configurado."
+  ],
+  "services": [
+    "Avaliação estética",
+    "Botox e toxina botulínica",
+    "Limpeza de pele",
+    "Peeling facial",
+    "Harmonização facial",
+    "Preenchimento",
+    "Drenagem linfática",
+    "Tratamentos corporais",
+    "Depilação a laser",
+    "Protocolos personalizados"
+  ],
+  "flows": {
+    "lead_qualification": [
+      "Identificar procedimento ou objetivo do lead.",
+      "Coletar nome e WhatsApp.",
+      "Entender melhor período para atendimento.",
+      "Direcionar para avaliação quando necessário.",
+      "Gerar Pix de sinal somente se configurado."
+    ],
+    "appointment": [
+      "Confirmar interesse em avaliação.",
+      "Coletar procedimento desejado.",
+      "Coletar preferência de data e horário.",
+      "Criar pré-agendamento ou solicitar confirmação da equipe.",
+      "Enviar ação de Pix se a reserva exigir sinal."
+    ]
+  },
+  "faq": [
+    {
+      "question": "A IA pode informar valores de procedimentos estéticos?",
+      "answer": "Sim, quando a estética cadastrar valores ou faixas no painel. Para procedimentos que dependem de avaliação, a IA deve explicar que o valor final varia conforme necessidade, protocolo e análise profissional."
+    },
+    {
+      "question": "A IA pode prometer resultado antes da avaliação?",
+      "answer": "Não. A IA deve orientar com responsabilidade, explicar benefícios gerais e direcionar para avaliação profissional."
+    },
+    {
+      "question": "A IA pode agendar avaliação estética?",
+      "answer": "Sim. Quando a agenda estiver configurada, a IA pode coletar dados e sugerir horários. Sem integração, ela cria uma solicitação estruturada para a equipe confirmar."
+    },
+    {
+      "question": "A IA pode gerar Pix para sinal de avaliação?",
+      "answer": "Sim. Se o Pix estiver habilitado e a estética exigir sinal para reservar avaliação, procedimento ou pacote, a IA pode gerar a cobrança e marcar o status como pagamento pendente."
+    },
+    {
+      "question": "Quais canais podem usar essa IA?",
+      "answer": "A experiência pode começar no site com widget e ser expandida para WhatsApp, Instagram e outros canais conforme a configuração da LeadyIA."
+    }
+  ],
+  "widget_script": "<script src=\"https://widget.leadyia.com/loader.js\" data-tenant-id=\"TENANT_ID_ESTETICA\" data-niche=\"aesthetics\" async></script>"
+}

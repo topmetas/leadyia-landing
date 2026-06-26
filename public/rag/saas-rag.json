@@ -1,0 +1,19 @@
+{
+  "niche": "saas",
+  "tenantPlaceholder": "TENANT_ID_SAAS",
+  "site": "saas.leadyia.com",
+  "purpose": "Landing institucional e hub comercial da LeadyIA para vender planos, demonstrar nichos e qualificar leads.",
+  "plans": [
+    {"name":"Starter","price":"R$ 97,00/mês","goal":"começar e parar de perder leads"},
+    {"name":"Pro","price":"R$ 297,00/mês","goal":"automação inteligente para priorizar leads e escalar vendas"},
+    {"name":"Business","price":"R$ 597,00/mês","goal":"controle avançado, previsibilidade e automação estratégica"},
+    {"name":"Enterprise","price":"R$ 997,00/mês","goal":"alta escala, personalização completa e suporte prioritário"}
+  ],
+  "faq": [
+    {"question":"O que é a LeadyIA?","answer":"É uma plataforma de atendimento, vendas e qualificação de leads com IA para site, WhatsApp, Instagram e canais digitais."},
+    {"question":"A LeadyIA agenda atendimentos?","answer":"Sim. Ela pode agendar consultas, avaliações, visitas, matrículas ou reuniões conforme o nicho do tenant."},
+    {"question":"A LeadyIA recebe Pix?","answer":"Sim, quando o tenant tem pagamento configurado. O Pix pode ser usado para sinal, reserva, matrícula ou consulta inicial."},
+    {"question":"A LeadyIA usa RAG?","answer":"Sim. O RAG permite treinar a IA com documentos, PDFs, FAQs, páginas do site e bases de conhecimento do cliente."},
+    {"question":"Quais nichos são demonstrados?","answer":"Clínica, estética, jurídico, imobiliária, educação, e-commerce e SaaS."}
+  ]
+}

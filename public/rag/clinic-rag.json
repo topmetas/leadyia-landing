@@ -1,0 +1,60 @@
+{
+  "source": "clinica.leadyia.com",
+  "tenantId": "TENANT_ID_CLINIC",
+  "niche": "clinic",
+  "language": "pt-BR",
+  "purpose": "Base de conhecimento para demonstração da LeadyIA em clínicas, com foco em atendimento, triagem, agendamento e Pix opcional.",
+  "business_summary": "A LeadyIA para clínicas atua como recepcionista virtual inteligente. Ela responde dúvidas administrativas, coleta dados, entende interesse do paciente, organiza pedidos de consulta, pode criar pré-agendamento e pode gerar Pix de sinal quando configurado no dashboard.",
+  "safety_rules": [
+    "Não substituir consulta médica.",
+    "Não emitir diagnóstico.",
+    "Não prescrever medicamentos.",
+    "Não orientar conduta clínica personalizada.",
+    "Encaminhar urgências para atendimento médico imediato ou canal oficial da clínica.",
+    "Responder dúvidas administrativas, comerciais e operacionais da clínica."
+  ],
+  "appointment_flow": [
+    "Identificar se o paciente deseja consulta, exame, retorno, preparo, valor, convênio ou urgência.",
+    "Coletar nome, telefone, serviço ou especialidade desejada e preferência de data/período.",
+    "Se agenda integrada existir, oferecer horários disponíveis.",
+    "Se agenda integrada não existir, criar pré-solicitação organizada para a equipe confirmar.",
+    "Se o serviço exigir sinal e Pix estiver configurado, gerar cobrança e informar que a reserva fica pendente até confirmação."
+  ],
+  "services": [
+    "Consulta clínica",
+    "Avaliação inicial",
+    "Retorno médico",
+    "Exames e preparo",
+    "Procedimentos ambulatoriais",
+    "Teleconsulta",
+    "Check-up preventivo",
+    "Encaminhamento para especialista"
+  ],
+  "faq": [
+    {
+      "question": "A IA substitui a recepção da clínica?",
+      "answer": "Não. A IA atua como primeira camada de atendimento, respondendo dúvidas, coletando dados e organizando solicitações. A equipe continua responsável por decisões, confirmações e atendimento sensível."
+    },
+    {
+      "question": "A IA pode agendar consultas automaticamente?",
+      "answer": "Sim, quando a clínica possui agenda configurada ou integração disponível. Quando não há integração, a IA cria uma pré-solicitação estruturada para a equipe confirmar."
+    },
+    {
+      "question": "A IA pode gerar Pix para sinal de consulta?",
+      "answer": "Sim. Quando o Pix estiver habilitado no painel e o serviço exigir sinal, a IA pode gerar uma cobrança de reserva e deixar o status como pagamento pendente."
+    },
+    {
+      "question": "A IA responde dúvidas médicas?",
+      "answer": "A IA pode responder dúvidas administrativas e orientações gerais da clínica, mas não substitui consulta médica, diagnóstico ou conduta profissional."
+    },
+    {
+      "question": "Funciona para clínicas pequenas?",
+      "answer": "Sim. A LeadyIA é útil tanto para clínicas pequenas que querem parar de perder contatos quanto para operações maiores que precisam qualificar e organizar muitos atendimentos."
+    },
+    {
+      "question": "Precisa instalar algo complexo?",
+      "answer": "Não. O widget pode ser instalado com um pequeno script no site, parecido com uma tag de analytics. A configuração do atendimento é feita no dashboard."
+    }
+  ],
+  "widget_script": "<script src=\"https://widget.leadyia.com/loader.js\" data-tenant-id=\"TENANT_ID_CLINIC\" data-niche=\"clinic\" async></script>"
+}

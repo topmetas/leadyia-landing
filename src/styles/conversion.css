@@ -532,3 +532,254 @@
     top: 58px;
   }
 }
+
+/* =========================================================
+ * Home premium — canais, WhatsApp, Instagram e agendamento.
+ * ========================================================= */
+.leadyia-channels-section,
+.leadyia-scheduling-section {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.leadyia-channels-section {
+  padding: 110px 0 96px;
+  background:
+    radial-gradient(circle at 12% 0%, rgba(37, 99, 235, 0.22), transparent 34%),
+    radial-gradient(circle at 88% 12%, rgba(14, 165, 233, 0.16), transparent 32%),
+    linear-gradient(180deg, #020617 0%, #07111f 52%, #020617 100%);
+}
+
+.leadyia-channels-bg {
+  position: absolute;
+  width: 380px;
+  height: 380px;
+  border-radius: 999px;
+  filter: blur(45px);
+  pointer-events: none;
+  opacity: 0.34;
+}
+
+.leadyia-channels-bg--one {
+  left: -160px;
+  top: 90px;
+  background: #2563eb;
+}
+
+.leadyia-channels-bg--two {
+  right: -160px;
+  bottom: 60px;
+  background: #7c3aed;
+}
+
+.leadyia-channels-container,
+.leadyia-scheduling-container {
+  position: relative;
+  z-index: 1;
+  width: min(1180px, calc(100% - 40px));
+  margin: 0 auto;
+}
+
+.leadyia-channels-header {
+  max-width: 820px;
+  margin-bottom: 42px;
+}
+
+.leadyia-channels-header span,
+.leadyia-scheduling-copy span {
+  display: inline-flex;
+  margin-bottom: 14px;
+  color: #93c5fd;
+  font-size: 0.78rem;
+  font-weight: 900;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.leadyia-channels-header h2,
+.leadyia-scheduling-copy h2 {
+  margin: 0;
+  color: #ffffff;
+  font-size: clamp(2.15rem, 5vw, 4.7rem);
+  line-height: 0.96;
+  letter-spacing: -0.06em;
+}
+
+.leadyia-channels-header p,
+.leadyia-scheduling-copy p {
+  margin: 20px 0 0;
+  max-width: 760px;
+  color: rgba(226, 232, 240, 0.76);
+  font-size: 1.05rem;
+  line-height: 1.75;
+}
+
+.leadyia-channels-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.leadyia-channel-card {
+  min-height: 315px;
+  padding: 22px;
+  border: 1px solid rgba(148, 163, 184, 0.16);
+  border-radius: 28px;
+  background:
+    linear-gradient(145deg, rgba(15, 23, 42, 0.86), rgba(15, 23, 42, 0.56)),
+    radial-gradient(circle at 100% 0%, rgba(59, 130, 246, 0.16), transparent 44%);
+  box-shadow: 0 24px 74px rgba(0, 0, 0, 0.26);
+  backdrop-filter: blur(16px);
+}
+
+.leadyia-channel-card__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.leadyia-channel-card__icon {
+  display: grid;
+  place-items: center;
+  width: 50px;
+  height: 50px;
+  border-radius: 18px;
+  font-size: 1.45rem;
+  background: rgba(59, 130, 246, 0.16);
+}
+
+.leadyia-channel-card small {
+  padding: 7px 10px;
+  border-radius: 999px;
+  color: #bfdbfe;
+  background: rgba(255, 255, 255, 0.06);
+  font-size: 0.72rem;
+  font-weight: 850;
+}
+
+.leadyia-channel-card h3 {
+  margin: 28px 0 0;
+  color: #fff;
+  font-size: 1.32rem;
+  letter-spacing: -0.035em;
+}
+
+.leadyia-channel-card p {
+  margin: 14px 0 0;
+  color: rgba(203, 213, 225, 0.78);
+  line-height: 1.65;
+  font-size: 0.94rem;
+}
+
+.leadyia-channel-card__bullets {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin-top: 24px;
+}
+
+.leadyia-channel-card__bullets span {
+  padding: 7px 9px;
+  border-radius: 999px;
+  color: rgba(226, 232, 240, 0.86);
+  background: rgba(255, 255, 255, 0.06);
+  font-size: 0.74rem;
+  font-weight: 760;
+}
+
+.leadyia-scheduling-section {
+  padding: 108px 0;
+  background:
+    radial-gradient(circle at 82% 18%, rgba(37, 99, 235, 0.14), transparent 28%),
+    linear-gradient(180deg, #f8fafc 0%, #ffffff 50%, #eef2ff 100%);
+}
+
+.leadyia-scheduling-container {
+  display: grid;
+  grid-template-columns: minmax(0, 0.95fr) minmax(360px, 1fr);
+  gap: 48px;
+  align-items: center;
+}
+
+.leadyia-scheduling-copy span {
+  color: #2563eb;
+}
+
+.leadyia-scheduling-copy h2 {
+  color: #0f172a;
+}
+
+.leadyia-scheduling-copy p {
+  color: #475569;
+}
+
+.leadyia-scheduling-usecases {
+  display: grid;
+  gap: 10px;
+  margin-top: 28px;
+}
+
+.leadyia-scheduling-usecases div {
+  padding: 12px 14px;
+  border: 1px solid rgba(37, 99, 235, 0.12);
+  border-radius: 16px;
+  color: #1e293b;
+  background: rgba(255, 255, 255, 0.72);
+  font-weight: 760;
+  box-shadow: 0 14px 40px rgba(15, 23, 42, 0.06);
+}
+
+.leadyia-scheduling-steps {
+  display: grid;
+  gap: 14px;
+}
+
+.leadyia-scheduling-steps article {
+  padding: 22px;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.82);
+  box-shadow: 0 18px 54px rgba(15, 23, 42, 0.08);
+}
+
+.leadyia-scheduling-steps article span {
+  color: #2563eb;
+  font-size: 0.78rem;
+  font-weight: 950;
+  letter-spacing: 0.14em;
+}
+
+.leadyia-scheduling-steps article strong {
+  display: block;
+  margin-top: 8px;
+  color: #0f172a;
+  font-size: 1.1rem;
+  letter-spacing: -0.025em;
+}
+
+.leadyia-scheduling-steps article p {
+  margin: 8px 0 0;
+  color: #64748b;
+  line-height: 1.62;
+}
+
+@media (max-width: 1020px) {
+  .leadyia-channels-grid,
+  .leadyia-scheduling-container {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 720px) {
+  .leadyia-channels-grid,
+  .leadyia-scheduling-container {
+    grid-template-columns: 1fr;
+  }
+
+  .leadyia-channels-section,
+  .leadyia-scheduling-section {
+    padding-block: 72px;
+  }
+}

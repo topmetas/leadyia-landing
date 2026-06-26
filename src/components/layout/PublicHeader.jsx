@@ -30,10 +30,21 @@ const DASHBOARD_LOGIN_URL = "https://dashboard.leadyia.com/auth/login";
 const DASHBOARD_REGISTER_URL = "https://dashboard.leadyia.com/auth/register";
 
 const NAV_ITEMS = [
+  { label: "Canais", href: "#channels" },
+  { label: "Agenda", href: "#scheduling" },
   { label: "Demonstração", href: "#demo-widget" },
   { label: "Nichos", href: "#playbooks" },
-  { label: "ROI", href: "#roi-calculator" },
   { label: "Planos", href: "#pricing" },
+];
+
+const LIVE_PLAYBOOK_MENU = [
+  { label: "Hub", href: "/demo", icon: "✨" },
+  { label: "Clínica", href: "/clinica", icon: "🏥" },
+  { label: "Estética", href: "/estetica", icon: "💆" },
+  { label: "Jurídico", href: "/juridico", icon: "⚖️" },
+  { label: "Imobiliária", href: "/imobiliaria", icon: "🏠" },
+  { label: "Educação", href: "/educacao", icon: "🎓" },
+  { label: "E-commerce", href: "/ecommerce", icon: "🛒" },
 ];
 
 export default function PublicHeader() {
@@ -74,6 +85,22 @@ export default function PublicHeader() {
               {item.label}
             </a>
           ))}
+
+          <div className="ly-public-header__dropdown">
+            <a className="ly-public-header__dropdown-trigger" href="#playbooks-ao-vivo">
+              Playbooks ao vivo
+              <span aria-hidden="true">⌄</span>
+            </a>
+
+            <div className="ly-public-header__dropdown-panel" aria-label="Playbooks ao vivo por nicho">
+              {LIVE_PLAYBOOK_MENU.map((item) => (
+                <a key={item.href} href={item.href} onClick={closeMenu}>
+                  <span aria-hidden="true">{item.icon}</span>
+                  <strong>{item.label}</strong>
+                </a>
+              ))}
+            </div>
+          </div>
         </nav>
 
         <div className="ly-public-header__actions">
@@ -108,6 +135,13 @@ export default function PublicHeader() {
           {NAV_ITEMS.map((item) => (
             <a key={item.href} href={item.href} onClick={closeMenu}>
               {item.label}
+            </a>
+          ))}
+
+          <div className="ly-public-header__mobile-group">Playbooks ao vivo</div>
+          {LIVE_PLAYBOOK_MENU.map((item) => (
+            <a key={item.href} href={item.href} onClick={closeMenu}>
+              {item.icon} {item.label}
             </a>
           ))}
 

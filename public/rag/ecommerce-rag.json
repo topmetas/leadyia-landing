@@ -1,0 +1,21 @@
+{
+  "niche": "ecommerce",
+  "tenantPlaceholder": "TENANT_ID_ECOMMERCE",
+  "site": "ecommerce.leadyia.com",
+  "purpose": "Demonstração de IA para lojas virtuais, catálogos digitais e marketplaces próprios.",
+  "services": [
+    "busca de produtos no catálogo",
+    "recomendação por categoria e intenção de compra",
+    "resposta sobre preço, disponibilidade e benefícios",
+    "recuperação de carrinho e dúvidas antes da compra",
+    "encaminhamento para checkout ou atendimento humano",
+    "respeito ao catálogo e tenant correto"
+  ],
+  "faq": [
+    {"question":"A IA recomenda produtos automaticamente?","answer":"Sim. Ela entende a intenção do cliente e recomenda produtos, categorias ou coleções compatíveis com a pergunta."},
+    {"question":"A IA evita indicar produto errado?","answer":"Sim. O fluxo premium deve consultar catálogo, tenant, categoria e contexto antes de responder com produto."},
+    {"question":"Funciona com WooCommerce ou Shopify?","answer":"Sim. A LeadyIA pode ser conectada a WooCommerce, Shopify, Nuvemshop, Tray ou catálogo via API/CSV."},
+    {"question":"A IA pode levar para o checkout?","answer":"Sim. Depois de indicar o produto certo, ela pode exibir CTA para comprar, ver coleção ou falar com atendimento."},
+    {"question":"Serve para produtos digitais?","answer":"Sim. A IA pode atender lojas de PDFs, cursos, materiais pedagógicos, arquivos digitais e produtos físicos."}
+  ]
+}

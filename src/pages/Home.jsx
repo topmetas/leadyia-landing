@@ -15,6 +15,10 @@ import DemoWidgetShowcase from "../components/DemoWidgetShowcase";
 import ROICalculator from "../components/ROICalculator";
 import PlaybookShowcase from "../components/PlaybookShowcase";
 import SocialProofPremium from "../components/SocialProofPremium";
+import PlaybookSelector from "../components/demo/PlaybookSelector";
+import ChannelsHome from "../components/landing/ChannelsHome";
+import SchedulingHome from "../components/landing/SchedulingHome";
+import ConversionBooster from "../components/landing/ConversionBooster";
 
 import Features from "../components/landing/Features";
 import HowItWorks from "../components/landing/HowItWorks";
@@ -28,6 +32,10 @@ export default function Home() {
   return (
     <PublicLayout>
       <HeroPremium />
+      <ChannelsHome />
+      <SchedulingHome />
+      <ConversionBooster />
+      <PlaybookSelector />
       <DemoWidgetShowcase />
       <ROICalculator />
       <PlaybookShowcase />
