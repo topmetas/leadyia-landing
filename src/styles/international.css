@@ -1,0 +1,41 @@
+.lp-intl-switcher {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  border: 1px solid rgba(148, 163, 184, 0.24);
+  border-radius: 999px;
+  background: rgba(15, 23, 42, 0.64);
+  color: #e5e7eb;
+  box-shadow: 0 18px 50px rgba(15, 23, 42, 0.16);
+  margin-top: 18px;
+  flex-wrap: wrap;
+}
+.lp-intl-switcher__label { font-size: 12px; font-weight: 800; letter-spacing: .04em; text-transform: uppercase; color: #93c5fd; }
+.lp-intl-switcher select {
+  border: 0;
+  outline: 0;
+  border-radius: 999px;
+  padding: 8px 12px;
+  background: #ffffff;
+  color: #0f172a;
+  font-weight: 800;
+}
+.lp-intl-switcher small { color: #cbd5e1; font-weight: 700; }
+.lp-pricing-setup {
+  display: inline-flex;
+  width: fit-content;
+  margin: 10px 0 2px;
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: rgba(59, 130, 246, 0.10);
+  color: #1e3a8a;
+  font-size: 12px;
+  font-weight: 800;
+}
+.lp-pricing-card--agency { border-color: rgba(168, 85, 247, .38); box-shadow: 0 28px 90px rgba(88, 28, 135, .14); }
+.lp-pricing-badge--agency { background: linear-gradient(135deg, #7c3aed, #2563eb); }
+.lp-pricing-grid--five { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+.lp-pricing-cta { border: 0; cursor: pointer; text-align: center; }
+@media (max-width: 1180px) { .lp-pricing-grid--five { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 720px) { .lp-pricing-grid--five { grid-template-columns: 1fr; } .lp-intl-switcher { border-radius: 22px; justify-content: center; } }
