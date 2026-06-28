@@ -1,4 +1,6 @@
 import PublicLayout from "../../components/layout/PublicLayout";
+import { SEOProvider } from "../../seo";
+import { PAGE_SEO } from "../../seo/config/pagesSeo.config";
 import { educationLanding } from "../../data/niches/educationLanding.data";
 import "../../styles/niche-clinic.css";
 
@@ -24,6 +26,13 @@ export default function EducationLanding() {
 
   return (
     <PublicLayout>
+      <SEOProvider
+        {...PAGE_SEO.education}
+        niche="education"
+        faq={data.faq}
+        breadcrumb={[{ name: "Playbooks", url: "/playbooks" }, { name: "Educação", url: PAGE_SEO.education.path }]}
+        businessName={data.brand?.name}
+      />
       <main className="clinic-landing education-landing" id="education-landing">
         <section className="clinic-hero" id="hero">
           <div className="clinic-hero__background" aria-hidden="true" />

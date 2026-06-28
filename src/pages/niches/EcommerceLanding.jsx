@@ -1,4 +1,6 @@
 import PublicLayout from "../../components/layout/PublicLayout";
+import { SEOProvider } from "../../seo";
+import { PAGE_SEO } from "../../seo/config/pagesSeo.config";
 import { ecommerceLanding } from "../../data/niches/ecommerceLanding.data";
 import "../../styles/niche-clinic.css";
 
@@ -24,6 +26,13 @@ export default function EcommerceLanding() {
 
   return (
     <PublicLayout>
+      <SEOProvider
+        {...PAGE_SEO.ecommerce}
+        niche="ecommerce"
+        faq={data.faq}
+        breadcrumb={[{ name: "Playbooks", url: "/playbooks" }, { name: "E-commerce", url: PAGE_SEO.ecommerce.path }]}
+        businessName={data.brand?.name}
+      />
       <main className="clinic-landing ecommerce-landing" id="ecommerce-landing">
         <section className="clinic-hero" id="hero">
           <div className="clinic-hero__background" aria-hidden="true" />

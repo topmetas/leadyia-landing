@@ -19,6 +19,7 @@ import { BrowserRouter } from "react-router-dom";
 
 import App from "./app/App";
 import "./styles/index.css";
+import "./seo/styles/seo.css";
 
 console.log("[Bootstrap] LeadyIA Website iniciado");
 

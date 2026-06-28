@@ -1,4 +1,6 @@
 import PublicLayout from "../../components/layout/PublicLayout";
+import { SEOProvider } from "../../seo";
+import { PAGE_SEO } from "../../seo/config/pagesSeo.config";
 import { legalLanding } from "../../data/niches/legalLanding.data";
 import "../../styles/niche-clinic.css";
 
@@ -24,6 +26,13 @@ export default function LegalLanding() {
 
   return (
     <PublicLayout>
+      <SEOProvider
+        {...PAGE_SEO.legal}
+        niche="legal"
+        faq={data.faq}
+        breadcrumb={[{ name: "Playbooks", url: "/playbooks" }, { name: "Jurídico", url: PAGE_SEO.legal.path }]}
+        businessName={data.brand?.name}
+      />
       <main className="clinic-landing legal-landing" id="legal-landing">
         <section className="clinic-hero" id="hero">
           <div className="clinic-hero__background" aria-hidden="true" />

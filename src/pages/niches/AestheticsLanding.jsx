@@ -1,4 +1,6 @@
 import PublicLayout from "../../components/layout/PublicLayout";
+import { SEOProvider } from "../../seo";
+import { PAGE_SEO } from "../../seo/config/pagesSeo.config";
 import { aestheticsLanding } from "../../data/niches/aestheticsLanding.data";
 import "../../styles/niche-clinic.css";
 
@@ -24,6 +26,13 @@ export default function AestheticsLanding() {
 
   return (
     <PublicLayout>
+      <SEOProvider
+        {...PAGE_SEO.aesthetics}
+        niche="aesthetics"
+        faq={data.faq}
+        breadcrumb={[{ name: "Playbooks", url: "/playbooks" }, { name: "Estética", url: PAGE_SEO.aesthetics.path }]}
+        businessName={data.brand?.name}
+      />
       <main className="clinic-landing aesthetics-landing" id="aesthetics-landing">
         <section className="clinic-hero" id="hero">
           <div className="clinic-hero__background" aria-hidden="true" />

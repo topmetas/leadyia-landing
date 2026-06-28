@@ -1,7 +1,8 @@
 /**
- * LeadyIA Landing — Public Pricing v501 International
- * - Busca catálogo do backend com country/currency/locale/provider.
- * - Mantém fallback local com os mesmos valores do backend.
+ * LeadyIA Landing — Public Pricing v503 FINAL HOTFIX
+ * - Deduplica planos por tier/moeda.
+ * - Remove plano internal/trial da grade comercial.
+ * - Mantém fallback local com os mesmos valores.
  */
 
 import {
@@ -24,10 +25,46 @@ const REGISTER_URL =
 
 const CHECKOUT_ENDPOINT = `${API_BASE_URL}/billing/checkout`;
 
+const PLAN_ORDER = ["starter", "pro", "business", "enterprise", "agency"];
+
+function getTier(value = "") {
+  const raw = String(value || "").toLowerCase();
+  if (raw.includes("starter")) return "starter";
+  if (raw.includes("pro")) return "pro";
+  if (raw.includes("business")) return "business";
+  if (raw.includes("enterprise")) return "enterprise";
+  if (raw.includes("agency")) return "agency";
+  if (raw.includes("internal")) return "internal";
+  if (raw.includes("trial")) return "trial";
+  return raw.split("_")[0];
+}
+
+function dedupePlans(plans = [], { currency } = {}) {
+  const map = new Map();
+
+  for (const plan of Array.isArray(plans) ? plans : []) {
+    const tier = getTier(plan.tier || plan.code || plan.id || plan.name);
+
+    if (!PLAN_ORDER.includes(tier)) continue;
+
+    const planCurrency = normalizeCurrency(plan.currency || currency);
+    if (currency && planCurrency !== normalizeCurrency(currency)) continue;
+
+    if (!map.has(tier)) {
+      map.set(tier, {
+        ...plan,
+        tier,
+      });
+    }
+  }
+
+  return PLAN_ORDER.map((tier) => map.get(tier)).filter(Boolean);
+}
+
 function normalizePlan(plan = {}, context = {}) {
   const country = context.country || resolveInitialCountry();
   const currency = normalizeCurrency(plan.currency || context.currency || country.currency);
-  const tier = String(plan.tier || plan.code || plan.id || "").split("_")[0].toLowerCase();
+  const tier = getTier(plan.tier || plan.code || plan.id || "");
   const code = plan.code || getPlanCode(tier, currency);
   const provider = plan.provider || context.provider || country.provider;
   const locale = plan.locale || context.locale || country.locale;
@@ -43,10 +80,13 @@ function normalizePlan(plan = {}, context = {}) {
     provider,
     priceFormatted: plan.priceFormatted || plan.formattedPrice || "Sob consulta",
     setupFeeFormatted: plan.setupFeeFormatted || plan.setupFee || null,
-    interval: plan.interval || plan.billingCycle || (locale?.startsWith("en") ? "month" : locale?.startsWith("es") ? "mes" : "mês"),
+    interval:
+      plan.interval ||
+      plan.billingCycle ||
+      (locale?.startsWith("en") ? "month" : locale?.startsWith("es") ? "mes" : "mês"),
     features: Array.isArray(plan.features) ? plan.features : [],
     limits: plan.limits || {},
-    recommended: Boolean(plan.recommended || plan.highlight || plan.isRecommended),
+    recommended: Boolean(plan.recommended || plan.highlight || plan.isRecommended || tier === "pro"),
     checkoutUrl:
       plan.checkoutUrl ||
       plan.initPoint ||
@@ -72,11 +112,15 @@ export async function getPublicPricingPlans(options = {}) {
     if (!response.ok) throw new Error(`PUBLIC_PRICING_HTTP_${response.status}`);
 
     const payload = await response.json();
-    const plans = payload?.data?.plans || payload?.plans || [];
-    if (!Array.isArray(plans) || plans.length === 0) throw new Error("PUBLIC_PRICING_EMPTY");
+    const rawPlans = payload?.data?.plans || payload?.data?.plans?.plans || payload?.plans || [];
+    if (!Array.isArray(rawPlans) || rawPlans.length === 0) throw new Error("PUBLIC_PRICING_EMPTY");
+
+    const normalized = rawPlans.map((plan) =>
+      normalizePlan(plan, { country, currency, locale, provider })
+    );
 
     return {
-      plans: plans.map((plan) => normalizePlan(plan, { country, currency, locale, provider })),
+      plans: dedupePlans(normalized, { currency }),
       source: payload?.meta?.source || "backend",
       loadedAt: payload?.meta?.loadedAt || new Date().toISOString(),
       country,
@@ -86,8 +130,13 @@ export async function getPublicPricingPlans(options = {}) {
     };
   } catch (error) {
     console.warn("[Landing][Pricing] Usando fallback internacional local", error?.message);
+
+    const fallbackPlans = buildLocalPlans({ currency, locale }).map((plan) =>
+      normalizePlan(plan, { country, currency, locale, provider })
+    );
+
     return {
-      plans: buildLocalPlans({ currency, locale }).map((plan) => normalizePlan(plan, { country, currency, locale, provider })),
+      plans: dedupePlans(fallbackPlans, { currency }),
       source: "fallback",
       loadedAt: new Date().toISOString(),
       country,
@@ -124,9 +173,18 @@ export async function createPublicCheckout(plan, context = {}) {
     });
 
     if (!response.ok) throw new Error(`CHECKOUT_HTTP_${response.status}`);
+
     const data = await response.json();
-    const url = data?.data?.url || data?.url || data?.checkoutUrl || data?.initPoint || data?.stripeCheckoutUrl;
+    const url =
+      data?.data?.url ||
+      data?.data?.checkoutUrl ||
+      data?.url ||
+      data?.checkoutUrl ||
+      data?.initPoint ||
+      data?.stripeCheckoutUrl;
+
     if (!url) throw new Error("CHECKOUT_URL_EMPTY");
+
     return { ok: true, url, provider };
   } catch (error) {
     console.warn("[Landing][Checkout] Fallback para register URL", error?.message);

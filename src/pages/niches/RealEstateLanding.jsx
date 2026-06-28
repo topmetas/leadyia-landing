@@ -1,4 +1,6 @@
 import PublicLayout from "../../components/layout/PublicLayout";
+import { SEOProvider } from "../../seo";
+import { PAGE_SEO } from "../../seo/config/pagesSeo.config";
 import { realEstateLanding } from "../../data/niches/realEstateLanding.data";
 import "../../styles/niche-clinic.css";
 
@@ -24,6 +26,13 @@ export default function RealEstateLanding() {
 
   return (
     <PublicLayout>
+      <SEOProvider
+        {...PAGE_SEO.realestate}
+        niche="realestate"
+        faq={data.faq}
+        breadcrumb={[{ name: "Playbooks", url: "/playbooks" }, { name: "Imobiliária", url: PAGE_SEO.realestate.path }]}
+        businessName={data.brand?.name}
+      />
       <main className="clinic-landing realestate-landing" id="realestate-landing">
         <section className="clinic-hero" id="hero">
           <div className="clinic-hero__background" aria-hidden="true" />

@@ -5,22 +5,53 @@ import { resolveInitialCountry, getLanguage, INTERNATIONAL_TEXT } from "../../co
 import "../../styles/pricing.css";
 import "../../styles/international.css";
 
+const PLAN_ORDER = ["starter", "pro", "business", "enterprise", "agency"];
+
 function formatLimit(value, suffix) {
   if (value === -1) return "Ilimitado";
-  if (value === null || value === undefined) return "Sob medida";
+  if (value === null || value === undefined) return null;
   return `${Number(value).toLocaleString("pt-BR")} ${suffix}`;
 }
 
 function resolveCtaLabel(plan, country) {
-  if (plan.tier === "enterprise") return country.locale?.startsWith("en") ? "Talk to sales" : country.locale?.startsWith("es") ? "Hablar con ventas" : "Falar com especialista";
-  if (plan.tier === "agency") return country.locale?.startsWith("en") ? "Start Agency" : country.locale?.startsWith("es") ? "Empezar Agency" : "Começar Agency";
-  if (plan.provider === "stripe") return country.locale?.startsWith("en") ? "Subscribe with Stripe" : country.locale?.startsWith("es") ? "Suscribirse con Stripe" : "Assinar com Stripe";
+  if (plan.tier === "enterprise") {
+    return country.locale?.startsWith("en")
+      ? "Talk to sales"
+      : country.locale?.startsWith("es")
+        ? "Hablar con ventas"
+        : "Falar com especialista";
+  }
+
+  if (plan.tier === "agency") {
+    return country.locale?.startsWith("en")
+      ? "Start Agency"
+      : country.locale?.startsWith("es")
+        ? "Empezar Agency"
+        : "Começar Agency";
+  }
+
+  if (plan.provider === "stripe") {
+    return country.locale?.startsWith("en")
+      ? "Subscribe with Stripe"
+      : country.locale?.startsWith("es")
+        ? "Suscribirse con Stripe"
+        : "Assinar com Stripe";
+  }
+
   return "Assinar com Mercado Pago";
 }
 
-function PlanCard({ plan, country, onCheckout }) {
+function PlanCard({ plan, country, onCheckout, loading }) {
+  const botsLimit = formatLimit(plan?.limits?.bots, "bots");
+  const messagesLimit = formatLimit(
+    plan?.limits?.messagesPerMonth || plan?.limits?.messages,
+    "mensagens/mês"
+  );
+
   return (
-    <article className={`lp-pricing-card ${plan.recommended ? "lp-pricing-card--featured" : ""} ${plan.tier === "agency" ? "lp-pricing-card--agency" : ""}`}>
+    <article
+      className={`lp-pricing-card ${plan.recommended ? "lp-pricing-card--featured" : ""} ${plan.tier === "agency" ? "lp-pricing-card--agency" : ""}`}
+    >
       {plan.recommended && <div className="lp-pricing-badge">Mais escolhido</div>}
       {plan.tier === "agency" && <div className="lp-pricing-badge lp-pricing-badge--agency">Agências</div>}
 
@@ -29,6 +60,7 @@ function PlanCard({ plan, country, onCheckout }) {
           <p className="lp-pricing-tier">{plan.tier}</p>
           <h3>{plan.name}</h3>
         </div>
+
         <div className="lp-pricing-price">
           <strong>{plan.priceFormatted}</strong>
           {plan.interval && <span>/{plan.interval}</span>}
@@ -36,19 +68,26 @@ function PlanCard({ plan, country, onCheckout }) {
       </div>
 
       {plan.setupFeeFormatted && (
-        <div className="lp-pricing-setup">Implantação: <strong>{plan.setupFeeFormatted}</strong></div>
+        <div className="lp-pricing-setup">
+          Implantação: <strong>{plan.setupFeeFormatted}</strong>
+        </div>
       )}
 
       <p className="lp-pricing-description">{plan.description}</p>
 
-      <div className="lp-pricing-limits">
-        <span>{formatLimit(plan?.limits?.bots, "bots")}</span>
-        <span>{formatLimit(plan?.limits?.messagesPerMonth || plan?.limits?.messages, "mensagens/mês")}</span>
-      </div>
+      {(botsLimit || messagesLimit) && (
+        <div className="lp-pricing-limits">
+          {botsLimit && <span>{botsLimit}</span>}
+          {messagesLimit && <span>{messagesLimit}</span>}
+        </div>
+      )}
 
       <ul className="lp-pricing-features">
         {(plan.features || []).slice(0, 7).map((feature) => (
-          <li key={feature}><span aria-hidden>✓</span>{feature}</li>
+          <li key={feature}>
+            <span aria-hidden>✓</span>
+            {feature}
+          </li>
         ))}
       </ul>
 
@@ -56,10 +95,17 @@ function PlanCard({ plan, country, onCheckout }) {
         type="button"
         className={`lp-pricing-cta ${plan.recommended ? "lp-pricing-cta--primary" : ""}`}
         onClick={() => onCheckout(plan)}
+        disabled={loading}
       >
-        {resolveCtaLabel(plan, country)}
+        {loading ? "Abrindo..." : resolveCtaLabel(plan, country)}
       </button>
     </article>
+  );
+}
+
+function sortPlans(plans = []) {
+  return [...plans].sort(
+    (a, b) => PLAN_ORDER.indexOf(a.tier) - PLAN_ORDER.indexOf(b.tier)
   );
 }
 
@@ -73,45 +119,86 @@ export default function Pricing() {
 
   useEffect(() => {
     let active = true;
+
     async function loadPlans() {
       setState((prev) => ({ ...prev, loading: true }));
-      const result = await getPublicPricingPlans({ country, currency: country.currency, locale: country.locale, provider: country.provider });
+
+      const result = await getPublicPricingPlans({
+        country,
+        currency: country.currency,
+        locale: country.locale,
+        provider: country.provider,
+      });
+
       if (!active) return;
-      setState({ loading: false, plans: result.plans, source: result.source, loadedAt: result.loadedAt });
+
+      setState({
+        loading: false,
+        plans: result.plans,
+        source: result.source,
+        loadedAt: result.loadedAt,
+      });
     }
+
     loadPlans();
-    return () => { active = false; };
+
+    return () => {
+      active = false;
+    };
   }, [country]);
 
-  const plans = useMemo(() => state.plans || [], [state.plans]);
+  const plans = useMemo(() => sortPlans(state.plans || []), [state.plans]);
 
   async function handleCheckout(plan) {
     setCheckoutLoading(plan.code);
-    const result = await createPublicCheckout(plan, { country, currency: country.currency, locale: country.locale, provider: country.provider });
+
+    const result = await createPublicCheckout(plan, {
+      country,
+      currency: country.currency,
+      locale: country.locale,
+      provider: country.provider,
+    });
+
     setCheckoutLoading("");
+
     if (result?.url) window.location.href = result.url;
   }
 
   return (
     <section id="pricing" className="lp-pricing-section">
       <div className="lp-pricing-bg" aria-hidden />
+
       <div className="lp-pricing-container">
         <div className="lp-pricing-header">
-          <span className="lp-section-eyebrow">International Billing v501</span>
+          <span className="lp-section-eyebrow">International Billing v503</span>
           <h2>{text.title}</h2>
           <p>{text.subtitle}</p>
 
-          <LanguageCurrencySwitcher value={country} onChange={setCountry} label={text.countryLabel} />
+          <LanguageCurrencySwitcher
+            value={country}
+            onChange={setCountry}
+            label={text.countryLabel}
+          />
 
           <div className="lp-pricing-source">
-            {state.loading ? "Carregando catálogo oficial..." : state.source === "backend" ? text.sourceBackend : text.sourceFallback}
+            {state.loading
+              ? "Carregando catálogo oficial..."
+              : state.source === "backend"
+                ? text.sourceBackend
+                : text.sourceFallback}
             <span> · {text.checkoutWith} {country.provider === "stripe" ? "Stripe" : "Mercado Pago/Pix"}</span>
           </div>
         </div>
 
         <div className="lp-pricing-grid lp-pricing-grid--five">
           {plans.map((plan) => (
-            <PlanCard key={plan.code || plan.name} plan={{ ...plan, loading: checkoutLoading === plan.code }} country={country} onCheckout={handleCheckout} />
+            <PlanCard
+              key={`${plan.tier}-${plan.currency}`}
+              plan={plan}
+              country={country}
+              onCheckout={handleCheckout}
+              loading={checkoutLoading === plan.code}
+            />
           ))}
         </div>
 

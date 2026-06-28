@@ -9,6 +9,8 @@
  */
 
 import PublicLayout from "../components/layout/PublicLayout";
+import { SEOProvider } from "../seo";
+import { PAGE_SEO } from "../seo/config/pagesSeo.config";
 
 import HeroPremium from "../components/HeroPremium";
 import DemoWidgetShowcase from "../components/DemoWidgetShowcase";
@@ -31,6 +33,16 @@ import "../styles/conversion.css";
 export default function Home() {
   return (
     <PublicLayout>
+      <SEOProvider
+        {...PAGE_SEO.home}
+        niche="saas"
+        breadcrumb={[{ name: "LeadyIA", url: "/" }]}
+        faq={[
+          { question: "O que é a LeadyIA?", answer: "A LeadyIA é uma plataforma de inteligência artificial para atendimento, vendas, qualificação de leads, agendamentos, Pix, RAG e CRM." },
+          { question: "A LeadyIA atende pelo WhatsApp?", answer: "Sim. A LeadyIA pode ser conectada ao site, WhatsApp, Instagram e outros canais de atendimento." },
+          { question: "Posso testar a IA por nicho?", answer: "Sim. A LeadyIA possui playbooks ao vivo para clínica, estética, jurídico, imobiliária, educação e e-commerce." }
+        ]}
+      />
       <HeroPremium />
       <ChannelsHome />
       <SchedulingHome />
