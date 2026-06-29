@@ -1,83 +1,104 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="pt-BR">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title>LeadyIA — Automação de Leads com IA</title>
-    <meta name="description" content="LeadyIA é uma plataforma de IA para atendimento, vendas, agendamentos, Pix, CRM e playbooks ao vivo para clínicas, estética, jurídico, imobiliária, educação e e-commerce." />
-    <meta name="theme-color" content="#0b1020" />
-    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-    <link rel="apple-touch-icon" href="/192x192.png" />
-    <link rel="manifest" href="/site.webmanifest" />
-    <meta property="og:type" content="website" />
-    <meta property="og:title" content="LeadyIA — IA para atender, vender e agendar" />
-    <meta property="og:description" content="Teste playbooks ao vivo por nicho: clínica, estética, jurídico, imobiliária, educação e e-commerce." />
-    <meta property="og:image" content="/preview-leadyia-v500.png" />
-    <meta property="og:url" content="https://leadyia.com" />
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="LeadyIA — Playbooks ao vivo por nicho" />
-    <meta name="twitter:description" content="Veja a LeadyIA funcionando em site, WhatsApp, Instagram, agendamentos, Pix e CRM." />
-    <meta name="twitter:image" content="/preview-leadyia-v500.png" />
-
-
-    <!-- FONT -->
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
-      rel="stylesheet"
-    />
-
-    <!-- CSP AJUSTADA -->
+    <!-- SEO principal -->
+    <title>Dashboard LeadyIA | CRM, IA, Atendimento e Automação Comercial</title>
     <meta
-      http-equiv="Content-Security-Policy"
-      content="
-        default-src 'self';
-        script-src 'self' https://widget.leadyia.com https://api.leadyia.com 'unsafe-inline';
-        connect-src 'self' https://api.leadyia.com https://dashboard.leadyia.com https://widget.leadyia.com;
-        img-src 'self' data: https://widget.leadyia.com;
-        style-src 'self' https://fonts.googleapis.com https://widget.leadyia.com 'unsafe-inline';
-        font-src https://fonts.gstatic.com;
-        frame-src https://dashboard.leadyia.com;
-      "
+      name="description"
+      content="Acesse o Dashboard LeadyIA para gerenciar IA de atendimento, CRM, leads, conversas, agendamentos, WhatsApp, Instagram, RAG, planos e automações comerciais."
     />
-  
-    <!-- LeadyIA SEO Enterprise defaults -->
-    <meta name="description" content="Automatize atendimento, vendas e qualificação de leads com a LeadyIA. IA integrada ao site, WhatsApp e Instagram. Agendamentos, Pix, RAG, CRM e automação comercial em uma única plataforma." />
+    <meta
+      name="keywords"
+      content="dashboard LeadyIA, CRM com IA, atendimento com IA, automação comercial, chatbot inteligente, gestão de leads, WhatsApp com IA, Instagram com IA, RAG empresarial, agendamentos automáticos"
+    />
+    <meta name="author" content="LeadyIA" />
+    <meta name="application-name" content="LeadyIA Dashboard" />
+    <meta name="generator" content="LeadyIA Enterprise Dashboard" />
+
+    <!-- Indexação -->
     <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://dashboard.leadyia.com/" />
+
+    <!-- PWA / aparência -->
     <meta name="theme-color" content="#6E3BFF" />
-    <link rel="canonical" href="https://leadyia.com" />
+    <meta name="color-scheme" content="dark light" />
     <link rel="manifest" href="/site.webmanifest" />
+
+    <!-- Favicon -->
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192x192.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+
+    <!-- Open Graph / WhatsApp / Facebook / LinkedIn -->
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="LeadyIA • A IA que vende enquanto você trabalha" />
-    <meta property="og:description" content="Automatize atendimento, vendas e qualificação de leads com IA. Site, WhatsApp, Instagram, Agendamentos, Pix e CRM inteligente." />
-    <meta property="og:url" content="https://leadyia.com" />
-    <meta property="og:image" content="https://leadyia.com/preview-leadyia-v500.png" />
     <meta property="og:site_name" content="LeadyIA" />
+    <meta property="og:title" content="Dashboard LeadyIA • Central inteligente de atendimento e vendas" />
+    <meta
+      property="og:description"
+      content="Gerencie conversas, leads, CRM, WhatsApp, Instagram, agendamentos, RAG, planos e automações comerciais em um painel premium com IA."
+    />
+    <meta property="og:url" content="https://dashboard.leadyia.com/" />
+    <meta property="og:image" content="https://dashboard.leadyia.com/og-dashboard.png" />
+    <meta property="og:image:secure_url" content="https://dashboard.leadyia.com/og-dashboard.png" />
+    <meta property="og:image:alt" content="Dashboard LeadyIA - CRM, IA, atendimento e automação comercial" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
     <meta property="og:locale" content="pt_BR" />
+
+    <!-- Twitter / X -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="LeadyIA • IA para Atendimento e Vendas" />
-    <meta name="twitter:description" content="Seu atendente virtual inteligente disponível 24 horas por dia." />
-    <meta name="twitter:image" content="https://leadyia.com/preview-leadyia-v500.png" />
+    <meta name="twitter:title" content="Dashboard LeadyIA • CRM e automação com IA" />
+    <meta
+      name="twitter:description"
+      content="Central premium para atendimento, vendas, CRM, IA, RAG, WhatsApp, Instagram e automações comerciais."
+    />
+    <meta name="twitter:image" content="https://dashboard.leadyia.com/og-dashboard.png" />
 
+    <!-- Schema.org -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "LeadyIA Dashboard",
+        "applicationCategory": "BusinessApplication",
+        "operatingSystem": "Web",
+        "url": "https://dashboard.leadyia.com/",
+        "image": "https://dashboard.leadyia.com/og-dashboard.png",
+        "description": "Dashboard da LeadyIA para gestão de IA de atendimento, CRM, leads, canais, agendamentos, RAG, planos e automações comerciais.",
+        "brand": {
+          "@type": "Brand",
+          "name": "LeadyIA"
+        },
+        "offers": {
+          "@type": "Offer",
+          "price": "97",
+          "priceCurrency": "BRL",
+          "url": "https://leadyia.com/#pricing"
+        }
+      }
+    </script>
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "LeadyIA",
+        "url": "https://leadyia.com",
+        "logo": "https://dashboard.leadyia.com/favicon-192x192.png",
+        "sameAs": [
+          "https://leadyia.com"
+        ]
+      }
+    </script>
   </head>
-
   <body>
+    <noscript>Ative o JavaScript para acessar o Dashboard LeadyIA.</noscript>
     <div id="root"></div>
-
-    <!-- React App -->
     <script type="module" src="/src/main.jsx"></script>
-
-    <!-- ===================================================== -->
-    <!-- LEADYIA WIDGET -->
-    <!-- ===================================================== -->
-
-
-
-<script
-src="https://widget.leadyia.com/v1/widget.js"
-data-tenant="69f168938e078fba344fe491"
-data-theme="dark">
-</script>
-
   </body>
 </html>
