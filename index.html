@@ -1,40 +1,37 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <!-- SEO principal -->
     <title>Dashboard LeadyIA | CRM, IA, Atendimento e Automação Comercial</title>
+
     <meta
       name="description"
       content="Acesse o Dashboard LeadyIA para gerenciar IA de atendimento, CRM, leads, conversas, agendamentos, WhatsApp, Instagram, RAG, planos e automações comerciais."
     />
-    <meta
-      name="keywords"
-      content="dashboard LeadyIA, CRM com IA, atendimento com IA, automação comercial, chatbot inteligente, gestão de leads, WhatsApp com IA, Instagram com IA, RAG empresarial, agendamentos automáticos"
-    />
     <meta name="author" content="LeadyIA" />
     <meta name="application-name" content="LeadyIA Dashboard" />
-    <meta name="generator" content="LeadyIA Enterprise Dashboard" />
 
-    <!-- Indexação -->
     <meta name="robots" content="index,follow,max-image-preview:large" />
     <link rel="canonical" href="https://dashboard.leadyia.com/" />
 
-    <!-- PWA / aparência -->
     <meta name="theme-color" content="#6E3BFF" />
     <meta name="color-scheme" content="dark light" />
+
     <link rel="manifest" href="/site.webmanifest" />
 
-    <!-- Favicon -->
     <link rel="icon" href="/favicon.ico" sizes="any" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
     <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192x192.png" />
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
 
-    <!-- Open Graph / WhatsApp / Facebook / LinkedIn -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="LeadyIA" />
     <meta property="og:title" content="Dashboard LeadyIA • Central inteligente de atendimento e vendas" />
@@ -50,7 +47,6 @@
     <meta property="og:image:height" content="630" />
     <meta property="og:locale" content="pt_BR" />
 
-    <!-- Twitter / X -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Dashboard LeadyIA • CRM e automação com IA" />
     <meta
@@ -59,7 +55,19 @@
     />
     <meta name="twitter:image" content="https://dashboard.leadyia.com/og-dashboard.png" />
 
-    <!-- Schema.org -->
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="
+        default-src 'self';
+        script-src 'self' https://widget.leadyia.com https://api.leadyia.com 'unsafe-inline';
+        connect-src 'self' https://api.leadyia.com https://dashboard.leadyia.com https://widget.leadyia.com;
+        img-src 'self' data: https://widget.leadyia.com https://dashboard.leadyia.com;
+        style-src 'self' https://fonts.googleapis.com https://widget.leadyia.com 'unsafe-inline';
+        font-src 'self' https://fonts.gstatic.com;
+        frame-src 'self' https://dashboard.leadyia.com https://widget.leadyia.com;
+      "
+    />
+
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -90,15 +98,22 @@
         "name": "LeadyIA",
         "url": "https://leadyia.com",
         "logo": "https://dashboard.leadyia.com/favicon-192x192.png",
-        "sameAs": [
-          "https://leadyia.com"
-        ]
+        "sameAs": ["https://leadyia.com"]
       }
     </script>
   </head>
+
   <body>
     <noscript>Ative o JavaScript para acessar o Dashboard LeadyIA.</noscript>
+
     <div id="root"></div>
+
     <script type="module" src="/src/main.jsx"></script>
+
+    <script
+      src="https://widget.leadyia.com/v1/widget.js"
+      data-tenant="69f168938e078fba344fe491"
+      data-theme="dark"
+    ></script>
   </body>
 </html>
