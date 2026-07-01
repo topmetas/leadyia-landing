@@ -12,7 +12,6 @@
     />
     <meta name="author" content="LeadyIA" />
     <meta name="application-name" content="LeadyIA Dashboard" />
-
     <meta name="robots" content="index,follow,max-image-preview:large" />
     <link rel="canonical" href="https://dashboard.leadyia.com/" />
 
@@ -59,14 +58,37 @@
       http-equiv="Content-Security-Policy"
       content="
         default-src 'self';
-        script-src 'self' https://widget.leadyia.com https://api.leadyia.com 'unsafe-inline';
-        connect-src 'self' https://api.leadyia.com https://dashboard.leadyia.com https://widget.leadyia.com;
-        img-src 'self' data: https://widget.leadyia.com https://dashboard.leadyia.com;
-        style-src 'self' https://fonts.googleapis.com https://widget.leadyia.com 'unsafe-inline';
+        script-src 'self' 'unsafe-inline' https://widget.leadyia.com https://api.leadyia.com https://connect.facebook.net;
+        connect-src 'self' https://api.leadyia.com https://dashboard.leadyia.com https://widget.leadyia.com https://graph.facebook.com https://www.facebook.com;
+        img-src 'self' data: https://widget.leadyia.com https://dashboard.leadyia.com https://www.facebook.com;
+        style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://widget.leadyia.com;
         font-src 'self' https://fonts.gstatic.com;
         frame-src 'self' https://dashboard.leadyia.com https://widget.leadyia.com;
       "
     />
+
+    <!-- Meta Pixel Code -->
+    <script>
+      !function(f,b,e,v,n,t,s)
+      {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+      n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+      if(!f._fbq)f._fbq=n;
+      n.push=n;
+      n.loaded=!0;
+      n.version='2.0';
+      n.queue=[];
+      t=b.createElement(e);
+      t.async=!0;
+      t.src=v;
+      s=b.getElementsByTagName(e)[0];
+      s.parentNode.insertBefore(t,s);
+      }(window, document, 'script',
+      'https://connect.facebook.net/en_US/fbevents.js');
+
+      fbq('init', '881001097860552');
+      fbq('track', 'PageView');
+    </script>
+    <!-- End Meta Pixel Code -->
 
     <script type="application/ld+json">
       {
@@ -104,6 +126,15 @@
   </head>
 
   <body>
+    <noscript>
+      <img
+        height="1"
+        width="1"
+        style="display:none"
+        src="https://www.facebook.com/tr?id=881001097860552&ev=PageView&noscript=1"
+      />
+    </noscript>
+
     <noscript>Ative o JavaScript para acessar o Dashboard LeadyIA.</noscript>
 
     <div id="root"></div>
