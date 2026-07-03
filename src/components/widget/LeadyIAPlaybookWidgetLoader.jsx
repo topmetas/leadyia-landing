@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import {
   getCurrentPlaybookTenantConfig,
   isConfiguredTenant,
@@ -10,10 +11,13 @@ import {
 const SCRIPT_ID = "leadyia-playbook-widget-loader";
 
 export default function LeadyIAPlaybookWidgetLoader() {
+  const location = useLocation();
+
   useEffect(() => {
     if (typeof document === "undefined") return undefined;
 
     const cfg = getCurrentPlaybookTenantConfig();
+    const routeKey = `${location.pathname}${location.search}${location.hash}`;
 
     if (!isConfiguredTenant(cfg.tenantId)) {
       console.info("[LeadyIA][Landing] Widget não carregado: tenant placeholder", {
@@ -37,6 +41,7 @@ export default function LeadyIAPlaybookWidgetLoader() {
       playbook: cfg.playbook,
       niche: cfg.niche,
       source: "landing-playbook",
+      routeKey,
     };
 
     const script = document.createElement("script");
@@ -51,6 +56,7 @@ export default function LeadyIAPlaybookWidgetLoader() {
     script.setAttribute("data-niche", cfg.niche);
     script.setAttribute("data-api-base", LEADYIA_API_BASE_URL);
     script.setAttribute("data-widget-src", LEADYIA_WIDGET_SRC);
+    script.setAttribute("data-route", routeKey);
 
     if (cfg.widgetKey) {
       script.setAttribute("data-key", cfg.widgetKey);
@@ -62,7 +68,7 @@ export default function LeadyIAPlaybookWidgetLoader() {
     return () => {
       script.remove();
     };
-  }, []);
+  }, [location.pathname, location.search, location.hash]);
 
   return null;
 }

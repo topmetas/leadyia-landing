@@ -59,7 +59,7 @@ export const PLAYBOOK_TENANT_REGISTRY = {
     label: "Imobiliária",
     playbook: "realestate",
     niche: "realestate",
-    tenantId: "TENANT_ID_REALESTATE",
+    tenantId: "6a4802ae5258829b2cd61531",
     widgetKey: "",
     paths: ["/imobiliaria", "/imoveis", "/realestate"],
     domains: ["leadyia.com", "www.leadyia.com", "imobiliaria.leadyia.com", "imoveis.leadyia.com", "realestate.leadyia.com"],
@@ -98,17 +98,21 @@ export function resolvePlaybookKeyFromLocation(locationLike) {
   const hostname = String(locationLike?.hostname || "").toLowerCase();
   const pathname = String(locationLike?.pathname || "/").toLowerCase().replace(/\/$/, "") || "/";
 
-  const domainMatch = Object.entries(PLAYBOOK_TENANT_REGISTRY).find(([, cfg]) =>
-    cfg.domains.some((domain) => hostname === domain || hostname.startsWith(`${domain.split(".")[0]}.`))
-  );
-
-  if (domainMatch && domainMatch[0] !== "saas") return domainMatch[0];
-
+  // Prioridade 1: path da página atual.
+  // Em leadyia.com/imobiliaria, leadyia.com é domínio compartilhado, então o path decide o playbook.
   const pathMatch = Object.entries(PLAYBOOK_TENANT_REGISTRY).find(([, cfg]) =>
     cfg.paths.includes(pathname)
   );
 
-  return pathMatch?.[0] || "saas";
+  if (pathMatch) return pathMatch[0];
+
+  // Prioridade 2: subdomínio dedicado.
+  // Em imobiliaria.leadyia.com, o host decide o playbook.
+  const domainMatch = Object.entries(PLAYBOOK_TENANT_REGISTRY).find(([, cfg]) =>
+    cfg.domains.some((domain) => hostname === domain)
+  );
+
+  return domainMatch?.[0] || "saas";
 }
 
 export function getCurrentPlaybookTenantConfig() {

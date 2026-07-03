@@ -30,11 +30,11 @@ const DASHBOARD_LOGIN_URL = "https://dashboard.leadyia.com/auth/login";
 const DASHBOARD_REGISTER_URL = "https://dashboard.leadyia.com/auth/register";
 
 const NAV_ITEMS = [
-  { label: "Canais", href: "#channels" },
-  { label: "Agenda", href: "#scheduling" },
-  { label: "Demonstração", href: "#demo-widget" },
-  { label: "Nichos", href: "#playbooks" },
-  { label: "Planos", href: "#pricing" },
+  { label: "Canais", href: "/#channels" },
+  { label: "Agenda", href: "/#scheduling" },
+  { label: "Demonstração", href: "/#demo-widget" },
+  { label: "Nichos", href: "/#playbooks" },
+  { label: "Planos", href: "/#pricing" },
 ];
 
 const LIVE_PLAYBOOK_MENU = [
@@ -66,7 +66,7 @@ export default function PublicHeader() {
       data-menu-open={menuOpen ? "true" : "false"}
     >
       <div className="ly-public-header__shell">
-        <a className="ly-public-header__brand" href="#hero" onClick={closeMenu}>
+        <a className="ly-public-header__brand" href="/" onClick={closeMenu}>
           <span className="ly-public-header__logo" aria-hidden="true">
             <img
               src="/leadyia-widget-icon.svg"
@@ -94,7 +94,7 @@ export default function PublicHeader() {
           ))}
 
           <div className="ly-public-header__dropdown">
-            <a className="ly-public-header__dropdown-trigger" href="#playbooks-ao-vivo">
+            <a className="ly-public-header__dropdown-trigger" href="/#playbooks-ao-vivo">
               Playbooks ao vivo
               <span aria-hidden="true">⌄</span>
             </a>
