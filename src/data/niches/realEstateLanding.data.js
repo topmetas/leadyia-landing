@@ -1,3 +1,5 @@
+import { buildLeadyIAWidgetSnippet } from "../../config/playbookTenants.config";
+
 export const realEstateLanding = {
   brand: {
     name: "Prime House Imóveis",
@@ -72,7 +74,7 @@ export const realEstateLanding = {
   widget: {
     description:
       "Use esta landing como demonstração pública para imobiliárias. O visitante conversa com a IA como se estivesse no site de uma imobiliária real, buscando imóveis, tirando dúvidas e agendando visitas.",
-    script: `<script\n  src="https://widget.leadyia.com/loader.js"\n  data-tenant-id="TENANT_ID_REALESTATE"\n  data-segment="realestate"\n  async\n></script>`
+    script: buildLeadyIAWidgetSnippet("realestate")
   },
   conversations: [
     {

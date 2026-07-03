@@ -1,3 +1,5 @@
+import { buildLeadyIAWidgetSnippet } from "../../config/playbookTenants.config";
+
 /**
  * =========================================================
  * CLINIC LANDING DATA — LEADYIA
@@ -145,6 +147,6 @@ export const clinicLanding = {
     title: "Teste a experiência como paciente",
     description:
       "O widget desta página deve simular uma assistente de clínica: atendimento acolhedor, triagem objetiva, agendamento e Pix quando fizer sentido.",
-    script: `<script\n  src="https://widget.leadyia.com/loader.js"\n  data-tenant-id="TENANT_ID_CLINIC"\n  data-niche="clinic"\n  async\n></script>`,
+    script: buildLeadyIAWidgetSnippet("clinic"),
   },
 };

@@ -1,3 +1,5 @@
+import { buildLeadyIAWidgetSnippet } from "../../config/playbookTenants.config";
+
 /**
  * =========================================================
  * AESTHETICS LANDING DATA — LEADYIA
@@ -147,6 +149,6 @@ export const aestheticsLanding = {
     title: "Teste a experiência como cliente de estética",
     description:
       "O widget desta página deve simular uma consultora de estética: acolhedora, comercial, cuidadosa com promessas e focada em avaliação, agenda e reserva quando fizer sentido.",
-    script: `<script\n  src="https://widget.leadyia.com/loader.js"\n  data-tenant-id="TENANT_ID_ESTETICA"\n  data-niche="aesthetics"\n  async\n></script>`,
+    script: buildLeadyIAWidgetSnippet("aesthetics"),
   },
 };

@@ -1,3 +1,5 @@
+import { buildLeadyIAWidgetSnippet } from "../../config/playbookTenants.config";
+
 export const legalLanding = {
   brand: {
     name: "Almeida & Associados",
@@ -72,7 +74,7 @@ export const legalLanding = {
   widget: {
     description:
       "Use esta landing como demonstração pública para o nicho jurídico. O visitante conversa com a IA como se estivesse no site de um escritório real.",
-    script: `<script\n  src="https://widget.leadyia.com/loader.js"\n  data-tenant-id="TENANT_ID_LEGAL"\n  data-segment="legal"\n  async\n></script>`
+    script: buildLeadyIAWidgetSnippet("legal")
   },
   conversations: [
     {

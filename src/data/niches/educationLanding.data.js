@@ -1,3 +1,5 @@
+import { buildLeadyIAWidgetSnippet } from "../../config/playbookTenants.config";
+
 export const educationLanding = {
   brand: {
     name: "Leady Education Demo",
@@ -72,7 +74,7 @@ export const educationLanding = {
   widget: {
     description:
       "Use esta landing como demonstração pública para negócios educacionais. O visitante testa a IA como se estivesse conversando com uma escola, curso, mentoria ou atendimento pedagógico real.",
-    script: `<script\n  src="https://widget.leadyia.com/loader.js"\n  data-tenant-id="TENANT_ID_EDUCATION"\n  data-segment="education"\n  async\n></script>`
+    script: buildLeadyIAWidgetSnippet("education")
   },
   conversations: [
     {

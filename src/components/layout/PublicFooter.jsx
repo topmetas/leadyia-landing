@@ -151,7 +151,7 @@ export default function PublicFooter() {
         <div className="ly-public-footer__main">
           <div className="ly-public-footer__brand-block">
             <a className="ly-public-footer__brand" href="#hero">
-              <span className="ly-public-footer__logo" aria-hidden="true">L</span>
+              <span className="ly-public-footer__logo" aria-hidden="true"><img src="/leadyia-widget-icon.svg" alt="" loading="lazy" /></span>
               <span>
                 <strong>LeadyIA</strong>
                 <small>Recepcionista virtual inteligente</small>

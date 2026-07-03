@@ -68,7 +68,14 @@ export default function PublicHeader() {
       <div className="ly-public-header__shell">
         <a className="ly-public-header__brand" href="#hero" onClick={closeMenu}>
           <span className="ly-public-header__logo" aria-hidden="true">
-            <span className="ly-public-header__logo-core">L</span>
+            <img
+              src="/leadyia-widget-icon.svg"
+              alt=""
+              width="42"
+              height="42"
+              loading="eager"
+              decoding="async"
+            />
           </span>
 
           <span className="ly-public-header__brand-copy">

@@ -1,0 +1,68 @@
+import { useEffect } from "react";
+import {
+  getCurrentPlaybookTenantConfig,
+  isConfiguredTenant,
+  LEADYIA_API_BASE_URL,
+  LEADYIA_WIDGET_LOADER_SRC,
+  LEADYIA_WIDGET_SRC,
+} from "../../config/playbookTenants.config";
+
+const SCRIPT_ID = "leadyia-playbook-widget-loader";
+
+export default function LeadyIAPlaybookWidgetLoader() {
+  useEffect(() => {
+    if (typeof document === "undefined") return undefined;
+
+    const cfg = getCurrentPlaybookTenantConfig();
+
+    if (!isConfiguredTenant(cfg.tenantId)) {
+      console.info("[LeadyIA][Landing] Widget não carregado: tenant placeholder", {
+        playbook: cfg.playbook,
+        tenantId: cfg.tenantId,
+      });
+      return undefined;
+    }
+
+    const oldScript = document.getElementById(SCRIPT_ID);
+    const oldRuntime = document.getElementById("leadyia-widget-js");
+    const oldRoot = document.querySelector('[id^="leadyia-widget-root"], [data-leadyia-widget-root]');
+
+    oldScript?.remove();
+    oldRuntime?.remove();
+    oldRoot?.remove();
+
+    window.__LEADYIA_WIDGET_CONTEXT__ = {
+      ...(window.__LEADYIA_WIDGET_CONTEXT__ || {}),
+      tenantId: cfg.tenantId,
+      playbook: cfg.playbook,
+      niche: cfg.niche,
+      source: "landing-playbook",
+    };
+
+    const script = document.createElement("script");
+    script.id = SCRIPT_ID;
+    script.src = LEADYIA_WIDGET_LOADER_SRC;
+    script.async = true;
+    script.defer = true;
+    script.crossOrigin = "anonymous";
+    script.setAttribute("data-tenant", cfg.tenantId);
+    script.setAttribute("data-tenant-id", cfg.tenantId);
+    script.setAttribute("data-playbook", cfg.playbook);
+    script.setAttribute("data-niche", cfg.niche);
+    script.setAttribute("data-api-base", LEADYIA_API_BASE_URL);
+    script.setAttribute("data-widget-src", LEADYIA_WIDGET_SRC);
+
+    if (cfg.widgetKey) {
+      script.setAttribute("data-key", cfg.widgetKey);
+      script.setAttribute("data-widget-key", cfg.widgetKey);
+    }
+
+    document.head.appendChild(script);
+
+    return () => {
+      script.remove();
+    };
+  }, []);
+
+  return null;
+}

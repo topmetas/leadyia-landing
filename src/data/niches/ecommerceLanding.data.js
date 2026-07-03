@@ -1,3 +1,5 @@
+import { buildLeadyIAWidgetSnippet } from "../../config/playbookTenants.config";
+
 export const ecommerceLanding = {
   brand: {
     name: "Leady Store Demo",
@@ -72,7 +74,7 @@ export const ecommerceLanding = {
   widget: {
     description:
       "Use esta landing como demonstração pública para lojas virtuais. O visitante conversa com a IA como se estivesse em um e-commerce real, buscando produtos, tirando dúvidas e recebendo CTAs de compra coerentes.",
-    script: `<script\n  src="https://widget.leadyia.com/loader.js"\n  data-tenant-id="TENANT_ID_ECOMMERCE"\n  data-segment="ecommerce"\n  async\n></script>`
+    script: buildLeadyIAWidgetSnippet("ecommerce")
   },
   conversations: [
     {
