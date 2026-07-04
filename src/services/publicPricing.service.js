@@ -13,11 +13,17 @@ import {
   resolveInitialCountry,
 } from "../config/international.config";
 
-const API_BASE_URL = (
+const RAW_API_BASE_URL = (
   import.meta.env.VITE_API_URL ||
   import.meta.env.VITE_BACKEND_URL ||
   "https://api.leadyia.com/api"
 ).replace(/\/+$/, "");
+
+// Aceita VITE_API_URL tanto como https://api.leadyia.com quanto https://api.leadyia.com/api.
+// O backend público usa o namespace /api; sem isso a landing chama /public/pricing/plans e recebe 404.
+const API_BASE_URL = RAW_API_BASE_URL.endsWith("/api")
+  ? RAW_API_BASE_URL
+  : `${RAW_API_BASE_URL}/api`;
 
 const REGISTER_URL =
   import.meta.env.VITE_DASHBOARD_REGISTER_URL ||

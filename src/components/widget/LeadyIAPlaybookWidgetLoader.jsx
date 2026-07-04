@@ -18,16 +18,11 @@ export default function LeadyIAPlaybookWidgetLoader() {
     if (typeof document === "undefined") return undefined;
 
     const cfg = getCurrentPlaybookTenantConfig();
-    const routeKey = `${location.pathname}${location.search}${location.hash}`;
+    const routeKey = `${window.location.hostname}${location.pathname}${location.search}${location.hash}`;
 
-    if (!isConfiguredTenant(cfg.tenantId)) {
-      console.info("[LeadyIA][Landing] Widget não carregado: tenant placeholder", {
-        playbook: cfg.playbook,
-        tenantId: cfg.tenantId,
-      });
-      return undefined;
-    }
-
+    // Limpa qualquer runtime anterior antes de decidir se carrega de novo.
+    // Isso evita que uma rota com tenant placeholder deixe um widget antigo
+    // tentando bootstrap e gerando WIDGET_ORIGIN_NOT_ALLOWED.
     const oldScript = document.getElementById(SCRIPT_ID);
     const oldRuntime = document.getElementById("leadyia-widget-js");
     const oldRoot = document.querySelector('[id^="leadyia-widget-root"], [data-leadyia-widget-root]');
@@ -35,6 +30,15 @@ export default function LeadyIAPlaybookWidgetLoader() {
     oldScript?.remove();
     oldRuntime?.remove();
     oldRoot?.remove();
+
+    if (!isConfiguredTenant(cfg.tenantId)) {
+      console.info("[LeadyIA][Landing] Widget não carregado: tenant não configurado para este domínio/subdomínio", {
+        host: window.location.hostname,
+        playbook: cfg.playbook,
+        tenantId: cfg.tenantId,
+      });
+      return undefined;
+    }
 
     const conversionContext = captureLandingConversionContext({
       tenantId: cfg.tenantId,

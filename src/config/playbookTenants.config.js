@@ -1,13 +1,15 @@
 /**
  * =========================================================
- * LEADYIA LANDING — TENANTS POR PLAYBOOK
+ * LEADYIA LANDING — TENANTS POR DOMÍNIO/SUBDOMÍNIO
  * =========================================================
- * Onde preencher os tenants reais de cada página/playbook.
- *
- * Troque apenas os campos tenantId e, se seu backend exigir, widgetKey.
- * Não coloque path no allowedDomains do tenant no backend: domínio é domínio.
- * Para páginas em leadyia.com/clinica, registre leadyia.com e www.leadyia.com.
- * Para subdomínios, registre também clinica.leadyia.com, estetica.leadyia.com etc.
+ * Regra v599:
+ * - O widget da landing NÃO escolhe tenant por página/path.
+ * - O tenant é resolvido somente pelo domínio/subdomínio atual.
+ * - Páginas como /imobiliaria podem existir para SEO/conteúdo, mas não trocam
+ *   automaticamente o tenant do widget.
+ * - Para cada playbook de demonstração, crie um subdomínio dedicado
+ *   (ex.: imobiliaria.leadyia.com) ou um domínio próprio e cadastre esse host
+ *   no tenant correspondente no backend.
  */
 
 export const LEADYIA_WIDGET_LOADER_SRC = "https://widget.leadyia.com/loader.js";
@@ -59,7 +61,7 @@ export const PLAYBOOK_TENANT_REGISTRY = {
     label: "Imobiliária",
     playbook: "real_estate",
     niche: "real_estate",
-    tenantId: "",
+    tenantId: "6a4802ae5258829b2cd61531",
     widgetKey: "",
     paths: ["/imobiliaria", "/imoveis", "/realestate"],
     domains: ["leadyia.com", "www.leadyia.com", "imobiliaria.leadyia.com", "imoveis.leadyia.com", "realestate.leadyia.com"],
@@ -94,22 +96,22 @@ export function getPlaybookTenantConfig(playbookKey = "saas") {
   return PLAYBOOK_TENANT_REGISTRY[playbookKey] || PLAYBOOK_TENANT_REGISTRY.saas;
 }
 
+export function normalizeLandingHost(hostname = "") {
+  return String(hostname || "")
+    .toLowerCase()
+    .replace(/^https?:\/\//, "")
+    .replace(/\/$/, "")
+    .split(":")[0];
+}
+
 export function resolvePlaybookKeyFromLocation(locationLike) {
-  const hostname = String(locationLike?.hostname || "").toLowerCase();
-  const pathname = String(locationLike?.pathname || "/").toLowerCase().replace(/\/$/, "") || "/";
+  const hostname = normalizeLandingHost(locationLike?.hostname || "");
 
-  // Prioridade 1: path da página atual.
-  // Em leadyia.com/imobiliaria, leadyia.com é domínio compartilhado, então o path decide o playbook.
-  const pathMatch = Object.entries(PLAYBOOK_TENANT_REGISTRY).find(([, cfg]) =>
-    cfg.paths.includes(pathname)
-  );
-
-  if (pathMatch) return pathMatch[0];
-
-  // Prioridade 2: subdomínio dedicado.
-  // Em imobiliaria.leadyia.com, o host decide o playbook.
+  // v599: tenant/playbook somente por domínio/subdomínio.
+  // O path não decide mais o widget para evitar troca acidental em
+  // /imobiliaria, /clinica, /playbooks etc.
   const domainMatch = Object.entries(PLAYBOOK_TENANT_REGISTRY).find(([, cfg]) =>
-    cfg.domains.some((domain) => hostname === domain)
+    cfg.domains.some((domain) => normalizeLandingHost(domain) === hostname)
   );
 
   return domainMatch?.[0] || "saas";
