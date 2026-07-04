@@ -1,27 +1,27 @@
 /**
  * =========================================================
- * LEADYIA LANDING — TENANTS POR DOMÍNIO/SUBDOMÍNIO
+ * LEADYIA LANDING — TENANTS POR PLAYBOOK
  * =========================================================
- * Regra v599:
- * - O widget da landing NÃO escolhe tenant por página/path.
- * - O tenant é resolvido somente pelo domínio/subdomínio atual.
- * - Páginas como /imobiliaria podem existir para SEO/conteúdo, mas não trocam
- *   automaticamente o tenant do widget.
- * - Para cada playbook de demonstração, crie um subdomínio dedicado
- *   (ex.: imobiliaria.leadyia.com) ou um domínio próprio e cadastre esse host
- *   no tenant correspondente no backend.
+ * Onde preencher os tenants reais de cada página/playbook.
+ *
+ * Troque apenas os campos tenantId e, se seu backend exigir, widgetKey.
+ * Não coloque path no allowedDomains do tenant no backend: domínio é domínio.
+ * Para páginas em leadyia.com/clinica, registre leadyia.com e www.leadyia.com.
+ * Para subdomínios, registre também clinica.leadyia.com, estetica.leadyia.com etc.
  */
 
 export const LEADYIA_WIDGET_LOADER_SRC = "https://widget.leadyia.com/loader.js";
 export const LEADYIA_WIDGET_SRC = "https://widget.leadyia.com/v1/widget.js";
-export const LEADYIA_API_BASE_URL = "https://api.leadyia.com/api";
+export const LEADYIA_API_BASE_URL = String(import.meta.env.VITE_API_URL || "https://api.leadyia.com/api").replace(/\/+$/, "");
+
+const envTenant = (key, fallback) => String(import.meta.env[key] || fallback || "").trim();
 
 export const PLAYBOOK_TENANT_REGISTRY = {
   saas: {
     label: "LeadyIA / SaaS",
     playbook: "leadyia",
     niche: "leadyia",
-    tenantId: "TENANT_ID_LEADYIA",
+    tenantId: envTenant("VITE_LEADYIA_TENANT_ID", "TENANT_ID_LEADYIA"),
     widgetKey: "",
     paths: ["/", "/demo", "/playbook", "/playbooks", "/saas", "/ao-vivo"],
     domains: ["leadyia.com", "www.leadyia.com", "demo.leadyia.com", "playbooks.leadyia.com"],
@@ -31,7 +31,7 @@ export const PLAYBOOK_TENANT_REGISTRY = {
     label: "Clínica",
     playbook: "clinic",
     niche: "clinic",
-    tenantId: "TENANT_ID_CLINIC",
+    tenantId: envTenant("VITE_CLINIC_TENANT_ID", "TENANT_ID_CLINIC"),
     widgetKey: "",
     paths: ["/clinica", "/clinic"],
     domains: ["leadyia.com", "www.leadyia.com", "clinica.leadyia.com", "clinic.leadyia.com"],
@@ -41,7 +41,7 @@ export const PLAYBOOK_TENANT_REGISTRY = {
     label: "Estética",
     playbook: "aesthetics",
     niche: "aesthetics",
-    tenantId: "TENANT_ID_ESTETICA",
+    tenantId: envTenant("VITE_ESTETICA_TENANT_ID", "TENANT_ID_ESTETICA"),
     widgetKey: "",
     paths: ["/estetica", "/aesthetics"],
     domains: ["leadyia.com", "www.leadyia.com", "estetica.leadyia.com", "aesthetics.leadyia.com"],
@@ -51,7 +51,7 @@ export const PLAYBOOK_TENANT_REGISTRY = {
     label: "Advocacia / Jurídico",
     playbook: "legal",
     niche: "legal",
-    tenantId: "TENANT_ID_LEGAL",
+    tenantId: envTenant("VITE_LEGAL_TENANT_ID", "TENANT_ID_LEGAL"),
     widgetKey: "",
     paths: ["/juridico", "/advocacia", "/legal"],
     domains: ["leadyia.com", "www.leadyia.com", "juridico.leadyia.com", "advocacia.leadyia.com", "legal.leadyia.com"],
@@ -61,7 +61,7 @@ export const PLAYBOOK_TENANT_REGISTRY = {
     label: "Imobiliária",
     playbook: "real_estate",
     niche: "real_estate",
-    tenantId: "6a4802ae5258829b2cd61531",
+    tenantId: envTenant("VITE_REAL_ESTATE_TENANT_ID", "6a4802ae5258829b2cd61531"),
     widgetKey: "",
     paths: ["/imobiliaria", "/imoveis", "/realestate"],
     domains: ["leadyia.com", "www.leadyia.com", "imobiliaria.leadyia.com", "imoveis.leadyia.com", "realestate.leadyia.com"],
@@ -71,7 +71,7 @@ export const PLAYBOOK_TENANT_REGISTRY = {
     label: "Educação",
     playbook: "education",
     niche: "education",
-    tenantId: "TENANT_ID_EDUCATION",
+    tenantId: envTenant("VITE_EDUCATION_TENANT_ID", "TENANT_ID_EDUCATION"),
     widgetKey: "",
     paths: ["/educacao", "/education", "/escola"],
     domains: ["leadyia.com", "www.leadyia.com", "educacao.leadyia.com", "education.leadyia.com", "escola.leadyia.com"],
@@ -81,7 +81,7 @@ export const PLAYBOOK_TENANT_REGISTRY = {
     label: "E-commerce",
     playbook: "ecommerce",
     niche: "ecommerce",
-    tenantId: "TENANT_ID_ECOMMERCE",
+    tenantId: envTenant("VITE_ECOMMERCE_TENANT_ID", "TENANT_ID_ECOMMERCE"),
     widgetKey: "",
     paths: ["/ecommerce", "/loja", "/shop"],
     domains: ["leadyia.com", "www.leadyia.com", "ecommerce.leadyia.com", "loja.leadyia.com", "shop.leadyia.com"],
@@ -96,22 +96,22 @@ export function getPlaybookTenantConfig(playbookKey = "saas") {
   return PLAYBOOK_TENANT_REGISTRY[playbookKey] || PLAYBOOK_TENANT_REGISTRY.saas;
 }
 
-export function normalizeLandingHost(hostname = "") {
-  return String(hostname || "")
-    .toLowerCase()
-    .replace(/^https?:\/\//, "")
-    .replace(/\/$/, "")
-    .split(":")[0];
-}
-
 export function resolvePlaybookKeyFromLocation(locationLike) {
-  const hostname = normalizeLandingHost(locationLike?.hostname || "");
+  const hostname = String(locationLike?.hostname || "").toLowerCase();
+  const pathname = String(locationLike?.pathname || "/").toLowerCase().replace(/\/$/, "") || "/";
 
-  // v599: tenant/playbook somente por domínio/subdomínio.
-  // O path não decide mais o widget para evitar troca acidental em
-  // /imobiliaria, /clinica, /playbooks etc.
+  // Prioridade 1: path da página atual.
+  // Em leadyia.com/imobiliaria, leadyia.com é domínio compartilhado, então o path decide o playbook.
+  const pathMatch = Object.entries(PLAYBOOK_TENANT_REGISTRY).find(([, cfg]) =>
+    cfg.paths.includes(pathname)
+  );
+
+  if (pathMatch) return pathMatch[0];
+
+  // Prioridade 2: subdomínio dedicado.
+  // Em imobiliaria.leadyia.com, o host decide o playbook.
   const domainMatch = Object.entries(PLAYBOOK_TENANT_REGISTRY).find(([, cfg]) =>
-    cfg.domains.some((domain) => normalizeLandingHost(domain) === hostname)
+    cfg.domains.some((domain) => hostname === domain)
   );
 
   return domainMatch?.[0] || "saas";

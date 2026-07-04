@@ -13,17 +13,13 @@ import {
   resolveInitialCountry,
 } from "../config/international.config";
 
-const RAW_API_BASE_URL = (
+const API_ROOT_URL = (
   import.meta.env.VITE_API_URL ||
   import.meta.env.VITE_BACKEND_URL ||
-  "https://api.leadyia.com/api"
-).replace(/\/+$/, "");
+  "https://api.leadyia.com"
+).replace(/\/+$/, "").replace(/\/api$/, "");
 
-// Aceita VITE_API_URL tanto como https://api.leadyia.com quanto https://api.leadyia.com/api.
-// O backend público usa o namespace /api; sem isso a landing chama /public/pricing/plans e recebe 404.
-const API_BASE_URL = RAW_API_BASE_URL.endsWith("/api")
-  ? RAW_API_BASE_URL
-  : `${RAW_API_BASE_URL}/api`;
+const API_BASE_URL = `${API_ROOT_URL}/api`;
 
 const REGISTER_URL =
   import.meta.env.VITE_DASHBOARD_REGISTER_URL ||
@@ -110,12 +106,23 @@ export async function getPublicPricingPlans(options = {}) {
   const query = new URLSearchParams({ country: country.code, currency, locale, provider });
 
   try {
-    const response = await fetch(`${API_BASE_URL}/public/pricing/plans?${query.toString()}`, {
-      method: "GET",
-      headers: { Accept: "application/json" },
-    });
+    const endpoints = [
+      `${API_BASE_URL}/public/pricing/plans?${query.toString()}`,
+      `${API_ROOT_URL}/public/pricing/plans?${query.toString()}`,
+    ];
 
-    if (!response.ok) throw new Error(`PUBLIC_PRICING_HTTP_${response.status}`);
+    let response;
+    let lastStatus = 0;
+    for (const endpoint of endpoints) {
+      response = await fetch(endpoint, {
+        method: "GET",
+        headers: { Accept: "application/json" },
+      });
+      lastStatus = response.status;
+      if (response.ok) break;
+    }
+
+    if (!response?.ok) throw new Error(`PUBLIC_PRICING_HTTP_${lastStatus}`);
 
     const payload = await response.json();
     const rawPlans = payload?.data?.plans || payload?.data?.plans?.plans || payload?.plans || [];
