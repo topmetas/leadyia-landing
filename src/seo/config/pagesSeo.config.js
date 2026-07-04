@@ -1,13 +1,13 @@
 export const PAGE_SEO = {
   home: {
     path: "/",
-    title: "LeadyIA | IA para Atendimento, Vendas e Automação Comercial",
+    title: "LeadyIA — IA Comercial para Empresas | Chatbot com IA, WhatsApp, Agenda e Vendas",
     description:
-      "Automatize atendimento, vendas e qualificação de leads com a LeadyIA. IA integrada ao site, WhatsApp e Instagram. Agendamentos, Pix, RAG, CRM e automação comercial em uma única plataforma.",
+      "Automatize atendimento, vendas e captação de clientes com IA. Chatbot inteligente para clínicas, imobiliárias, advocacia, educação, estética, e-commerce e empresas. Agende consultas, gere Pix, qualifique leads e aumente suas conversões.",
     h1: "Transforme seu atendimento em uma máquina de vendas com Inteligência Artificial",
     schemaType: "SoftwareApplication",
-    keywords: ["IA para atendimento", "chatbot para empresas", "assistente virtual IA", "automação de vendas", "CRM com IA"],
-    image: "/preview-leadyia-v500.png"
+    keywords: ["chatbot IA", "inteligência artificial", "chatbot para empresas", "chatbot whatsapp", "assistente virtual", "automação comercial", "geração de leads", "qualificação de leads", "agenda automática", "pix automático", "IA para vendas", "CRM IA", "automação atendimento"],
+    image: "/og-image.png"
   },
   clinic: {
     path: "/clinica",
@@ -16,7 +16,7 @@ export const PAGE_SEO = {
       "Veja como a LeadyIA atende pacientes, tira dúvidas, agenda consultas e qualifica leads para clínicas com recepção virtual inteligente.",
     schemaType: "MedicalBusiness",
     keywords: ["IA para clínicas", "chatbot clínica", "agendamento de consultas", "recepção virtual", "secretária virtual clínica"],
-    image: "/preview-leadyia-v500.png"
+    image: "/og-image.png"
   },
   aesthetics: {
     path: "/estetica",
@@ -25,7 +25,7 @@ export const PAGE_SEO = {
       "Demonstração da LeadyIA para clínicas de estética: qualificação de leads, dúvidas sobre procedimentos, agendamento de avaliação e Pix de reserva.",
     schemaType: "HealthAndBeautyBusiness",
     keywords: ["IA para estética", "chatbot estética", "botox", "harmonização facial", "agendamento estético"],
-    image: "/preview-leadyia-v500.png"
+    image: "/og-image.png"
   },
   legal: {
     path: "/juridico",
@@ -34,7 +34,7 @@ export const PAGE_SEO = {
       "Veja a LeadyIA fazendo triagem inicial, qualificando casos e agendando consultas para escritórios de advocacia sem prometer resultado jurídico.",
     schemaType: "LegalService",
     keywords: ["IA para advocacia", "chatbot jurídico", "atendimento jurídico", "triagem jurídica", "qualificação de clientes advocacia"],
-    image: "/preview-leadyia-v500.png"
+    image: "/og-image.png"
   },
   realestate: {
     path: "/imobiliaria",
@@ -43,7 +43,7 @@ export const PAGE_SEO = {
       "Demonstração da LeadyIA para imobiliárias: qualificação de compradores, indicação de imóveis, agendamento de visitas e atendimento com corretores.",
     schemaType: "RealEstateAgent",
     keywords: ["IA para imobiliárias", "chatbot imobiliária", "atendimento imobiliário", "agendamento de visitas", "leads imobiliários"],
-    image: "/preview-leadyia-v500.png"
+    image: "/og-image.png"
   },
   education: {
     path: "/educacao",
@@ -52,7 +52,7 @@ export const PAGE_SEO = {
       "A LeadyIA ajuda escolas, cursos e mentorias a atender interessados, qualificar alunos, tirar dúvidas e conduzir matrículas automaticamente.",
     schemaType: "EducationalOrganization",
     keywords: ["IA para escolas", "chatbot educação", "atendimento educacional", "matrículas online", "IA para cursos"],
-    image: "/preview-leadyia-v500.png"
+    image: "/og-image.png"
   },
   ecommerce: {
     path: "/ecommerce",
@@ -61,7 +61,7 @@ export const PAGE_SEO = {
       "Veja como a LeadyIA recomenda produtos, responde dúvidas, direciona categorias e melhora a conversão em lojas virtuais e e-commerces.",
     schemaType: "Store",
     keywords: ["IA para ecommerce", "chatbot ecommerce", "recomendação de produtos", "recuperação de carrinho", "vendas online"],
-    image: "/preview-leadyia-v500.png"
+    image: "/og-image.png"
   }
 };
 

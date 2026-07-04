@@ -16,7 +16,7 @@ export const SEO_MARKETS = {
 };
 
 export const SEO_ROUTES = [
-  { path: "/", priority: "1.0", changefreq: "weekly", title: "LeadyIA — AI Sales Assistant" },
+  { path: "/", priority: "1.0", changefreq: "weekly", title: "LeadyIA — IA Comercial para Empresas" },
   { path: "/playbooks", priority: "0.95", changefreq: "weekly", title: "Playbooks LeadyIA" },
   { path: "/clinica", priority: "0.9", changefreq: "weekly", playbook: "clinic" },
   { path: "/estetica", priority: "0.9", changefreq: "weekly", playbook: "aesthetics" },
