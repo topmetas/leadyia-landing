@@ -57,9 +57,9 @@ export const PLAYBOOK_TENANT_REGISTRY = {
 
   realestate: {
     label: "Imobiliária",
-    playbook: "realestate",
-    niche: "realestate",
-    tenantId: "6a4802ae5258829b2cd61531",
+    playbook: "real_estate",
+    niche: "real_estate",
+    tenantId: "",
     widgetKey: "",
     paths: ["/imobiliaria", "/imoveis", "/realestate"],
     domains: ["leadyia.com", "www.leadyia.com", "imobiliaria.leadyia.com", "imoveis.leadyia.com", "realestate.leadyia.com"],

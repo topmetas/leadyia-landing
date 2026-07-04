@@ -7,7 +7,12 @@
     "dev": "vite --host 0.0.0.0 --port 5176",
     "build": "vite build",
     "lint": "eslint .",
-    "preview": "vite preview --host 0.0.0.0 --port 5176"
+    "preview": "vite preview --host 0.0.0.0 --port 5176",
+    "validate:release": "npm run test:i18n-global && npm run seo:generate && npm run test:seo-global && npm run test:conversion-global && npm run build",
+    "test:i18n-global": "node scripts/validate-global-i18n.mjs",
+    "seo:generate": "node scripts/generate-global-seo-assets.mjs",
+    "test:seo-global": "node scripts/validate-global-seo.mjs",
+    "test:conversion-global": "node scripts/validate-global-conversion.mjs"
   },
   "dependencies": {
     "react": "^19.2.3",

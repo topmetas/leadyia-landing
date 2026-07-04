@@ -23,4 +23,19 @@ export default defineConfig({
     react(),
     tailwindcss(), // 🔥 OBRIGATÓRIO NO TAILWIND v4
   ],
+  build: {
+    target: "es2020",
+    sourcemap: false,
+    assetsInlineLimit: 4096,
+    cssCodeSplit: true,
+    chunkSizeWarningLimit: 1200,
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          react: ["react", "react-dom"],
+          router: ["react-router-dom"],
+        },
+      },
+    },
+  },
 });

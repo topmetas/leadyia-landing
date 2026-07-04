@@ -20,6 +20,9 @@ import { BrowserRouter } from "react-router-dom";
 import App from "./app/App";
 import "./styles/index.css";
 import "./seo/styles/seo.css";
+import { initLandingI18n } from "./i18n/globalI18n";
+
+initLandingI18n();
 
 console.log("[Bootstrap] LeadyIA Website iniciado");
 

@@ -7,6 +7,7 @@ import {
   LEADYIA_WIDGET_LOADER_SRC,
   LEADYIA_WIDGET_SRC,
 } from "../../config/playbookTenants.config";
+import { captureLandingConversionContext, trackLandingConversionEvent } from "../../modules/conversion/conversionTracker";
 
 const SCRIPT_ID = "leadyia-playbook-widget-loader";
 
@@ -35,6 +36,15 @@ export default function LeadyIAPlaybookWidgetLoader() {
     oldRuntime?.remove();
     oldRoot?.remove();
 
+    const conversionContext = captureLandingConversionContext({
+      tenantId: cfg.tenantId,
+      playbook: cfg.playbook,
+      source: "landing-playbook",
+      apiBase: LEADYIA_API_BASE_URL,
+    });
+
+    trackLandingConversionEvent("playbook_view", conversionContext, { routeKey });
+
     window.__LEADYIA_WIDGET_CONTEXT__ = {
       ...(window.__LEADYIA_WIDGET_CONTEXT__ || {}),
       tenantId: cfg.tenantId,
@@ -57,6 +67,7 @@ export default function LeadyIAPlaybookWidgetLoader() {
     script.setAttribute("data-api-base", LEADYIA_API_BASE_URL);
     script.setAttribute("data-widget-src", LEADYIA_WIDGET_SRC);
     script.setAttribute("data-route", routeKey);
+    script.setAttribute("data-conversion-context", JSON.stringify(conversionContext));
 
     if (cfg.widgetKey) {
       script.setAttribute("data-key", cfg.widgetKey);
