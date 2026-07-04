@@ -56,9 +56,16 @@ export function captureLandingConversionContext(extra = {}) {
   return context;
 }
 
+function normalizeApiRoot(value) {
+  return String(value || "https://api.leadyia.com")
+    .trim()
+    .replace(/\/+$/, "")
+    .replace(/\/api\/api$/, "/api")
+    .replace(/\/api$/, "");
+}
+
 export function trackLandingConversionEvent(event, context = {}, properties = {}) {
-  const rawBase = String(context.apiBase || window.__LEADYIA_API_BASE__ || "https://api.leadyia.com").replace(/\/$/, "");
-  const base = rawBase.endsWith("/api") ? rawBase.slice(0, -4) : rawBase;
+  const base = normalizeApiRoot(context.apiBase || window.__LEADYIA_API_BASE__ || "https://api.leadyia.com");
   const payload = {
     event,
     context: captureLandingConversionContext({

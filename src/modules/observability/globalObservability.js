@@ -2,9 +2,15 @@
  * LeadyIA Landing — Global Observability v595
  */
 
+const normalizeApiRoot = (value) =>
+  String(value || "https://api.leadyia.com")
+    .trim()
+    .replace(/\/+$/, "")
+    .replace(/\/api\/api$/, "/api")
+    .replace(/\/api$/, "");
+
 const apiBase = () =>
-  (typeof import.meta !== "undefined" && import.meta.env?.VITE_API_URL) ||
-  "https://api.leadyia.com/api";
+  `${normalizeApiRoot((typeof import.meta !== "undefined" && import.meta.env?.VITE_API_URL) || "https://api.leadyia.com")}/api`;
 
 export function captureLandingWebVitals(metric = {}) {
   try {

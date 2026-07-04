@@ -108,7 +108,6 @@ export async function getPublicPricingPlans(options = {}) {
   try {
     const endpoints = [
       `${API_BASE_URL}/public/pricing/plans?${query.toString()}`,
-      `${API_ROOT_URL}/public/pricing/plans?${query.toString()}`,
     ];
 
     let response;

@@ -10,11 +10,17 @@
  * Para subdomínios, registre também clinica.leadyia.com, estetica.leadyia.com etc.
  */
 
-export const LEADYIA_WIDGET_LOADER_SRC = "https://widget.leadyia.com/v1/widget.js";
-export const LEADYIA_WIDGET_SRC = "https://widget.leadyia.com/v1/widget.js";
+export const LEADYIA_WIDGET_LOADER_SRC = String(import.meta.env.VITE_LEADYIA_WIDGET_SRC || "https://widget.leadyia.com/v1/widget.js").trim();
+export const LEADYIA_WIDGET_SRC = LEADYIA_WIDGET_LOADER_SRC;
 export const LEADYIA_API_BASE_URL = String(import.meta.env.VITE_API_URL || "https://api.leadyia.com").replace(/\/+$/, "").replace(/\/api$/, "");
 
-const envTenant = (key, fallback) => String(import.meta.env[key] || fallback || "").trim();
+const isTenantPlaceholder = (value) => /^TENANT_ID_/i.test(String(value || "").trim());
+
+const envTenant = (key, fallback) => {
+  const value = String(import.meta.env[key] || "").trim();
+  if (value && !isTenantPlaceholder(value)) return value;
+  return String(fallback || "").trim();
+};
 
 export const PLAYBOOK_TENANT_REGISTRY = {
   saas: {
@@ -89,7 +95,7 @@ export const PLAYBOOK_TENANT_REGISTRY = {
 };
 
 export function isConfiguredTenant(tenantId) {
-  return Boolean(tenantId && !String(tenantId).startsWith("TENANT_ID_"));
+  return Boolean(tenantId && !isTenantPlaceholder(tenantId));
 }
 
 export function getPlaybookTenantConfig(playbookKey = "saas") {
