@@ -57,7 +57,7 @@ export function captureLandingConversionContext(extra = {}) {
 }
 
 export function trackLandingConversionEvent(event, context = {}, properties = {}) {
-  const rawBase = String(context.apiBase || window.__LEADYIA_API_BASE__ || "https://api.leadyia.com").replace(/\/+$/, "");
+  const rawBase = String(context.apiBase || window.__LEADYIA_API_BASE__ || "https://api.leadyia.com").replace(/\/$/, "");
   const base = rawBase.endsWith("/api") ? rawBase.slice(0, -4) : rawBase;
   const payload = {
     event,

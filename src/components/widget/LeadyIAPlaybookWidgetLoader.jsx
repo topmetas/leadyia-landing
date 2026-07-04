@@ -20,25 +20,22 @@ export default function LeadyIAPlaybookWidgetLoader() {
     const cfg = getCurrentPlaybookTenantConfig();
     const routeKey = `${window.location.hostname}${location.pathname}${location.search}${location.hash}`;
 
-    // Limpa qualquer runtime anterior antes de decidir se carrega de novo.
-    // Isso evita que uma rota com tenant placeholder deixe um widget antigo
-    // tentando bootstrap e gerando WIDGET_ORIGIN_NOT_ALLOWED.
-    const oldScript = document.getElementById(SCRIPT_ID);
-    const oldRuntime = document.getElementById("leadyia-widget-js");
-    const oldRoot = document.querySelector('[id^="leadyia-widget-root"], [data-leadyia-widget-root]');
-
-    oldScript?.remove();
-    oldRuntime?.remove();
-    oldRoot?.remove();
-
     if (!isConfiguredTenant(cfg.tenantId)) {
-      console.info("[LeadyIA][Landing] Widget não carregado: tenant não configurado para este domínio/subdomínio", {
-        host: window.location.hostname,
-        playbook: cfg.playbook,
-        tenantId: cfg.tenantId,
-      });
+      // v606: em desenvolvimento/preview, não destruir um widget já carregado
+      // manualmente por snippet. Apenas não injeta o loader automático.
+      if (import.meta.env.DEV) {
+        console.info("[LeadyIA][Landing] Widget automático ignorado: tenant não configurado", {
+          host: window.location.hostname,
+          playbook: cfg.playbook,
+        });
+      }
       return undefined;
     }
+
+    // Limpa apenas o loader automático anterior. Não remove o host/root do CDN:
+    // o próprio widget gerencia atualização e cache de sessão.
+    const oldScript = document.getElementById(SCRIPT_ID);
+    oldScript?.remove();
 
     const conversionContext = captureLandingConversionContext({
       tenantId: cfg.tenantId,
@@ -63,8 +60,7 @@ export default function LeadyIAPlaybookWidgetLoader() {
     script.src = LEADYIA_WIDGET_LOADER_SRC;
     script.async = true;
     script.defer = true;
-    // Não usar crossorigin aqui: alguns CDNs/Vercel não retornam ACAO para JS estático.
-    // Script público pode carregar em qualquer site como <script src=".../v1/widget.js" data-tenant="...">.
+    script.crossOrigin = "anonymous";
     script.setAttribute("data-tenant", cfg.tenantId);
     script.setAttribute("data-tenant-id", cfg.tenantId);
     script.setAttribute("data-playbook", cfg.playbook);

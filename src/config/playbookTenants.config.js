@@ -10,9 +10,9 @@
  * Para subdomínios, registre também clinica.leadyia.com, estetica.leadyia.com etc.
  */
 
-export const LEADYIA_WIDGET_LOADER_SRC = String(import.meta.env.VITE_LEADYIA_WIDGET_SRC || "https://widget.leadyia.com/v1/widget.js").trim();
-export const LEADYIA_WIDGET_SRC = LEADYIA_WIDGET_LOADER_SRC;
-export const LEADYIA_API_BASE_URL = String(import.meta.env.VITE_API_URL || "https://api.leadyia.com").replace(/\/+$/, "");
+export const LEADYIA_WIDGET_LOADER_SRC = "https://widget.leadyia.com/v1/widget.js";
+export const LEADYIA_WIDGET_SRC = "https://widget.leadyia.com/v1/widget.js";
+export const LEADYIA_API_BASE_URL = String(import.meta.env.VITE_API_URL || "https://api.leadyia.com").replace(/\/+$/, "").replace(/\/api$/, "");
 
 const envTenant = (key, fallback) => String(import.meta.env[key] || fallback || "").trim();
 
@@ -21,7 +21,7 @@ export const PLAYBOOK_TENANT_REGISTRY = {
     label: "LeadyIA / SaaS",
     playbook: "leadyia",
     niche: "leadyia",
-    tenantId: envTenant("VITE_LEADYIA_TENANT_ID", "TENANT_ID_LEADYIA"),
+    tenantId: envTenant("VITE_LEADYIA_TENANT_ID", envTenant("VITE_LEADYIA_LOCAL_TENANT_ID", "69f168938e078fba344fe491")),
     widgetKey: "",
     paths: ["/", "/demo", "/playbook", "/playbooks", "/saas", "/ao-vivo"],
     domains: ["leadyia.com", "www.leadyia.com", "demo.leadyia.com", "playbooks.leadyia.com"],
