@@ -281,3 +281,6 @@
   .ly-hero-premium__cta { width: 100%; }
   .ly-hero-premium__metrics { grid-template-columns: 1fr; }
 }
+
+/* v1002 — orb real do widget no hero */
+.ly-hero-premium__bot-avatar { background:transparent; border-radius:999px; padding:0; }

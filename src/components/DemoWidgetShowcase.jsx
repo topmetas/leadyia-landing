@@ -21,6 +21,7 @@
 import React, { useMemo, useState } from "react";
 import "../styles/demo-widget.css";
 
+import WidgetOrbMark from "./brand/WidgetOrbMark";
 const PLAYBOOKS = {
   leadyia: {
     label: "LeadyIA",
@@ -167,7 +168,7 @@ export default function DemoWidgetShowcase() {
 
           <div className="ly-demo-widget__phone" style={{ "--accent": active.color }}>
             <div className="ly-demo-widget__widget-header">
-              <div className="ly-demo-widget__avatar">AI</div>
+              <WidgetOrbMark className="ly-demo-widget__avatar" label={active.assistant} compact />
               <div>
                 <strong>{active.assistant}</strong>
                 <span>online agora</span>

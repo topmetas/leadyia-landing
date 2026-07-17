@@ -529,3 +529,10 @@
   .clinic-final-cta__card { padding: 34px 20px; border-radius: 30px; }
   .clinic-code-card > div { display: grid; }
 }
+
+/* v1002 — cabeçalho das demos com o novo orb */
+.clinic-widget-preview__header { align-items:center; gap:16px; }
+.clinic-widget-preview__identity { display:flex; align-items:center; gap:10px; min-width:0; }
+.clinic-widget-preview__identity > span { overflow:hidden; text-overflow:ellipsis; white-space:nowrap; font-weight:850; }
+.clinic-widget-preview__header > strong { display:inline-flex; align-items:center; gap:7px; font-size:12px; }
+.clinic-widget-preview__header > strong i { width:8px; height:8px; border-radius:999px; background:#86efac; box-shadow:0 0 0 4px rgba(134,239,172,.16); }

@@ -214,3 +214,6 @@
 @media (max-width: 560px) {
   .ly-demo-widget { padding: 78px 16px; }
 }
+
+/* v1002 — demo alinhada ao widget atual */
+.ly-demo-widget__avatar { background:transparent; border-radius:999px; }

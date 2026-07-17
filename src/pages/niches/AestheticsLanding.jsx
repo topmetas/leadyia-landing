@@ -4,6 +4,7 @@ import { PAGE_SEO } from "../../seo/config/pagesSeo.config";
 import { aestheticsLanding } from "../../data/niches/aestheticsLanding.data";
 import "../../styles/niche-clinic.css";
 
+import WidgetOrbMark from "../../components/brand/WidgetOrbMark";
 const registerUrl = "https://dashboard.leadyia.com/auth/register?segment=aesthetics";
 const demoUrl = "#aesthetics-widget-demo";
 
@@ -191,8 +192,11 @@ export default function AestheticsLanding() {
 
             <div className="clinic-widget-preview">
               <div className="clinic-widget-preview__header">
-                <span>Consultora da Estética</span>
-                <strong>Online</strong>
+                <div className="clinic-widget-preview__identity">
+                  <WidgetOrbMark label="Consultora da Estética" compact />
+                  <span>Consultora da Estética</span>
+                </div>
+                <strong><i aria-hidden="true" /> Online</strong>
               </div>
               <div className="clinic-widget-preview__body">
                 {data.conversations.map((conversation) => (

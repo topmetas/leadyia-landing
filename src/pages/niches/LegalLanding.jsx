@@ -4,6 +4,7 @@ import { PAGE_SEO } from "../../seo/config/pagesSeo.config";
 import { legalLanding } from "../../data/niches/legalLanding.data";
 import "../../styles/niche-clinic.css";
 
+import WidgetOrbMark from "../../components/brand/WidgetOrbMark";
 const registerUrl = "https://dashboard.leadyia.com/auth/register?segment=legal";
 const demoUrl = "#legal-widget-demo";
 
@@ -190,8 +191,11 @@ export default function LegalLanding() {
 
             <div className="clinic-widget-preview">
               <div className="clinic-widget-preview__header">
-                <span>Assistente Jurídica</span>
-                <strong>Online</strong>
+                <div className="clinic-widget-preview__identity">
+                  <WidgetOrbMark label="Assistente Jurídica" compact />
+                  <span>Assistente Jurídica</span>
+                </div>
+                <strong><i aria-hidden="true" /> Online</strong>
               </div>
               <div className="clinic-widget-preview__body">
                 {data.conversations.map((conversation) => (

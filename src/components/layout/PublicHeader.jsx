@@ -25,6 +25,7 @@
  */
 
 import { useEffect, useState } from "react";
+import WidgetOrbMark from "../brand/WidgetOrbMark";
 
 const DASHBOARD_LOGIN_URL = "https://dashboard.leadyia.com/auth/login";
 const DASHBOARD_REGISTER_URL = "https://dashboard.leadyia.com/auth/register";
@@ -39,12 +40,12 @@ const NAV_ITEMS = [
 
 const LIVE_PLAYBOOK_MENU = [
   { label: "Hub", href: "/demo", icon: "✨" },
-  { label: "Clínica", href: "/clinica", icon: "🏥" },
-  { label: "Estética", href: "/estetica", icon: "💆" },
-  { label: "Jurídico", href: "/juridico", icon: "⚖️" },
-  { label: "Imobiliária", href: "/imobiliaria", icon: "🏠" },
-  { label: "Educação", href: "/educacao", icon: "🎓" },
-  { label: "E-commerce", href: "/ecommerce", icon: "🛒" },
+  { label: "Clínica", href: "https://clinica.leadyia.com", icon: "🏥" },
+  { label: "Estética", href: "https://estetica.leadyia.com", icon: "💆" },
+  { label: "Advocacia", href: "https://advocacia.leadyia.com", icon: "⚖️" },
+  { label: "Imobiliária", href: "https://imobiliaria.leadyia.com", icon: "🏠" },
+  { label: "Escola", href: "https://escola.leadyia.com", icon: "🎓" },
+  { label: "E-commerce", href: "https://ecommerce.leadyia.com", icon: "🛒" },
 ];
 
 export default function PublicHeader() {
@@ -67,16 +68,7 @@ export default function PublicHeader() {
     >
       <div className="ly-public-header__shell">
         <a className="ly-public-header__brand" href="/" onClick={closeMenu}>
-          <span className="ly-public-header__logo" aria-hidden="true">
-            <img
-              src="/leadyia-widget-icon.svg"
-              alt=""
-              width="42"
-              height="42"
-              loading="eager"
-              decoding="async"
-            />
-          </span>
+          <WidgetOrbMark className="ly-public-header__logo" label="LeadyIA" />
 
           <span className="ly-public-header__brand-copy">
             <strong>

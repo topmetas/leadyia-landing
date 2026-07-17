@@ -1,0 +1,99 @@
+/**
+ * Orb Glow oficial da LeadyIA na landing.
+ * Mantém a mesma geometria, brilho e estrela do widget real.
+ */
+.ly-widget-orb-mark {
+  --ly-orb-base: var(--accent, var(--widget-primary, #6d5bff));
+  --leadyia-icon-primary: var(--ly-orb-base);
+  --leadyia-icon-secondary: color-mix(in srgb, var(--ly-orb-base) 78%, #7c3aed 22%);
+  --leadyia-icon-accent: color-mix(in srgb, var(--ly-orb-base) 58%, #06b6d4 42%);
+  position: relative;
+  display: inline-grid;
+  place-items: center;
+  width: 52px;
+  height: 52px;
+  flex: 0 0 52px;
+  isolation: isolate;
+  vertical-align: middle;
+  line-height: 0;
+}
+
+.ly-widget-orb-mark.is-compact {
+  width: 42px;
+  height: 42px;
+  flex-basis: 42px;
+}
+
+.ly-widget-orb-mark__aura {
+  position: absolute;
+  inset: 5px;
+  z-index: -1;
+  border-radius: 50%;
+  pointer-events: none;
+  background: radial-gradient(
+    circle,
+    var(--leadyia-icon-primary) 0%,
+    var(--leadyia-icon-secondary) 38%,
+    transparent 72%
+  );
+  filter: blur(12px);
+  opacity: .45;
+}
+
+.ly-widget-orb-mark__svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  shape-rendering: geometricPrecision;
+  transform: translateZ(0);
+  filter:
+    drop-shadow(0 12px 22px color-mix(in srgb, var(--leadyia-icon-primary) 28%, transparent))
+    drop-shadow(0 5px 10px rgba(2, 6, 23, .18));
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .ly-widget-orb-mark--official {
+    transition: transform 220ms cubic-bezier(.2,.8,.2,1), filter 220ms ease;
+  }
+
+  a:hover .ly-widget-orb-mark--official,
+  button:hover .ly-widget-orb-mark--official,
+  .ly-widget-orb-mark--official:hover {
+    transform: translateY(-1px) scale(1.035);
+    filter: saturate(1.06);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .ly-widget-orb-mark__aura {
+    animation: lyOrbGlowBreathe 6s ease-in-out infinite;
+  }
+}
+
+@keyframes lyOrbGlowBreathe {
+  0%, 100% { opacity: .34; transform: scale(.96); }
+  50% { opacity: .52; transform: scale(1.04); }
+}
+
+@media (max-width: 640px) {
+  .ly-widget-orb-mark {
+    width: 46px;
+    height: 46px;
+    flex-basis: 46px;
+  }
+
+  .ly-widget-orb-mark.is-compact {
+    width: 38px;
+    height: 38px;
+    flex-basis: 38px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ly-widget-orb-mark,
+  .ly-widget-orb-mark__aura {
+    animation: none !important;
+    transition: none !important;
+  }
+}

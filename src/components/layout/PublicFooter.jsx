@@ -1,3 +1,4 @@
+import WidgetOrbMark from "../brand/WidgetOrbMark";
 /**
  * =========================================================
  * 🧾 PUBLIC FOOTER — LEADYIA ENTERPRISE LANDING
@@ -43,12 +44,12 @@ const FOOTER_GROUPS = [
     title: "Playbooks ao vivo",
     links: [
       { label: "Hub de playbooks", href: "/demo" },
-      { label: "Clínicas", href: "/clinica" },
-      { label: "Estética", href: "/estetica" },
-      { label: "Advocacia", href: "/juridico" },
-      { label: "Imobiliária", href: "/imobiliaria" },
-      { label: "Educação", href: "/educacao" },
-      { label: "E-commerce", href: "/ecommerce" },
+      { label: "Clínicas", href: "https://clinica.leadyia.com" },
+      { label: "Estética", href: "https://estetica.leadyia.com" },
+      { label: "Advocacia", href: "https://advocacia.leadyia.com" },
+      { label: "Imobiliária", href: "https://imobiliaria.leadyia.com" },
+      { label: "Escola", href: "https://escola.leadyia.com" },
+      { label: "E-commerce", href: "https://ecommerce.leadyia.com" },
     ],
   },
   {
@@ -151,7 +152,7 @@ export default function PublicFooter() {
         <div className="ly-public-footer__main">
           <div className="ly-public-footer__brand-block">
             <a className="ly-public-footer__brand" href="#hero">
-              <span className="ly-public-footer__logo" aria-hidden="true"><img src="/leadyia-widget-icon.svg" alt="" loading="lazy" /></span>
+              <WidgetOrbMark className="ly-public-footer__logo" label="LeadyIA" compact />
               <span>
                 <strong>LeadyIA</strong>
                 <small>Recepcionista virtual inteligente</small>

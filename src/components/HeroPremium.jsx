@@ -22,6 +22,7 @@
 import React from "react";
 import "../styles/hero.css";
 
+import WidgetOrbMark from "./brand/WidgetOrbMark";
 const DASHBOARD_REGISTER_URL =
   import.meta.env.VITE_DASHBOARD_REGISTER_URL ||
   "https://dashboard.leadyia.com/register";
@@ -116,7 +117,7 @@ export default function HeroPremium() {
           </div>
 
           <div className="ly-hero-premium__chat-card">
-            <div className="ly-hero-premium__bot-avatar">AI</div>
+            <WidgetOrbMark className="ly-hero-premium__bot-avatar" label="Assistente LeadyIA" />
             <div>
               <strong>Assistente LeadyIA</strong>
               <p>

@@ -1065,3 +1065,7 @@
     grid-template-columns: 1fr;
   }
 }
+
+/* v1002 — identidade visual unificada do novo widget */
+.ly-public-header__logo, .ly-public-footer__logo { background:transparent; box-shadow:none; border-radius:999px; }
+.ly-public-header__logo::after, .ly-public-footer__logo::after { display:none; }

@@ -4,6 +4,7 @@ import { PAGE_SEO } from "../../seo/config/pagesSeo.config";
 import { ecommerceLanding } from "../../data/niches/ecommerceLanding.data";
 import "../../styles/niche-clinic.css";
 
+import WidgetOrbMark from "../../components/brand/WidgetOrbMark";
 const registerUrl = "https://dashboard.leadyia.com/auth/register?segment=ecommerce";
 const demoUrl = "#ecommerce-widget-demo";
 
@@ -190,8 +191,11 @@ export default function EcommerceLanding() {
 
             <div className="clinic-widget-preview">
               <div className="clinic-widget-preview__header">
-                <span>Assistente de Loja</span>
-                <strong>Online</strong>
+                <div className="clinic-widget-preview__identity">
+                  <WidgetOrbMark label="Assistente de Loja" compact />
+                  <span>Assistente de Loja</span>
+                </div>
+                <strong><i aria-hidden="true" /> Online</strong>
               </div>
               <div className="clinic-widget-preview__body">
                 {data.conversations.map((conversation) => (
