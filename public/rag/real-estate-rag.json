@@ -1,0 +1,25 @@
+{
+  "version": "v1087",
+  "vertical": "real-estate",
+  "intents": [
+    "buy",
+    "rent",
+    "sell",
+    "invest"
+  ],
+  "propertyTypes": [
+    "apartment",
+    "house",
+    "land",
+    "commercial",
+    "farm",
+    "warehouse"
+  ],
+  "features": [
+    "qualification",
+    "budget",
+    "financing",
+    "visit",
+    "broker-handoff"
+  ]
+}
