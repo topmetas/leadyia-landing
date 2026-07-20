@@ -1,0 +1,5 @@
+Remover, caso exista no projeto aplicado:
+landing/src/data/niches/ecommerceLanding.data.js
+landing/src/pages/niches/EcommerceLanding.jsx
+
+A árvore ativa do Vite é src/, não landing/src/.

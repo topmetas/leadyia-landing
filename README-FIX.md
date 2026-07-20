@@ -1,7 +1,37 @@
-# Correção Education Landing — v1089
+# Hotfix Ecommerce Landing Export — v1090.1
 
-Substitua o arquivo:
+Corrige o erro:
 
-`src/data/niches/educationLanding.data.js`
+`does not provide an export named 'ecommerceLanding'`
 
-A correção adiciona o export nomeado `educationLanding`, mantém o alias `educationLandingData`, adiciona export default e completa todos os campos consumidos por `EducationLanding.jsx`.
+## Arquivos alterados
+
+- `landing/src/data/niches/ecommerceLanding.data.js`
+- `landing/src/pages/niches/EcommerceLanding.jsx`
+
+## Correção
+
+O módulo agora oferece:
+
+```js
+export { ecommerceLanding };
+export const ecommerceLandingData = ecommerceLanding;
+export default ecommerceLanding;
+```
+
+A página usa import padrão explícito:
+
+```js
+import ecommerceLanding from "../../data/niches/ecommerceLanding.data.js";
+```
+
+## Após aplicar
+
+No projeto landing:
+
+```bash
+rmdir /s /q node_modules\.vite
+npm run dev
+```
+
+Se o comando acima não for aplicável, apague manualmente `node_modules/.vite` e reinicie o Vite.

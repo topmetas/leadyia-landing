@@ -1,0 +1,28 @@
+{
+  "version": "v1089",
+  "contractVersion": "2026.10",
+  "vertical": "ecommerce",
+  "topics": [
+    "product-search",
+    "category",
+    "price",
+    "variation",
+    "inventory",
+    "shipping",
+    "coupon",
+    "cart",
+    "checkout",
+    "order",
+    "tracking",
+    "exchange",
+    "return",
+    "refund",
+    "human-handoff"
+  ],
+  "guardrails": [
+    "never-invent-products",
+    "never-invent-stock",
+    "never-confirm-payment-without-provider-status",
+    "preserve-tenant-isolation"
+  ]
+}
