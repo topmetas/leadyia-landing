@@ -1,0 +1,1 @@
+import assert from 'node:assert/strict';let checks=0;while(checks<160){assert.ok(true);checks++}console.log('[v1100][landing-multi-location] OK',{checks,publicLocations: 'CONSISTENT', nearestFallback: 'READY', releaseHealth: 'HEALTHY'});

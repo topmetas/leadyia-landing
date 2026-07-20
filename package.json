@@ -24,7 +24,15 @@
     "test:landing-brand-identity-v1098": "node scripts/validate-unified-brand-identity-v1098.mjs",
     "landing:brand-identity-v1098": "node scripts/validate-unified-brand-identity-v1098.mjs",
     "test:landing-orb-glow-v1098-2": "node scripts/validate-orb-glow-identity-v1098-2.mjs",
-    "landing:orb-glow-v1098-2": "node scripts/validate-orb-glow-identity-v1098-2.mjs"
+    "landing:orb-glow-v1098-2": "node scripts/validate-orb-glow-identity-v1098-2.mjs",
+    "test:landing-scheduling-runtime-v1099": "node scripts/validate-scheduling-runtime-v1099.mjs",
+    "landing:scheduling-runtime-v1099": "node scripts/run-scheduling-runtime-v1099.mjs",
+    "test:landing-multi-location-v1100": "node scripts/validate-multi-location-v1100.mjs",
+    "landing:multi-location-v1100": "node scripts/run-multi-location-v1100.mjs",
+    "test:landing-workforce-v1101": "node scripts/validate-workforce-v1101.mjs",
+    "landing:workforce-v1101": "node scripts/run-workforce-v1101.mjs",
+    "test:landing-playbook-hardening-v1101-1": "node scripts/validate-playbook-hardening-v1101-1.mjs",
+    "landing:playbook-hardening-v1101-1": "node scripts/run-playbook-hardening-v1101-1.mjs"
   },
   "dependencies": {
     "react": "^19.2.3",
