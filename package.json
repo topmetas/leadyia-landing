@@ -12,7 +12,19 @@
     "test:i18n-global": "node scripts/validate-global-i18n.mjs",
     "seo:generate": "node scripts/generate-global-seo-assets.mjs",
     "test:seo-global": "node scripts/validate-global-seo.mjs",
-    "test:conversion-global": "node scripts/validate-global-conversion.mjs"
+    "test:conversion-global": "node scripts/validate-global-conversion.mjs",
+    "test:landing-enterprise-release-v1094": "node scripts/validate-enterprise-release-v1094.mjs",
+    "landing:enterprise-release-v1094": "node scripts/validate-enterprise-release-v1094.mjs",
+    "test:landing-production-deployment-v1095": "node scripts/validate-production-deployment-v1095.mjs",
+    "landing:production-deployment-v1095": "node scripts/validate-production-deployment-v1095.mjs",
+    "test:landing-observability-v1096": "node scripts/validate-observability-v1096.mjs",
+    "landing:observability-v1096": "node scripts/validate-observability-v1096.mjs",
+    "test:landing-billing-protection-v1097": "node scripts/validate-billing-revenue-protection-v1097.mjs",
+    "landing:billing-protection-v1097": "node scripts/validate-billing-revenue-protection-v1097.mjs",
+    "test:landing-brand-identity-v1098": "node scripts/validate-unified-brand-identity-v1098.mjs",
+    "landing:brand-identity-v1098": "node scripts/validate-unified-brand-identity-v1098.mjs",
+    "test:landing-orb-glow-v1098-2": "node scripts/validate-orb-glow-identity-v1098-2.mjs",
+    "landing:orb-glow-v1098-2": "node scripts/validate-orb-glow-identity-v1098-2.mjs"
   },
   "dependencies": {
     "react": "^19.2.3",

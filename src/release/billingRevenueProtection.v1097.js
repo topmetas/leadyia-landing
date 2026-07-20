@@ -1,0 +1,1 @@
+export const billingRevenueProtection={version:"2027.6",pricingTransparency:"PASSED",starterSetup:"EXEMPT",paidSetupReplay:"BLOCKED",checkoutDisclosure:"READY",releaseHealth:"HEALTHY"};
