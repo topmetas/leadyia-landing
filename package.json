@@ -32,7 +32,9 @@
     "test:landing-workforce-v1101": "node scripts/validate-workforce-v1101.mjs",
     "landing:workforce-v1101": "node scripts/run-workforce-v1101.mjs",
     "test:landing-playbook-hardening-v1101-1": "node scripts/validate-playbook-hardening-v1101-1.mjs",
-    "landing:playbook-hardening-v1101-1": "node scripts/run-playbook-hardening-v1101-1.mjs"
+    "landing:playbook-hardening-v1101-1": "node scripts/run-playbook-hardening-v1101-1.mjs",
+    "test:landing-enterprise-scheduling-api-v1102": "node scripts/validate-enterprise-scheduling-api-v1102.mjs",
+    "landing:enterprise-scheduling-api-v1102": "node scripts/run-enterprise-scheduling-api-v1102.mjs"
   },
   "dependencies": {
     "react": "^19.2.3",

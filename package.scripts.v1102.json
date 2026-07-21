@@ -1,0 +1,6 @@
+{
+  "scripts": {
+    "test:landing-enterprise-scheduling-api-v1102": "node scripts/validate-enterprise-scheduling-api-v1102.mjs",
+    "landing:enterprise-scheduling-api-v1102": "node scripts/run-enterprise-scheduling-api-v1102.mjs"
+  }
+}
