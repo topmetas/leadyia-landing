@@ -1,0 +1,2 @@
+export const REMARKETING_CAPABILITIES_V1103_39=Object.freeze({version:"v1103.39",temperatureJourneys:["COLD","WARM","HOT","SALES_READY"],events:["identity_complete","appointment_created","appointment_missed","checkout_abandoned","lead_inactive","temperature_changed"],channels:["email","whatsapp"],tenantDomain:true,quietHours:true,optInRequired:true,stopOnReply:true,dryRunDefault:true});
+export default REMARKETING_CAPABILITIES_V1103_39;

@@ -1,0 +1,1 @@
+export const CAMPAIGN_STUDIO_CAPABILITIES_V1103_41=Object.freeze({version:"v1103.41",playbookLifecycle:true,appointmentConfirmation:true,appointmentReminders:true,noShowRecovery:true,postServiceFollowup:true,reactivation:true,tenantBranding:true,email:true,whatsapp:true,automaticSending:false,tenantAllowlist:true});
