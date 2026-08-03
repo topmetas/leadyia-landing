@@ -275,3 +275,41 @@
     text-align: left;
   }
 }
+
+/* v1103.35 — Premium commercial pricing surface */
+.lp-pricing-headline{font-size:1.02rem;font-weight:800;color:#0f172a;margin:1rem 0 .4rem}
+.lp-pricing-audience{font-size:.9rem;line-height:1.55;color:#64748b;min-height:4.2em}
+.lp-pricing-capacity{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.45rem;margin:1rem 0}
+.lp-pricing-capacity span{border:1px solid #e2e8f0;border-radius:.8rem;padding:.65rem .45rem;text-align:center;font-size:.74rem;color:#475569;background:#f8fafc}
+.lp-pricing-capacity strong{display:block;color:#0f172a;font-size:.9rem}
+.lp-pricing-channels{font-size:.78rem;font-weight:700;color:#4f46e5;margin:.25rem 0 1rem}
+.lp-pricing-exclusions{margin:1rem 0;border-top:1px solid #e2e8f0;padding-top:.9rem;font-size:.78rem;color:#64748b}
+.lp-pricing-exclusions summary{cursor:pointer;font-weight:800;color:#475569}
+.lp-pricing-exclusions ul{margin:.7rem 0 0;padding:0;list-style:none;display:grid;gap:.35rem}
+.lp-pricing-comparison-wrap{margin-top:4rem;border:1px solid #e2e8f0;border-radius:1.5rem;background:white;padding:1.5rem;box-shadow:0 20px 50px rgba(15,23,42,.06)}
+.lp-pricing-comparison-heading{text-align:center;max-width:760px;margin:0 auto 1.5rem}
+.lp-pricing-comparison-heading h3{font-size:1.8rem;color:#0f172a;margin:.5rem 0}
+.lp-pricing-comparison-heading p{color:#64748b}
+.lp-pricing-table-scroll{overflow-x:auto}
+.lp-pricing-table{width:100%;border-collapse:collapse;min-width:760px}
+.lp-pricing-table th,.lp-pricing-table td{padding:.9rem;border-bottom:1px solid #e2e8f0;text-align:center;font-size:.86rem}
+.lp-pricing-table th:first-child,.lp-pricing-table td:first-child{text-align:left;font-weight:700;color:#334155;position:sticky;left:0;background:white}
+.lp-pricing-table th{color:#0f172a;background:#f8fafc}
+.lp-pricing-specialist{margin-top:1.5rem;display:flex;align-items:center;justify-content:space-between;gap:1rem;border-radius:1.25rem;background:#111827;color:white;padding:1.35rem 1.5rem}
+.lp-pricing-specialist p{margin:.25rem 0 0;color:#cbd5e1}
+.lp-pricing-specialist a{white-space:nowrap;background:white;color:#111827;border-radius:.9rem;padding:.8rem 1rem;font-weight:800;text-decoration:none}
+@media(max-width:720px){.lp-pricing-capacity{grid-template-columns:1fr}.lp-pricing-specialist{align-items:flex-start;flex-direction:column}.lp-pricing-specialist a{width:100%;text-align:center}}
+
+
+/* v1103.36 — safe public checkout handoff */
+.lp-pricing-checkout-notice {
+  margin: 0 auto 20px;
+  max-width: 920px;
+  border: 1px solid rgba(79, 70, 229, .22);
+  border-radius: 14px;
+  background: rgba(238, 242, 255, .92);
+  padding: 12px 16px;
+  color: #3730a3;
+  font-size: .92rem;
+  text-align: center;
+}
