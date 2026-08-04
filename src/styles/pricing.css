@@ -326,3 +326,25 @@
 .lp-pricing-audience { min-height:64px; color:#94a3b8; line-height:1.55; }
 @media (max-width: 1024px) { .lp-pricing-grid--five { grid-template-columns:repeat(2,minmax(0,1fr)); } .lp-pricing-grid--five > .lp-pricing-card, .lp-pricing-grid--five > .lp-pricing-card:nth-child(4), .lp-pricing-grid--five > .lp-pricing-card:nth-child(5) { grid-column:span 1; } }
 @media (max-width: 680px) { .lp-pricing-grid--five { grid-template-columns:1fr; } }
+
+
+/* v1103.41.3 — pricing parity and contrast hotfix */
+.lp-pricing-badge {
+  position: static;
+  align-self: flex-start;
+  width: max-content;
+  margin: 0 0 14px;
+  color: #ffffff !important;
+  z-index: 2;
+}
+.lp-pricing-card-head { min-height: 104px; }
+.lp-pricing-price strong { color: #f8fafc !important; }
+.lp-pricing-price span { color: #cbd5e1 !important; }
+.lp-pricing-table { color: #0f172a !important; }
+.lp-pricing-table th,
+.lp-pricing-table td { color: #0f172a !important; background-color: #ffffff; }
+.lp-pricing-table thead th { color: #0f172a !important; background:#f8fafc !important; }
+.lp-pricing-table-value { font-weight: 800; }
+.lp-pricing-table-value--yes { color: #166534 !important; font-size: 1.05rem; }
+.lp-pricing-table-value--no { color: #64748b !important; }
+.lp-pricing-table-value--text { color: #334155 !important; }

@@ -91,7 +91,7 @@ function ComparisonTable({ plans }) {
       <div className="lp-pricing-table-scroll">
         <table className="lp-pricing-table">
           <thead><tr><th>Recurso</th>{plans.map((plan) => <th key={plan.tier}>{plan.name}</th>)}</tr></thead>
-          <tbody>{rows.map(([label, values]) => <tr key={label}><td>{label}</td>{values.map((value, index) => <td key={`${label}-${index}`}>{value === true ? "✓" : value === false ? "—" : value}</td>)}</tr>)}</tbody>
+          <tbody>{rows.map(([label, values]) => <tr key={label}><td>{label}</td>{values.map((value, index) => <td className={value === true ? "lp-pricing-table-value lp-pricing-table-value--yes" : value === false ? "lp-pricing-table-value lp-pricing-table-value--no" : "lp-pricing-table-value lp-pricing-table-value--text"} key={`${label}-${index}`}>{value === true ? "✓" : value === false ? "—" : value}</td>)}</tr>)}</tbody>
         </table>
       </div>
     </div>

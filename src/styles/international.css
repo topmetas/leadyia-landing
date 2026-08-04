@@ -35,7 +35,7 @@
 }
 .lp-pricing-card--agency { border-color: rgba(168, 85, 247, .38); box-shadow: 0 28px 90px rgba(88, 28, 135, .14); }
 .lp-pricing-badge--agency { background: linear-gradient(135deg, #7c3aed, #2563eb); }
-.lp-pricing-grid--five { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+.lp-pricing-grid--five { grid-template-columns: repeat(6, minmax(0, 1fr)); }
 .lp-pricing-cta { border: 0; cursor: pointer; text-align: center; }
 @media (max-width: 1180px) { .lp-pricing-grid--five { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 @media (max-width: 720px) { .lp-pricing-grid--five { grid-template-columns: 1fr; } .lp-intl-switcher { border-radius: 22px; justify-content: center; } }
