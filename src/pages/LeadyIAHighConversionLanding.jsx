@@ -5,7 +5,7 @@ import PublicLayout from "../components/layout/PublicLayout";
 import Pricing from "../components/landing/Pricing";
 import "../styles/leadyia-high-conversion.css";
 
-const REGISTER_URL = "https://dashboard.leadyia.com/auth/register?plan=pro&source=leadyia_main_v1103_43_8&playbook=leadyia";
+const REGISTER_URL = "https://dashboard.leadyia.com/auth/register?plan=pro&source=leadyia_main_v1103_43_9&playbook=leadyia";
 
 const painCards = [
   ["Leads esperando resposta", "Quem pede informação agora pode comprar de outra empresa em poucos minutos."],
@@ -29,6 +29,34 @@ const niches = [
   ["Educação", "Visitas, aulas experimentais e matrículas."],
   ["E-commerce", "Recomendação de produtos e recuperação."],
   ["SaaS", "Trials, demos e qualificação B2B."],
+];
+
+
+const demoCompanies = [
+  "Clínica Horizonte",
+  "Estética Lumina",
+  "Imob Prime",
+  "Colégio Novo Saber",
+  "Loja Vitta",
+  "Nexus SaaS",
+];
+
+const demoTestimonials = [
+  {
+    quote: "A equipe passou a receber os contatos com muito mais contexto. Ficou mais fácil saber quem precisava de retorno imediato.",
+    name: "Mariana Costa",
+    role: "Gestora de clínica",
+  },
+  {
+    quote: "O atendimento inicial ficou mais organizado e o WhatsApp deixou de ser uma fila sem prioridade.",
+    name: "Rafael Martins",
+    role: "Diretor comercial",
+  },
+  {
+    quote: "A LeadyIA nos ajudou a transformar conversas soltas em oportunidades com próxima ação definida.",
+    name: "Camila Rocha",
+    role: "Coordenadora de atendimento",
+  },
 ];
 
 const faqs = [
@@ -128,6 +156,40 @@ export default function LeadyIAHighConversionLanding() {
             <div className="lyhc-pipeline">
               <span>Nova conversa</span><span>Lead identificado</span><span>Qualificado</span><span>Quente</span><span>Equipe assume</span>
             </div>
+          </div>
+        </section>
+
+        <section className="lyhc-section social-proof" id="prova-social">
+          <div className="lyhc-shell">
+            <SectionTitle
+              kicker="Prova social"
+              title="Negócios de diferentes segmentos podem usar a mesma base para atender, organizar e vender melhor."
+              text="Os nomes e depoimentos abaixo são exemplos demonstrativos para você substituir pelos seus casos reais antes da publicação definitiva."
+              centered
+            />
+
+            <div className="lyhc-trust-metrics" aria-label="Indicadores demonstrativos">
+              <article><strong>24/7</strong><span>atendimento inicial disponível</span></article>
+              <article><strong>1 CRM</strong><span>para centralizar oportunidades</span></article>
+              <article><strong>7 nichos</strong><span>com jornadas especializadas</span></article>
+              <article><strong>Omnichannel</strong><span>site, WhatsApp e integrações</span></article>
+            </div>
+
+            <div className="lyhc-company-strip">
+              {demoCompanies.map((company) => <span key={company}>{company}</span>)}
+            </div>
+
+            <div className="lyhc-testimonial-grid">
+              {demoTestimonials.map((item) => (
+                <article key={item.name} className="lyhc-testimonial">
+                  <div className="lyhc-stars" aria-label="5 estrelas">★★★★★</div>
+                  <blockquote>“{item.quote}”</blockquote>
+                  <footer><strong>{item.name}</strong><span>{item.role}</span></footer>
+                </article>
+              ))}
+            </div>
+
+            <p className="lyhc-demo-disclaimer">Exemplos ilustrativos — substitua por empresas, números e depoimentos reais antes de usar como prova comercial definitiva.</p>
           </div>
         </section>
 
