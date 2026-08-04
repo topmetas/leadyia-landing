@@ -5,7 +5,7 @@ import PublicLayout from "../components/layout/PublicLayout";
 import Pricing from "../components/landing/Pricing";
 import "../styles/leadyia-high-conversion.css";
 
-const REGISTER_URL = "https://dashboard.leadyia.com/auth/register?plan=pro&source=leadyia_main_v1103_43_10&playbook=leadyia";
+const REGISTER_URL = "https://dashboard.leadyia.com/auth/register?plan=pro&source=leadyia_main_v1103_43_11&playbook=leadyia";
 
 const painCards = [
   ["Leads esperando resposta", "Quem pede informação agora pode comprar de outra empresa em poucos minutos."],
