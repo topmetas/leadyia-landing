@@ -1,0 +1,2 @@
+const KEY="leadyia:affiliate:ref";
+export function captureAffiliateAttributionV1103_42(){if(typeof window==="undefined")return null;const ref=new URLSearchParams(window.location.search).get("ref");if(ref){localStorage.setItem(KEY,JSON.stringify({ref:String(ref).trim().toUpperCase(),capturedAt:new Date().toISOString()}));}try{return JSON.parse(localStorage.getItem(KEY)||"null");}catch{return null;}}

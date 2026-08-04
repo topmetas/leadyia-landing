@@ -22,8 +22,10 @@ import "./styles/index.css";
 import "./styles/widget-orb-mark.css";
 import "./seo/styles/seo.css";
 import { initLandingI18n } from "./i18n/globalI18n";
+import { captureAffiliateAttributionV1103_42 } from "./services/affiliateAttribution.v1103_42";
 
 initLandingI18n();
+captureAffiliateAttributionV1103_42();
 
 console.log("[Bootstrap] LeadyIA Website iniciado");
 
