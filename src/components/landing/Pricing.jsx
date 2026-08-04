@@ -2,6 +2,7 @@ import React, { useEffect, useMemo, useState } from "react";
 import LanguageCurrencySwitcher from "../international/LanguageCurrencySwitcher";
 import { createPublicCheckout, getPublicPricingPlans, trackPricingEvent } from "../../services/publicPricing.service";
 import { resolveInitialCountry, getLanguage, INTERNATIONAL_TEXT } from "../../config/international.config";
+import { getPremiumPlanPresentationV1103_41_1 } from "../../services/premiumPlanPresentation.v1103_41_1";
 import "../../styles/pricing.css";
 import "../../styles/international.css";
 
@@ -19,20 +20,18 @@ function formatNumber(value) {
   return Number(value).toLocaleString("pt-BR");
 }
 
-function resolveCtaLabel(plan) {
-  return plan.ctaLabel || (plan.tier === "enterprise" ? "Falar sobre Enterprise" : plan.tier === "agency" ? "Começar como agência" : `Contratar ${plan.name}`);
-}
+function resolveCtaLabel(plan) { return getPremiumPlanPresentationV1103_41_1(plan.tier).cta; }
 
 function PlanCard({ plan, onCheckout, loading }) {
   const commercial = plan.commercial || {};
   const conversations = commercial.includedConversations ?? plan?.limits?.messagesPerMonth ?? null;
   const features = commercial.benefits?.length ? commercial.benefits : plan.features || [];
   const exclusions = commercial.exclusions || plan.exclusions || [];
+  const presentation = getPremiumPlanPresentationV1103_41_1(plan.tier);
 
   return (
     <article className={`lp-pricing-card ${plan.recommended ? "lp-pricing-card--featured" : ""} ${plan.tier === "agency" ? "lp-pricing-card--agency" : ""}`}>
-      {plan.recommended && <div className="lp-pricing-badge">Mais popular</div>}
-      {plan.tier === "agency" && <div className="lp-pricing-badge lp-pricing-badge--agency">Agências</div>}
+      {presentation.badge && <div className={`lp-pricing-badge ${plan.tier === "agency" ? "lp-pricing-badge--agency" : ""}`}>{presentation.badge}</div>}
 
       <div className="lp-pricing-card-head">
         <div>
@@ -42,19 +41,18 @@ function PlanCard({ plan, onCheckout, loading }) {
         <div className="lp-pricing-price"><strong>{plan.priceFormatted}</strong>{plan.interval && <span>/{plan.interval}</span>}</div>
       </div>
 
-      <p className="lp-pricing-headline">{commercial.headline || PLAN_TAGLINES[plan.tier]}</p>
+      <p className="lp-pricing-headline">{presentation.promise || commercial.headline || PLAN_TAGLINES[plan.tier]}</p>
       <p className="lp-pricing-audience">{commercial.audience || plan.description}</p>
 
       <div className="lp-pricing-capacity">
-        {commercial.assistants != null && <span><strong>{commercial.assistants}</strong> assistente{commercial.assistants === 1 ? "" : "s"} IA</span>}
-        {commercial.users != null && <span><strong>{commercial.users}</strong> usuário{commercial.users === 1 ? "" : "s"}</span>}
+        {presentation.metrics.map((metric) => <span key={metric}><strong>{metric}</strong></span>)}
         {conversations != null && <span><strong>{formatNumber(conversations)}</strong> conversas/mês</span>}
       </div>
 
       {commercial.channels?.length > 0 && <p className="lp-pricing-channels">Canais: {commercial.channels.join(" + ")}</p>}
 
       <ul className="lp-pricing-features">
-        {features.slice(0, 10).map((feature) => <li key={feature}><span aria-hidden>✓</span>{feature}</li>)}
+        {features.slice(0, 7).map((feature) => <li key={feature}><span aria-hidden>✓</span>{feature}</li>)}
       </ul>
 
       {exclusions.length > 0 && (
