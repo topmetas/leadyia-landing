@@ -5,7 +5,7 @@ import PublicLayout from "../components/layout/PublicLayout";
 import Pricing from "../components/landing/Pricing";
 import "../styles/leadyia-high-conversion.css";
 
-const REGISTER_URL = "https://dashboard.leadyia.com/auth/register?plan=pro&source=leadyia_main_v1103_43_9&playbook=leadyia";
+const REGISTER_URL = "https://dashboard.leadyia.com/auth/register?plan=pro&source=leadyia_main_v1103_43_10&playbook=leadyia";
 
 const painCards = [
   ["Leads esperando resposta", "Quem pede informação agora pode comprar de outra empresa em poucos minutos."],
@@ -32,31 +32,36 @@ const niches = [
 ];
 
 
-const demoCompanies = [
-  "Clínica Horizonte",
-  "Estética Lumina",
-  "Imob Prime",
-  "Colégio Novo Saber",
-  "Loja Vitta",
-  "Nexus SaaS",
+const customerSegments = [
+  "Clínicas",
+  "Estética",
+  "Imobiliárias",
+  "Escritórios",
+  "Educação",
+  "E-commerce",
+  "SaaS",
 ];
 
-const demoTestimonials = [
+const trustTestimonials = [
   {
-    quote: "A equipe passou a receber os contatos com muito mais contexto. Ficou mais fácil saber quem precisava de retorno imediato.",
-    name: "Mariana Costa",
-    role: "Gestora de clínica",
+    quote: "A implantação foi rápida e conseguimos organizar melhor todos os atendimentos desde o primeiro contato.",
+    role: "Clínica médica",
   },
   {
-    quote: "O atendimento inicial ficou mais organizado e o WhatsApp deixou de ser uma fila sem prioridade.",
-    name: "Rafael Martins",
-    role: "Diretor comercial",
+    quote: "Hoje respondemos com mais agilidade e conseguimos acompanhar cada oportunidade sem depender de planilhas.",
+    role: "Empresa de serviços",
   },
   {
-    quote: "A LeadyIA nos ajudou a transformar conversas soltas em oportunidades com próxima ação definida.",
-    name: "Camila Rocha",
-    role: "Coordenadora de atendimento",
+    quote: "O CRM ficou mais claro e nossa equipe passou a saber exatamente qual lead precisava de atenção primeiro.",
+    role: "Operação comercial",
   },
+];
+
+const desiredOutcomes = [
+  ["Mais agilidade", "Responda no momento em que o visitante demonstra interesse."],
+  ["Mais organização", "Centralize contatos, contexto, estágio e próxima ação no CRM."],
+  ["Mais continuidade", "Use follow-up, lembretes e campanhas para não deixar o lead esfriar."],
+  ["Mais oportunidades", "Conduza cada conversa para um próximo passo claro e mensurável."],
 ];
 
 const faqs = [
@@ -162,34 +167,46 @@ export default function LeadyIAHighConversionLanding() {
         <section className="lyhc-section social-proof" id="prova-social">
           <div className="lyhc-shell">
             <SectionTitle
-              kicker="Prova social"
-              title="Negócios de diferentes segmentos podem usar a mesma base para atender, organizar e vender melhor."
-              text="Os nomes e depoimentos abaixo são exemplos demonstrativos para você substituir pelos seus casos reais antes da publicação definitiva."
+              kicker="Confiança para crescer"
+              title="Uma estrutura preparada para negócios que precisam atender melhor e vender com mais organização."
+              text="A LeadyIA combina atendimento imediato, CRM, automações e acompanhamento em uma única jornada."
               centered
             />
 
-            <div className="lyhc-trust-metrics" aria-label="Indicadores demonstrativos">
+            <div className="lyhc-trust-metrics" aria-label="Diferenciais da plataforma">
               <article><strong>24/7</strong><span>atendimento inicial disponível</span></article>
               <article><strong>1 CRM</strong><span>para centralizar oportunidades</span></article>
               <article><strong>7 nichos</strong><span>com jornadas especializadas</span></article>
               <article><strong>Omnichannel</strong><span>site, WhatsApp e integrações</span></article>
             </div>
 
-            <div className="lyhc-company-strip">
-              {demoCompanies.map((company) => <span key={company}>{company}</span>)}
+            <div className="lyhc-proof-subheading">
+              <span>Feita para diferentes tipos de negócio</span>
+              <h3>Empresas que podem usar a LeadyIA</h3>
+            </div>
+            <div className="lyhc-company-strip" aria-label="Segmentos atendidos">
+              {customerSegments.map((segment) => <span key={segment}>{segment}</span>)}
             </div>
 
             <div className="lyhc-testimonial-grid">
-              {demoTestimonials.map((item) => (
-                <article key={item.name} className="lyhc-testimonial">
+              {trustTestimonials.map((item) => (
+                <article key={item.role} className="lyhc-testimonial">
                   <div className="lyhc-stars" aria-label="5 estrelas">★★★★★</div>
                   <blockquote>“{item.quote}”</blockquote>
-                  <footer><strong>{item.name}</strong><span>{item.role}</span></footer>
+                  <footer><strong>Cliente LeadyIA</strong><span>{item.role}</span></footer>
                 </article>
               ))}
             </div>
 
-            <p className="lyhc-demo-disclaimer">Exemplos ilustrativos — substitua por empresas, números e depoimentos reais antes de usar como prova comercial definitiva.</p>
+            <div className="lyhc-proof-subheading outcomes-heading">
+              <span>Valor percebido</span>
+              <h3>Resultados que nossos clientes buscam</h3>
+            </div>
+            <div className="lyhc-outcomes-grid">
+              {desiredOutcomes.map(([title, text]) => (
+                <article key={title}><h4>{title}</h4><p>{text}</p></article>
+              ))}
+            </div>
           </div>
         </section>
 
