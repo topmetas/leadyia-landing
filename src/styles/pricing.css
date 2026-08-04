@@ -348,3 +348,25 @@
 .lp-pricing-table-value--yes { color: #166534 !important; font-size: 1.05rem; }
 .lp-pricing-table-value--no { color: #64748b !important; }
 .lp-pricing-table-value--text { color: #334155 !important; }
+
+
+/* v1103.41.5 — definitive dark-card contrast */
+.lp-pricing-card, .lp-pricing-card * { box-sizing: border-box; }
+.lp-pricing-card .lp-pricing-headline { color:#f8fafc !important; }
+.lp-pricing-card .lp-pricing-audience { color:#cbd5e1 !important; }
+.lp-pricing-card .lp-pricing-capacity span { color:#e2e8f0 !important; background:rgba(2,6,23,.62) !important; border-color:rgba(148,163,184,.28) !important; }
+.lp-pricing-card .lp-pricing-capacity strong { color:#ffffff !important; }
+.lp-pricing-card .lp-pricing-channels { color:#bfdbfe !important; }
+.lp-pricing-card .lp-pricing-exclusions { color:#cbd5e1 !important; border-color:rgba(148,163,184,.25) !important; }
+.lp-pricing-card .lp-pricing-exclusions summary { color:#e2e8f0 !important; }
+.lp-pricing-card .lp-pricing-tier { color:#7dd3fc !important; }
+.lp-pricing-card h3 { color:#ffffff !important; }
+.lp-pricing-card .lp-pricing-setup-policy { margin:.6rem 0 0; color:#fde68a !important; font-size:.78rem; font-weight:800; }
+
+/* v1103.41.6 — setup promocional */
+.lp-pricing-setup-policy{display:flex;flex-direction:column;gap:.25rem;color:#fde68a!important}
+.lp-pricing-setup-policy strong{color:#fff7cc!important}
+.lp-pricing-setup-policy span{color:#fef3c7!important;font-size:.78rem}
+.lp-pricing-setup-policy--promo{border-color:rgba(52,211,153,.35)!important;background:rgba(16,185,129,.12)!important}
+.lp-pricing-setup-policy--promo strong{color:#a7f3d0!important}
+.lp-pricing-setup-policy--promo span{color:#d1fae5!important}

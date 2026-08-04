@@ -78,16 +78,16 @@ export const PLAN_PRICE_MATRIX = {
     BRL: { priceCents: 9700, setupFeeCents: 0 }, USD: { priceCents: 1900, setupFeeCents: 0 }, EUR: { priceCents: 1800, setupFeeCents: 0 }, GBP: { priceCents: 1500, setupFeeCents: 0 }, CAD: { priceCents: 2600, setupFeeCents: 0 }, MXN: { priceCents: 34900, setupFeeCents: 0 },
   },
   pro: {
-    BRL: { priceCents: 29700, setupFeeCents: 49700 }, USD: { priceCents: 5900, setupFeeCents: 9900 }, EUR: { priceCents: 5500, setupFeeCents: 8900 }, GBP: { priceCents: 4900, setupFeeCents: 7900 }, CAD: { priceCents: 8000, setupFeeCents: 13900 }, MXN: { priceCents: 106900, setupFeeCents: 178900 },
+    BRL: { priceCents: 29700, setupFeeCents: 19700 }, USD: { priceCents: 5900, setupFeeCents: 3900 }, EUR: { priceCents: 5500, setupFeeCents: 3500 }, GBP: { priceCents: 4900, setupFeeCents: 3200 }, CAD: { priceCents: 8000, setupFeeCents: 5300 }, MXN: { priceCents: 106900, setupFeeCents: 70900 },
   },
   business: {
-    BRL: { priceCents: 59700, setupFeeCents: 99700 }, USD: { priceCents: 11900, setupFeeCents: 19900 }, EUR: { priceCents: 11000, setupFeeCents: 18900 }, GBP: { priceCents: 9500, setupFeeCents: 15900 }, CAD: { priceCents: 16000, setupFeeCents: 26900 }, MXN: { priceCents: 214900, setupFeeCents: 358900 },
+    BRL: { priceCents: 59700, setupFeeCents: 39700 }, USD: { priceCents: 11900, setupFeeCents: 7900 }, EUR: { priceCents: 11000, setupFeeCents: 7300 }, GBP: { priceCents: 9500, setupFeeCents: 6300 }, CAD: { priceCents: 16000, setupFeeCents: 10700 }, MXN: { priceCents: 214900, setupFeeCents: 142900 },
   },
   enterprise: {
-    BRL: { priceCents: 99700, setupFeeCents: 250000 }, USD: { priceCents: 19900, setupFeeCents: 39900 }, EUR: { priceCents: 18500, setupFeeCents: 37900 }, GBP: { priceCents: 15900, setupFeeCents: 32900 }, CAD: { priceCents: 26900, setupFeeCents: 53900 }, MXN: { priceCents: 358900, setupFeeCents: 718900 },
+    BRL: { priceCents: 99700, setupFeeCents: 0 }, USD: { priceCents: 19900, setupFeeCents: 0 }, EUR: { priceCents: 18500, setupFeeCents: 0 }, GBP: { priceCents: 15900, setupFeeCents: 0 }, CAD: { priceCents: 26900, setupFeeCents: 0 }, MXN: { priceCents: 358900, setupFeeCents: 0 },
   },
   agency: {
-    BRL: { priceCents: 149700, setupFeeCents: 299700 }, USD: { priceCents: 29900, setupFeeCents: 59900 }, EUR: { priceCents: 27900, setupFeeCents: 55900 }, GBP: { priceCents: 23900, setupFeeCents: 47900 }, CAD: { priceCents: 39900, setupFeeCents: 79900 }, MXN: { priceCents: 539900, setupFeeCents: 1079900 },
+    BRL: { priceCents: 149700, setupFeeCents: 0 }, USD: { priceCents: 29900, setupFeeCents: 0 }, EUR: { priceCents: 27900, setupFeeCents: 0 }, GBP: { priceCents: 23900, setupFeeCents: 0 }, CAD: { priceCents: 39900, setupFeeCents: 0 }, MXN: { priceCents: 539900, setupFeeCents: 0 },
   },
 };
 

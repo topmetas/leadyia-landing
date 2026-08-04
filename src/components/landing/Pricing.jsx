@@ -35,6 +35,7 @@ function PlanCard({ plan, onCheckout, loading }) {
   const features = commercial.benefits?.length ? commercial.benefits : plan.features || [];
   const exclusions = commercial.exclusions || plan.exclusions || [];
   const presentation = getPresentation(plan);
+  const setupPolicy = plan?.commercial?.setupPolicy || plan?.setupPolicy || null;
 
   return (
     <article className={`lp-pricing-card ${plan.recommended ? "lp-pricing-card--featured" : ""} ${plan.tier === "agency" ? "lp-pricing-card--agency" : ""}`}>
@@ -57,6 +58,14 @@ function PlanCard({ plan, onCheckout, loading }) {
       </div>
 
       {commercial.channels?.length > 0 && <p className="lp-pricing-channels">Canais: {commercial.channels.join(" + ")}</p>}
+      {setupPolicy?.label && (
+        <div className={`lp-pricing-setup-policy ${setupPolicy?.promotion ? "lp-pricing-setup-policy--promo" : ""}`}>
+          <strong>{setupPolicy.label}</strong>
+          {setupPolicy?.promotion && setupPolicy?.regularAmountBRL ? (
+            <span>Valor normal: <s>R$ {Number(setupPolicy.regularAmountBRL).toLocaleString("pt-BR")}</s> · {setupPolicy.savingsLabel}</span>
+          ) : null}
+        </div>
+      )}
 
       <ul className="lp-pricing-features">
         {features.slice(0, 7).map((feature) => <li key={feature}><span aria-hidden>✓</span>{feature}</li>)}
