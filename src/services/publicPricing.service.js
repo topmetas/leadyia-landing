@@ -79,6 +79,8 @@ function normalizePlan(plan = {}, context = {}) {
       benefits: Array.isArray(commercial.benefits) ? commercial.benefits : [],
       exclusions: Array.isArray(commercial.exclusions) ? commercial.exclusions : [],
       dashboardPitch: commercial.dashboardPitch || null,
+      presentation: commercial.presentation || null,
+      contractVersion: commercial.contractVersion || plan.commercialContractVersion || null,
     },
     recommended: Boolean(plan.recommended || plan.highlight || plan.isRecommended || tier === "pro"),
     badge: plan.badge || commercial.badge || (tier === "pro" ? "Mais popular" : null),

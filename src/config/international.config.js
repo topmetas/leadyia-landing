@@ -157,7 +157,7 @@ export function buildLocalPlans({ currency = "BRL", locale = "pt-BR" } = {}) {
       interval: language === "en" ? "month" : language === "es" ? "mes" : "mês",
       description: PLAN_DESCRIPTIONS[language][tier],
       features: PLAN_FEATURES[language][tier],
-      limits: tier === "starter" ? { bots: 1, messagesPerMonth: 5000 } : tier === "pro" ? { bots: 3, messagesPerMonth: 25000 } : tier === "business" ? { bots: 10, messagesPerMonth: 150000 } : { bots: -1, messagesPerMonth: -1 },
+      limits: tier === "starter" ? { bots: 1, users: 1, messagesPerMonth: 1000 } : tier === "pro" ? { bots: 3, users: 5, messagesPerMonth: 10000 } : tier === "business" ? { bots: 10, users: 20, messagesPerMonth: 50000 } : tier === "enterprise" ? { bots: -1, users: -1, messagesPerMonth: 200000 } : { bots: -1, users: -1, messagesPerMonth: 500000 },
       recommended: tier === "pro",
       isRecommended: tier === "pro",
     };

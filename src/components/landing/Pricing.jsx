@@ -2,7 +2,6 @@ import React, { useEffect, useMemo, useState } from "react";
 import LanguageCurrencySwitcher from "../international/LanguageCurrencySwitcher";
 import { createPublicCheckout, getPublicPricingPlans, trackPricingEvent } from "../../services/publicPricing.service";
 import { resolveInitialCountry, getLanguage, INTERNATIONAL_TEXT } from "../../config/international.config";
-import { getPremiumPlanPresentationV1103_41_1 } from "../../services/premiumPlanPresentation.v1103_41_1";
 import "../../styles/pricing.css";
 import "../../styles/international.css";
 
@@ -20,14 +19,22 @@ function formatNumber(value) {
   return Number(value).toLocaleString("pt-BR");
 }
 
-function resolveCtaLabel(plan) { return getPremiumPlanPresentationV1103_41_1(plan.tier).cta; }
+function getPresentation(plan) {
+  return plan?.commercial?.presentation || {
+    badge: plan?.badge || null,
+    cta: plan?.ctaLabel || "Escolher plano",
+    promise: plan?.commercial?.headline || plan?.tagline || plan?.description || "",
+    metrics: [],
+  };
+}
+function resolveCtaLabel(plan) { return getPresentation(plan).cta; }
 
 function PlanCard({ plan, onCheckout, loading }) {
   const commercial = plan.commercial || {};
   const conversations = commercial.includedConversations ?? plan?.limits?.messagesPerMonth ?? null;
   const features = commercial.benefits?.length ? commercial.benefits : plan.features || [];
   const exclusions = commercial.exclusions || plan.exclusions || [];
-  const presentation = getPremiumPlanPresentationV1103_41_1(plan.tier);
+  const presentation = getPresentation(plan);
 
   return (
     <article className={`lp-pricing-card ${plan.recommended ? "lp-pricing-card--featured" : ""} ${plan.tier === "agency" ? "lp-pricing-card--agency" : ""}`}>
@@ -69,17 +76,11 @@ function PlanCard({ plan, onCheckout, loading }) {
   );
 }
 
-function ComparisonTable({ plans }) {
-  const rows = [
-    ["Website com IA", [true, true, true, true, true]],
-    ["WhatsApp integrado", [false, true, true, true, true]],
-    ["CRM e pipeline", [false, true, true, true, true]],
-    ["Agendamentos", [false, true, true, true, true]],
-    ["Instagram integrado", [false, false, true, true, true]],
-    ["API e webhooks", [false, false, true, true, true]],
-    ["White label", [false, false, false, "Parcial", "Completo"]],
-    ["Revenda e subcontas", [false, false, false, false, true]],
-  ];
+function ComparisonTable({ plans, matrix }) {
+  const columns = matrix?.columns?.length ? matrix.columns : plans.map((plan) => plan.tier);
+  const rows = matrix?.rows?.length
+    ? matrix.rows.map((row) => [row.label, columns.map((tier) => row.values?.[tier])])
+    : [];
 
   return (
     <div className="lp-pricing-comparison-wrap">
@@ -145,7 +146,7 @@ export default function Pricing() {
           {plans.map((plan) => <PlanCard key={`${plan.tier}-${plan.currency}`} plan={plan} onCheckout={handleCheckout} loading={checkoutLoading === plan.code} />)}
         </div>
 
-        <ComparisonTable plans={plans} />
+        <ComparisonTable plans={plans} matrix={state.commercialExperience?.comparisonMatrix} />
 
         <div className="lp-pricing-note">
           <strong>Uso justo e previsível.</strong> Conversas adicionais podem ser contratadas sob demanda. Os limites existem para garantir estabilidade, qualidade de atendimento e uso justo da plataforma.
