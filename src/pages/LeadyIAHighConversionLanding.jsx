@@ -6,7 +6,7 @@ import Pricing from "../components/landing/Pricing";
 import { COMMERCIAL_NICHES_V1103_123 } from "../data/verticalNiches.v1103_123";
 import "../styles/leadyia-high-conversion.css";
 
-const REGISTER_URL = "https://dashboard.leadyia.com/auth/register?plan=pro&source=leadyia_main_v1103_124&playbook=leadyia";
+const REGISTER_URL = "https://dashboard.leadyia.com/auth/register?plan=pro&source=leadyia_main_v1103_125&playbook=leadyia";
 
 const painCards = [
   ["Leads esperando resposta", "Quem pede informação agora pode comprar de outra empresa em poucos minutos."],
