@@ -26,7 +26,7 @@ export default function LegalLanding() {
   const data = legalLanding;
 
   return (
-    <PublicLayout>
+    <PublicLayout showPlanFocus="legal">
       <SEOProvider
         {...PAGE_SEO.legal}
         niche="legal"

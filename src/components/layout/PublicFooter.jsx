@@ -50,6 +50,8 @@ const FOOTER_GROUPS = [
       { label: "Imobiliária", href: "https://imobiliaria.leadyia.com" },
       { label: "Escola", href: "https://escola.leadyia.com" },
       { label: "E-commerce", href: "https://ecommerce.leadyia.com" },
+      { label: "Odontologia", href: "https://dentista.leadyia.com" },
+      { label: "Veterinária", href: "https://veterinaria.leadyia.com" },
     ],
   },
   {
@@ -99,7 +101,7 @@ export default function PublicFooter() {
 
           <div className="ly-public-footer__cta-actions">
             <a className="ly-public-footer__primary" href={DASHBOARD_REGISTER_URL}>
-              Criar conta gratuita
+              Testar grátis por 7 dias
             </a>
             <a className="ly-public-footer__secondary" href="/demo">
               Ver playbooks ao vivo

@@ -51,22 +51,22 @@ export const PLAN_DESCRIPTIONS = {
 
 export const PLAN_FEATURES = {
   pt: {
-    starter: ["Widget de IA para site", "Atendimento automático básico", "Captura de leads", "Histórico de conversas", "1 bot ativo"],
-    pro: ["Tudo do Starter", "Playbooks por nicho", "WhatsApp e canais sociais", "RAG com documentos", "Lead scoring", "Automações comerciais"],
+  starter: ["Widget de IA para site", "WhatsApp Essencial via QR", "Pré-agendamento", "Captura de leads", "Histórico de conversas"],
+  pro: ["Tudo do Starter", "WhatsApp API Oficial da Meta", "Instagram", "CRM e pipeline", "Agendamentos inteligentes", "Automações comerciais"],
     business: ["Tudo do Pro", "Agendamento inteligente", "Pix/checkout quando aplicável", "Multiusuários", "Analytics avançado", "API e webhooks"],
     enterprise: ["Tudo do Business", "White-label", "IA e RAG dedicados", "SLA prioritário", "Suporte estratégico", "Customizações avançadas"],
     agency: ["Tudo do Enterprise", "Agency Center", "Clientes da agência", "Branding reseller", "Equipe e permissões", "Receita recorrente de clientes"],
   },
   en: {
-    starter: ["AI website widget", "Basic automated support", "Lead capture", "Conversation history", "1 active bot"],
-    pro: ["Everything in Starter", "Niche playbooks", "WhatsApp and social channels", "RAG with documents", "Lead scoring", "Sales automations"],
+    starter: ["AI website widget", "Essential WhatsApp via QR", "Pre-scheduling", "Lead capture", "Conversation history"],
+    pro: ["Everything in Starter", "Official Meta WhatsApp API", "Instagram", "CRM and pipeline", "Smart scheduling", "Sales automations"],
     business: ["Everything in Pro", "Smart scheduling", "Payment/checkout when needed", "Multi-user workspace", "Advanced analytics", "API and webhooks"],
     enterprise: ["Everything in Business", "White-label", "Dedicated AI and RAG", "Priority SLA", "Strategic support", "Advanced customization"],
     agency: ["Everything in Enterprise", "Agency Center", "Agency clients", "Reseller branding", "Team and permissions", "Recurring client revenue"],
   },
   es: {
-    starter: ["Widget de IA para sitio", "Atención automática básica", "Captura de leads", "Historial de conversaciones", "1 bot activo"],
-    pro: ["Todo Starter", "Playbooks por nicho", "WhatsApp y canales sociales", "RAG con documentos", "Lead scoring", "Automatizaciones comerciales"],
+    starter: ["Widget de IA para sitio", "WhatsApp esencial vía QR", "Preagendamiento", "Captura de leads", "Historial de conversaciones"],
+    pro: ["Todo Starter", "API oficial de WhatsApp de Meta", "Instagram", "CRM y pipeline", "Agenda inteligente", "Automatizaciones comerciales"],
     business: ["Todo Pro", "Agenda inteligente", "Pagos/checkout cuando aplique", "Multiusuarios", "Analytics avanzado", "API y webhooks"],
     enterprise: ["Todo Business", "White-label", "IA y RAG dedicados", "SLA prioritario", "Soporte estratégico", "Personalizaciones avanzadas"],
     agency: ["Todo Enterprise", "Agency Center", "Clientes de agencia", "Branding reseller", "Equipo y permisos", "Ingresos recurrentes"],
@@ -142,6 +142,21 @@ export function buildLocalPlans({ currency = "BRL", locale = "pt-BR" } = {}) {
   return PLAN_TIERS.map((tier) => {
     const price = PLAN_PRICE_MATRIX[tier][normalizedCurrency];
     const country = resolveCountryFromCurrency(normalizedCurrency);
+    const monthlyBRL = PLAN_PRICE_MATRIX[tier].BRL.priceCents / 100;
+    const channelMap = {
+      starter: ["Website", "WhatsApp Essencial via QR"],
+      pro: ["Website", "WhatsApp API Oficial da Meta", "Instagram"],
+      business: ["Omnichannel"],
+      enterprise: ["Omnichannel"],
+      agency: ["Omnichannel", "Multi-tenant"],
+    };
+    const presentationMetrics = {
+      starter: ["1 assistente IA", "1 usuário", "Site + WhatsApp QR"],
+      pro: ["3 assistentes IA", "5 usuários", "WhatsApp API Oficial Meta"],
+      business: ["10 assistentes IA", "20 usuários", "Omnichannel"],
+      enterprise: ["Escala sob consulta", "Ambiente isolado", "SLA prioritário"],
+      agency: ["Multi-tenant", "White label completo", "Subcontas"],
+    };
     return {
       code: getPlanCode(tier, normalizedCurrency),
       tier,
@@ -160,6 +175,17 @@ export function buildLocalPlans({ currency = "BRL", locale = "pt-BR" } = {}) {
       limits: tier === "starter" ? { bots: 1, users: 1, messagesPerMonth: 1000 } : tier === "pro" ? { bots: 3, users: 5, messagesPerMonth: 10000 } : tier === "business" ? { bots: 10, users: 20, messagesPerMonth: 50000 } : tier === "enterprise" ? { bots: -1, users: -1, messagesPerMonth: 200000 } : { bots: -1, users: -1, messagesPerMonth: 500000 },
       recommended: tier === "pro",
       isRecommended: tier === "pro",
+      badge: tier === "pro" ? "Mais popular" : tier === "business" ? "Mais completo" : null,
+      commercial: {
+        includedConversations: tier === "starter" ? 1000 : tier === "pro" ? 10000 : tier === "business" ? 50000 : tier === "enterprise" ? 200000 : 500000,
+        channels: channelMap[tier],
+        annualPriceBRL: monthlyBRL * 10,
+        annualSavingsMonths: 2,
+        startingAt: tier === "enterprise" || tier === "agency",
+        benefits: PLAN_FEATURES[language][tier],
+        exclusions: tier === "starter" ? ["WhatsApp API Oficial da Meta", "Campanhas e templates", "CRM completo", "Instagram", "API e webhooks"] : [],
+        presentation: { badge: tier === "pro" ? "Mais popular" : tier === "business" ? "Mais completo" : null, cta: tier === "enterprise" ? "Falar com especialista" : tier === "agency" ? "Quero revender" : `Escolher ${PLAN_LABELS[tier]}`, promise: PLAN_DESCRIPTIONS[language][tier], metrics: presentationMetrics[tier] },
+      },
     };
   });
 }

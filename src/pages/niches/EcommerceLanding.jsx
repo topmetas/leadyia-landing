@@ -26,7 +26,7 @@ export default function EcommerceLanding() {
   const data = ecommerceLanding;
 
   return (
-    <PublicLayout>
+    <PublicLayout showPlanFocus="ecommerce">
       <SEOProvider
         {...PAGE_SEO.ecommerce}
         niche="ecommerce"

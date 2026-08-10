@@ -46,6 +46,8 @@ const LIVE_PLAYBOOK_MENU = [
   { label: "Imobiliária", href: "https://imobiliaria.leadyia.com", icon: "🏠" },
   { label: "Escola", href: "https://escola.leadyia.com", icon: "🎓" },
   { label: "E-commerce", href: "https://ecommerce.leadyia.com", icon: "🛒" },
+  { label: "Odontologia", href: "https://dentista.leadyia.com", icon: "🦷" },
+  { label: "Veterinária", href: "https://veterinaria.leadyia.com", icon: "🐾" },
 ];
 
 export default function PublicHeader() {
@@ -108,7 +110,7 @@ export default function PublicHeader() {
           </a>
 
           <a className="ly-public-header__cta" href={DASHBOARD_REGISTER_URL}>
-            <span>Começar grátis</span>
+            <span>Teste grátis 7 dias</span>
             <svg viewBox="0 0 24 24" aria-hidden="true">
               <path d="M5 12h12.2l-4.6-4.6L14 6l7 7-7 7-1.4-1.4 4.6-4.6H5v-2Z" />
             </svg>
@@ -149,7 +151,7 @@ export default function PublicHeader() {
               Entrar no dashboard
             </a>
             <a href={DASHBOARD_REGISTER_URL} onClick={closeMenu}>
-              Criar conta gratuita
+              Testar grátis por 7 dias
             </a>
           </div>
         </div>

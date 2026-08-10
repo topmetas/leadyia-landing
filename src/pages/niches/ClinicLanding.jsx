@@ -26,7 +26,7 @@ export default function ClinicLanding() {
   const data = clinicLanding;
 
   return (
-    <PublicLayout>
+    <PublicLayout showPlanFocus="clinic">
       <SEOProvider
         {...PAGE_SEO.clinic}
         niche="clinic"

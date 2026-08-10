@@ -26,7 +26,7 @@ export default function AestheticsLanding() {
   const data = aestheticsLanding;
 
   return (
-    <PublicLayout>
+    <PublicLayout showPlanFocus="aesthetics">
       <SEOProvider
         {...PAGE_SEO.aesthetics}
         niche="aesthetics"

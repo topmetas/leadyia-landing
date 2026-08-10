@@ -26,7 +26,7 @@ export default function RealEstateLanding() {
   const data = realEstateLanding;
 
   return (
-    <PublicLayout>
+    <PublicLayout showPlanFocus="real_estate">
       <SEOProvider
         {...PAGE_SEO.realestate}
         niche="realestate"

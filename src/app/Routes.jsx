@@ -33,6 +33,7 @@ import LegalLanding from "../pages/niches/LegalLanding";
 import RealEstateLanding from "../pages/niches/RealEstateLanding";
 import EcommerceLanding from "../pages/niches/EcommerceLanding";
 import EducationLanding from "../pages/niches/EducationLanding";
+import PricingPage from "../modules/marketing/pricing/PricingPage";
 
 function HostAwareHome() {
   const host = typeof window !== "undefined" ? window.location.hostname : "";
@@ -108,6 +109,9 @@ export default function AppRoutes() {
       <Route path="/playbook" element={<Home />} />
       <Route path="/playbooks" element={<Home />} />
       <Route path="/ao-vivo" element={<Home />} />
+
+      {/* Comparação completa: Starter, Pro, Business, Enterprise e Agency */}
+      <Route path="/pricing" element={<PricingPage />} />
 
       {/* Página pública de cadastro */}
       <Route

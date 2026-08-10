@@ -26,7 +26,7 @@ export default function EducationLanding() {
   const data = educationLanding;
 
   return (
-    <PublicLayout>
+    <PublicLayout showPlanFocus="education">
       <SEOProvider
         {...PAGE_SEO.education}
         niche="education"

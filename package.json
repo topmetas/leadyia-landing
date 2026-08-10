@@ -1,7 +1,7 @@
 {
   "name": "leadyia-landing-v500-premium-unificada",
   "private": true,
-  "version": "5.0.0",
+  "version": "5.0.122",
   "type": "module",
   "scripts": {
     "dev": "vite --host 0.0.0.0 --port 5176",
@@ -34,7 +34,9 @@
     "test:landing-playbook-hardening-v1101-1": "node scripts/validate-playbook-hardening-v1101-1.mjs",
     "landing:playbook-hardening-v1101-1": "node scripts/run-playbook-hardening-v1101-1.mjs",
     "test:landing-enterprise-scheduling-api-v1102": "node scripts/validate-enterprise-scheduling-api-v1102.mjs",
-    "landing:enterprise-scheduling-api-v1102": "node scripts/run-enterprise-scheduling-api-v1102.mjs"
+    "landing:enterprise-scheduling-api-v1102": "node scripts/run-enterprise-scheduling-api-v1102.mjs",
+    "test:commercial-plans-v1103.120": "node scripts/validate-commercial-plans-v1103.120.mjs",
+    "test:starter-pro-focus-v1103.122": "node scripts/validate-starter-pro-focus-v1103.122.mjs"
   },
   "dependencies": {
     "react": "^19.2.3",

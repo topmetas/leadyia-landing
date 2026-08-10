@@ -75,11 +75,18 @@ function normalizePlan(plan = {}, context = {}) {
       includedConversations,
       assistants: commercial.assistants ?? null,
       users: commercial.users ?? null,
+      websites: commercial.websites ?? null,
+      whatsappNumbers: commercial.whatsappNumbers ?? null,
       channels: Array.isArray(commercial.channels) ? commercial.channels : [],
+      annualPriceBRL: commercial.annualPriceBRL ?? null,
+      annualSavingsMonths: commercial.annualSavingsMonths ?? 2,
+      startingAt: Boolean(commercial.startingAt),
       benefits: Array.isArray(commercial.benefits) ? commercial.benefits : [],
       exclusions: Array.isArray(commercial.exclusions) ? commercial.exclusions : [],
       dashboardPitch: commercial.dashboardPitch || null,
       presentation: commercial.presentation || null,
+      setupPolicy: commercial.setupPolicy || null,
+      acquisitionPolicy: commercial.acquisitionPolicy || null,
       contractVersion: commercial.contractVersion || plan.commercialContractVersion || null,
     },
     recommended: Boolean(plan.recommended || plan.highlight || plan.isRecommended || tier === "pro"),
@@ -163,6 +170,7 @@ export async function createPublicCheckout(plan, context = {}) {
   const currency = normalizeCurrency(context.currency || plan.currency || country.currency);
   const provider = context.provider || plan.provider || country.provider;
   const locale = context.locale || plan.locale || country.locale;
+  const billingCycle = context.billingCycle === "yearly" ? "yearly" : "monthly";
   const payload = {
     planCode: plan.code,
     tier: plan.tier,
@@ -170,6 +178,7 @@ export async function createPublicCheckout(plan, context = {}) {
     country: country.code,
     currency,
     locale,
+    billingCycle,
     source: "landing_pricing_v1103_37",
     utmCampaign: new URLSearchParams(window.location.search).get("utm_campaign"),
   };
@@ -194,6 +203,7 @@ export async function createPublicCheckout(plan, context = {}) {
     fallback.searchParams.set("currency", currency);
     fallback.searchParams.set("provider", provider);
     fallback.searchParams.set("source", "landing_pricing_v1103_37_fallback");
+    fallback.searchParams.set("billingCycle", billingCycle);
     return { ok: false, url: fallback.toString(), provider, error };
   }
 }

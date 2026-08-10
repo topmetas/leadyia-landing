@@ -70,9 +70,9 @@ const faqs = [
   ["A IA substitui minha equipe?", "Não. Ela cuida do primeiro atendimento, organiza contexto e chama a equipe quando o contato precisa de atendimento humano."],
   ["Consigo usar informações do meu negócio?", "Sim. A base pode usar seu site, documentos, catálogo, perguntas frequentes, políticas e regras configuradas por tenant."],
   ["Os leads entram no CRM?", "Sim. Nome, WhatsApp, e-mail, interesse, origem, temperatura, estágio e próxima ação podem ser registrados no CRM."],
-  ["Funciona no WhatsApp?", "Sim. O plano Pro inclui Website + WhatsApp, sujeito à conexão e certificação do canal escolhida pelo tenant."],
-  ["Qual plano é indicado para começar?", "Para negócios que desejam CRM, WhatsApp, agendamentos e follow-up, o plano Pro é o caminho recomendado."],
-  ["Criar a conta gera cobrança?", "Não. O cadastro inicia o trial. A contratação acontece apenas quando você confirma o plano e segue para o checkout."],
+  ["Funciona no WhatsApp?", "Sim. O Starter inclui WhatsApp Essencial via QR. O Pro e os planos superiores liberam a API Oficial do WhatsApp da Meta; taxas de uso da Meta são separadas."],
+  ["Qual plano é indicado para começar?", "O Starter é a entrada de R$ 97 para site, WhatsApp via QR e pré-agendamento. Para CRM, API Oficial da Meta, agendamentos inteligentes e follow-up, recomendamos o Pro."],
+  ["Criar a conta gera cobrança?", "Não. O trial dura 7 dias ou 200 mensagens, não exige cartão e só há cobrança quando você confirma o plano no checkout."],
 ];
 
 function SectionTitle({ kicker, title, text, centered = false }) {
@@ -258,7 +258,7 @@ export default function LeadyIAHighConversionLanding() {
             <div>
               <span className="lyhc-kicker">Plano recomendado</span>
               <h2>Comece com o Pro.</h2>
-              <p>É o plano ideal para quem quer usar Website + WhatsApp, CRM, agendamentos, lead score, follow-up e playbooks por nicho.</p>
+              <p>É o plano ideal para quem quer usar Website + WhatsApp API Oficial da Meta + Instagram, CRM, agendamentos, lead score, follow-up e playbooks por nicho.</p>
               <ul className="lyhc-checklist compact">
                 <li>3 assistentes IA e 5 usuários</li>
                 <li>10.000 conversas por mês</li>
@@ -267,14 +267,14 @@ export default function LeadyIAHighConversionLanding() {
               </ul>
             </div>
             <div className="lyhc-price-box">
-              <span>Pro</span><strong>R$ 297</strong><small>/mês</small>
+              <span>Pro</span><strong>R$ 297</strong><small>/mês · R$ 2.970/ano (2 meses grátis)</small>
               <div className="lyhc-promo">Implantação gratuita por tempo limitado<br/><small>Valor normal: R$ 197</small></div>
               <a className="lyhc-button primary" href={REGISTER_URL}>Começar meu trial</a>
             </div>
           </div>
         </section>
 
-        <div id="pricing" className="lyhc-pricing-wrap"><Pricing /></div>
+        <div id="pricing" className="lyhc-pricing-wrap"><Pricing focusOnly /></div>
 
         <section className="lyhc-section light">
           <div className="lyhc-shell">

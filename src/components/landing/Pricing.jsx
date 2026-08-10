@@ -29,13 +29,19 @@ function getPresentation(plan) {
 }
 function resolveCtaLabel(plan) { return getPresentation(plan).cta; }
 
-function PlanCard({ plan, onCheckout, loading }) {
+function PlanCard({ plan, onCheckout, loading, billingCycle }) {
   const commercial = plan.commercial || {};
   const conversations = commercial.includedConversations ?? plan?.limits?.messagesPerMonth ?? null;
   const features = commercial.benefits?.length ? commercial.benefits : plan.features || [];
   const exclusions = commercial.exclusions || plan.exclusions || [];
   const presentation = getPresentation(plan);
   const setupPolicy = plan?.commercial?.setupPolicy || plan?.setupPolicy || null;
+  const monthlyCents = Number(plan.priceCents || 0);
+  const annualContractBRL = Number(commercial.annualPriceBRL || 0);
+  const annualCents = plan.currency === "BRL" && annualContractBRL > 0 ? annualContractBRL * 100 : monthlyCents * 10;
+  const displayedPrice = billingCycle === "yearly"
+    ? new Intl.NumberFormat(plan.locale || "pt-BR", { style: "currency", currency: plan.currency || "BRL" }).format(annualCents / 100)
+    : plan.priceFormatted;
 
   return (
     <article className={`lp-pricing-card ${plan.recommended ? "lp-pricing-card--featured" : ""} ${plan.tier === "agency" ? "lp-pricing-card--agency" : ""}`}>
@@ -46,7 +52,7 @@ function PlanCard({ plan, onCheckout, loading }) {
           <p className="lp-pricing-tier">{plan.tier}</p>
           <h3>{plan.name}</h3>
         </div>
-        <div className="lp-pricing-price"><strong>{plan.priceFormatted}</strong>{plan.interval && <span>/{plan.interval}</span>}</div>
+        <div className="lp-pricing-price">{commercial.startingAt ? <span>A partir de</span> : null}<strong>{displayedPrice}</strong><span>/{billingCycle === "yearly" ? "ano" : plan.interval || "mês"}</span></div>
       </div>
 
       <p className="lp-pricing-headline">{presentation.promise || commercial.headline || PLAN_TAGLINES[plan.tier]}</p>
@@ -58,6 +64,7 @@ function PlanCard({ plan, onCheckout, loading }) {
       </div>
 
       {commercial.channels?.length > 0 && <p className="lp-pricing-channels">Canais: {commercial.channels.join(" + ")}</p>}
+      {billingCycle === "yearly" ? <p className="lp-pricing-channels"><strong>2 meses grátis</strong> · equivalente a 10 mensalidades</p> : null}
       {setupPolicy?.label && (
         <div className={`lp-pricing-setup-policy ${setupPolicy?.promotion ? "lp-pricing-setup-policy--promo" : ""}`}>
           <strong>{setupPolicy.label}</strong>
@@ -108,11 +115,13 @@ function ComparisonTable({ plans, matrix }) {
   );
 }
 
-export default function Pricing() {
+export default function Pricing({ focusOnly = false }) {
   const [country, setCountry] = useState(resolveInitialCountry);
   const [state, setState] = useState({ loading: true, plans: [], source: "loading" });
   const [checkoutLoading, setCheckoutLoading] = useState("");
   const [checkoutNotice, setCheckoutNotice] = useState("");
+  const [billingCycle, setBillingCycle] = useState("monthly");
+  const [showComparison, setShowComparison] = useState(!focusOnly);
   const lang = getLanguage(country.locale);
   const text = INTERNATIONAL_TEXT[lang] || INTERNATIONAL_TEXT.pt;
 
@@ -125,11 +134,15 @@ export default function Pricing() {
   }, [country]);
 
   const plans = useMemo(() => [...(state.plans || [])].sort((a, b) => PLAN_ORDER.indexOf(a.tier) - PLAN_ORDER.indexOf(b.tier)), [state.plans]);
+  const displayedPlans = useMemo(
+    () => focusOnly ? plans.filter((plan) => ["starter", "pro"].includes(plan.tier)) : plans,
+    [focusOnly, plans],
+  );
 
   async function handleCheckout(plan) {
     setCheckoutNotice("");
     setCheckoutLoading(plan.code);
-    const result = await createPublicCheckout(plan, { country, currency: country.currency, locale: country.locale, provider: country.provider });
+    const result = await createPublicCheckout(plan, { country, currency: country.currency, locale: country.locale, provider: country.provider, billingCycle });
     setCheckoutLoading("");
     if (result?.url) {
       setCheckoutNotice(`Plano ${plan.name} selecionado. Você será direcionado ao cadastro seguro e, após entrar, continuará para o checkout.`);
@@ -142,23 +155,36 @@ export default function Pricing() {
       <div className="lp-pricing-bg" aria-hidden />
       <div className="lp-pricing-container">
         <div className="lp-pricing-header">
-          <span className="lp-section-eyebrow">Planos LeadyIA</span>
-          <h2>{state.commercialExperience?.title || "Escolha a estrutura certa para crescer com IA"}</h2>
-          <p>{state.commercialExperience?.subtitle || "Comece com o essencial e evolua conforme seus canais, equipe e volume aumentarem."}</p>
+          <span className="lp-section-eyebrow">{focusOnly ? "Starter e Pro" : "Todos os planos LeadyIA"}</span>
+          <h2>{focusOnly ? "Comece grátis e escolha o plano certo para sua operação" : (state.commercialExperience?.title || "Compare toda a estrutura LeadyIA")}</h2>
+          <p>{focusOnly ? "Starter para Widget + WhatsApp QR. Pro para Widget + API Oficial da Meta, CRM e automações." : (state.commercialExperience?.subtitle || "Compare recursos, canais, equipe e volume antes de escolher.")}</p>
           <LanguageCurrencySwitcher value={country} onChange={setCountry} label={text.countryLabel} />
+          <div className="lp-pricing-cycle" role="group" aria-label="Período de cobrança">
+            <button type="button" className={billingCycle === "monthly" ? "is-active" : ""} onClick={() => setBillingCycle("monthly")}>Mensal</button>
+            <button type="button" className={billingCycle === "yearly" ? "is-active" : ""} onClick={() => setBillingCycle("yearly")}>Anual · 2 meses grátis</button>
+          </div>
           <div className="lp-pricing-source">{state.loading ? "Carregando catálogo oficial..." : state.source === "backend" ? "Catálogo comercial oficial" : "Catálogo local de contingência"}<span> · {country.provider === "stripe" ? "Stripe" : "Mercado Pago/Pix"}</span></div>
         </div>
 
         {checkoutNotice ? <div className="lp-pricing-checkout-notice" role="status">{checkoutNotice}</div> : null}
 
-        <div className="lp-pricing-grid lp-pricing-grid--five">
-          {plans.map((plan) => <PlanCard key={`${plan.tier}-${plan.currency}`} plan={plan} onCheckout={handleCheckout} loading={checkoutLoading === plan.code} />)}
+        <div className={`lp-pricing-grid ${focusOnly ? "lp-pricing-grid--focus" : "lp-pricing-grid--five"}`}>
+          {displayedPlans.map((plan) => <PlanCard key={`${plan.tier}-${plan.currency}`} plan={plan} onCheckout={handleCheckout} loading={checkoutLoading === plan.code} billingCycle={billingCycle} />)}
         </div>
 
-        <ComparisonTable plans={plans} matrix={state.commercialExperience?.comparisonMatrix} />
+        {focusOnly ? (
+          <div className="lp-pricing-compare-action">
+            <button type="button" onClick={() => setShowComparison((current) => !current)}>
+              {showComparison ? "Fechar comparação" : "Comparar todos os planos"}
+            </button>
+            <span>Business, Enterprise e Agency continuam disponíveis.</span>
+          </div>
+        ) : null}
+
+        {showComparison ? <ComparisonTable plans={plans} matrix={state.commercialExperience?.comparisonMatrix} /> : null}
 
         <div className="lp-pricing-note">
-          <strong>Uso justo e previsível.</strong> Conversas adicionais podem ser contratadas sob demanda. Os limites existem para garantir estabilidade, qualidade de atendimento e uso justo da plataforma.
+          <strong>Teste grátis por 7 dias ou 200 mensagens, sem cartão.</strong> Conversas contam o total combinado de Site + WhatsApp. Avisamos em 70% e recomendamos upgrade em 85%; ao atingir 100%, seus dados são preservados. Taxas de uso da Meta são cobradas separadamente.
         </div>
 
         <div className="lp-pricing-specialist">
