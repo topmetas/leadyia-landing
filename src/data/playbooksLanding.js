@@ -19,7 +19,7 @@
 
 export const PLAYBOOKS_LANDING = [
   {
-    id: 'educacao',
+    id: 'education',
     label: 'Educação',
     badge: 'Materiais pedagógicos',
     icon: 'book',
@@ -53,7 +53,7 @@ export const PLAYBOOKS_LANDING = [
     metric: '+ agendamentos',
   },
   {
-    id: 'estetica',
+    id: 'aesthetics',
     label: 'Estética',
     badge: 'Conversão de procedimentos',
     icon: 'spark',
@@ -87,7 +87,7 @@ export const PLAYBOOKS_LANDING = [
     metric: '+ triagem segura',
   },
   {
-    id: 'real-estate',
+    id: 'real_estate',
     label: 'Imobiliárias',
     badge: 'Captação e visitas',
     icon: 'home',
@@ -121,7 +121,7 @@ export const PLAYBOOKS_LANDING = [
     metric: '+ conversões',
   },
   {
-    id: 'saas',
+    id: 'saas_b2b',
     label: 'SaaS',
     badge: 'Pré-vendas e suporte',
     icon: 'grid',
@@ -137,40 +137,13 @@ export const PLAYBOOKS_LANDING = [
     ctas: ['Ver planos', 'Testar agora', 'Falar com especialista'],
     metric: '+ trials qualificados',
   },
-  {
-    id: 'support',
-    label: 'Suporte',
-    badge: 'Atendimento 24h',
-    icon: 'headset',
-    accent: '#0f766e',
-    pain: 'Times gastam horas respondendo as mesmas dúvidas sobre acesso, pedido, prazo, suporte e processos.',
-    solution: 'A IA responde dúvidas frequentes com RAG, abre handoff quando precisa e registra histórico no dashboard.',
-    benefit: 'Menos tickets repetidos e melhor experiência do cliente.',
-    examples: [
-      'Não consigo acessar',
-      'Como acompanho meu pedido?',
-      'Preciso falar com suporte',
-    ],
-    ctas: ['Abrir suporte', 'Ver ajuda', 'Falar com humano'],
-    metric: '- tickets repetidos',
-  },
-  {
-    id: 'leadyia',
-    label: 'LeadyIA',
-    badge: 'Sistema completo',
-    icon: 'bot',
-    accent: '#4f46e5',
-    pain: 'Empresas querem IA no site, mas precisam de painel, RAG, CRM, billing, auditoria, playbooks e controle real.',
-    solution: 'A LeadyIA entrega widget + dashboard + multi-tenant + playbooks + integrações em uma única plataforma.',
-    benefit: 'Uma estrutura SaaS completa para vender, atender e escalar atendimento com IA.',
-    examples: [
-      'Quero ver planos',
-      'Como instalo no site?',
-      'Posso usar em vários nichos?',
-    ],
-    ctas: ['Ver planos', 'Testar IA', 'Criar conta'],
-    metric: 'plataforma completa',
-  },
+  { id:'dentistry', label:'Odontologia', badge:'Avaliações e urgências', icon:'calendar', accent:'#0f766e', pain:'Pacientes precisam de respostas seguras, especialidades e avaliação sem repetir o contexto.', solution:'A IA acolhe, diferencia urgência, organiza o pré-agendamento e entrega resumo à recepção.', benefit:'Mais avaliações organizadas e continuidade após o agendamento.', examples:['Quero agendar avaliação','Estou com dor de dente','Quais convênios atendem?'], ctas:['Agendar avaliação','Ver especialidades','Falar com recepção'], metric:'+ avaliações' },
+  { id:'veterinary', label:'Veterinária', badge:'Atendimento ao tutor', icon:'calendar', accent:'#16a34a', pain:'Tutores procuram ajuda, horários e orientação administrativa em qualquer momento.', solution:'A IA identifica pet, necessidade e sinais relatados, conduzindo para consulta ou equipe humana.', benefit:'Mais consultas organizadas com contexto do tutor e do pet.', examples:['Meu cachorro está sem comer','Quero marcar consulta','Atende emergência?'], ctas:['Agendar consulta','Informar sintomas','Falar com recepção'], metric:'+ consultas' },
+  { id:'accounting', label:'Contabilidade', badge:'Triagem empresarial', icon:'grid', accent:'#0369a1', pain:'Empresas chegam com dúvidas dispersas sobre abertura, fiscal, folha e troca de contador.', solution:'A IA organiza porte, atividade, necessidade e momento para o contador assumir com contexto.', benefit:'Mais diagnósticos comerciais qualificados.', examples:['Quero abrir empresa','Preciso trocar de contador','Tenho dúvida sobre impostos'], ctas:['Solicitar diagnóstico','Ver serviços','Falar com contador'], metric:'+ oportunidades' },
+  { id:'automotive', label:'Automotivo', badge:'Oficina e serviços', icon:'grid', accent:'#dc2626', pain:'Clientes descrevem sintomas sem dados do veículo e a equipe perde tempo antes do orçamento.', solution:'A IA coleta veículo, serviço e sinais relatados e conduz para avaliação ou agenda.', benefit:'Orçamentos e atendimentos técnicos mais organizados.', examples:['Meu carro faz barulho','Quero uma revisão','Preciso de alinhamento'], ctas:['Pedir orçamento','Agendar avaliação','Falar com oficina'], metric:'+ orçamentos' },
+  { id:'restaurant', label:'Restaurantes', badge:'Reservas e pedidos', icon:'bag', accent:'#b45309', pain:'Clientes perguntam cardápio, horário, reserva e pedido no instante da decisão.', solution:'A IA responde com dados oficiais e organiza reserva ou direciona ao canal de pedido.', benefit:'Mais reservas e menos abandono.', examples:['Quero reservar mesa','Tem opção sem glúten?','Como faço um pedido?'], ctas:['Reservar mesa','Ver cardápio','Fazer pedido'], metric:'+ reservas' },
+  { id:'fitness', label:'Fitness', badge:'Aulas e matrículas', icon:'spark', accent:'#7c3aed', pain:'Interessados querem modalidade, plano e horário antes de aceitar uma aula experimental.', solution:'A IA entende objetivo, unidade e disponibilidade e conduz para avaliação ou matrícula.', benefit:'Mais aulas experimentais qualificadas.', examples:['Quero uma aula experimental','Qual plano combina comigo?','Tem horário à noite?'], ctas:['Agendar aula','Ver modalidades','Falar com consultor'], metric:'+ matrículas' },
+  { id:'home_services', label:'Serviços Residenciais', badge:'Orçamento e visita', icon:'home', accent:'#0f766e', pain:'Pedidos chegam sem endereço, categoria, urgência ou detalhes suficientes para o técnico.', solution:'A IA organiza o problema, região, disponibilidade e evidências antes do orçamento.', benefit:'Mais visitas produtivas e menos retrabalho.', examples:['Preciso de eletricista','Está vazando água','Quero orçamento de instalação'], ctas:['Pedir orçamento','Agendar visita','Falar com técnico'], metric:'+ visitas' },
 ];
 
 export const getPlaybookById = (id) =>

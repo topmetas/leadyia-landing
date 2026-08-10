@@ -23,7 +23,7 @@ import PlaybookDemoTabs from './PlaybookDemoTabs';
 import '../styles/playbooks.css';
 
 export default function PlaybookShowcase() {
-  const [activeId, setActiveId] = useState('educacao');
+  const [activeId, setActiveId] = useState('education');
   const activePlaybook = useMemo(() => getPlaybookById(activeId), [activeId]);
 
   return (
@@ -37,7 +37,7 @@ export default function PlaybookShowcase() {
           <h2>Uma IA preparada para vender e atender do jeito que cada mercado precisa.</h2>
           <p>
             O LeadyIA adapta conversa, atalhos, CTAs e contexto por segmento. A mesma plataforma atende
-            educação, clínicas, advocacia, ecommerce, SaaS e suporte sem criar vários sistemas separados.
+            14 nichos comerciais sem misturar memória, ações ou regras entre os playbooks.
           </p>
         </div>
 

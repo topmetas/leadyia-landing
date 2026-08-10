@@ -21,69 +21,20 @@
  */
 
 export const REGISTER_SEGMENTS = [
-  {
-    id: "education",
-    label: "Educação",
-    playbook: "education",
-    headline: "Materiais, cursos, escolas e produtos pedagógicos.",
-    example: "Quero encontrar materiais por idade, série ou objetivo.",
-  },
-  {
-    id: "clinic",
-    label: "Clínicas",
-    playbook: "clinic",
-    headline: "Recepção, agendamento, horários e dúvidas recorrentes.",
-    example: "Quero agendar uma consulta ou falar com a recepção.",
-  },
-  {
-    id: "beauty",
-    label: "Estética",
-    playbook: "beauty",
-    headline: "Procedimentos, avaliações, pacotes e atendimento comercial.",
-    example: "Quero conhecer valores e horários disponíveis.",
-  },
-  {
-    id: "legal",
-    label: "Advocacia / Jurídico",
-    playbook: "legal",
-    headline: "Triagem inicial, áreas de atuação e agendamento jurídico.",
-    example: "Quero explicar meu caso e falar com um advogado.",
-  },
-  {
-    id: "real_estate",
-    label: "Imobiliárias",
-    playbook: "real_estate",
-    headline: "Captação de leads, visitas, imóveis e financiamento.",
-    example: "Quero encontrar um imóvel ou agendar visita.",
-  },
-  {
-    id: "ecommerce",
-    label: "Ecommerce",
-    playbook: "ecommerce",
-    headline: "Produtos, ofertas, checkout, pós-venda e suporte.",
-    example: "Quero comprar, ver ofertas ou acompanhar pedido.",
-  },
-  {
-    id: "saas",
-    label: "SaaS / Serviços B2B",
-    playbook: "saas_b2b",
-    headline: "Demonstrações, qualificação de leads e suporte comercial.",
-    example: "Quero entender os planos e falar com especialista.",
-  },
-  {
-    id: "support",
-    label: "Suporte / Atendimento",
-    playbook: "support",
-    headline: "FAQ, tickets, dúvidas operacionais e handoff humano.",
-    example: "Preciso resolver uma dúvida ou falar com atendimento.",
-  },
-  {
-    id: "leadyia",
-    label: "LeadyIA / IA para negócios",
-    playbook: "leadyia",
-    headline: "Venda, atendimento e automação com IA no site.",
-    example: "Quero testar a IA e escolher um plano.",
-  },
+  { id:"clinic", label:"Clínicas", playbook:"clinic", headline:"Recepção, triagem e agendamentos.", example:"Quero agendar uma consulta." },
+  { id:"aesthetics", label:"Estética", playbook:"aesthetics", headline:"Procedimentos, avaliações e atendimento comercial.", example:"Quero agendar uma avaliação." },
+  { id:"real_estate", label:"Imobiliárias", playbook:"real_estate", headline:"Imóveis, visitas e qualificação de interessados.", example:"Quero encontrar um imóvel." },
+  { id:"legal", label:"Advocacia / Jurídico", playbook:"legal", headline:"Triagem responsável e consultas jurídicas.", example:"Quero explicar meu caso." },
+  { id:"education", label:"Educação", playbook:"education", headline:"Matrículas, cursos, escolas e materiais.", example:"Quero conhecer cursos ou materiais." },
+  { id:"ecommerce", label:"E-commerce", playbook:"ecommerce", headline:"Produtos, ofertas, checkout e pedidos.", example:"Quero encontrar um produto." },
+  { id:"saas_b2b", label:"SaaS / Serviços B2B", playbook:"saas_b2b", headline:"Demonstrações, trials e qualificação comercial.", example:"Quero entender os planos." },
+  { id:"dentistry", label:"Odontologia", playbook:"dentistry", headline:"Avaliações, urgências e especialidades odontológicas.", example:"Quero agendar uma avaliação." },
+  { id:"veterinary", label:"Veterinária", playbook:"veterinary", headline:"Atendimento ao tutor, consultas e retornos.", example:"Quero atendimento para meu pet." },
+  { id:"accounting", label:"Contabilidade", playbook:"accounting", headline:"Abertura, fiscal, folha e consultoria contábil.", example:"Quero abrir uma empresa." },
+  { id:"automotive", label:"Automotivo", playbook:"automotive", headline:"Orçamentos, serviços e agenda da oficina.", example:"Meu carro precisa de avaliação." },
+  { id:"restaurant", label:"Restaurantes", playbook:"restaurant", headline:"Reservas, cardápio, pedidos e atendimento.", example:"Quero reservar uma mesa." },
+  { id:"fitness", label:"Fitness", playbook:"fitness", headline:"Modalidades, aulas experimentais e matrículas.", example:"Quero uma aula experimental." },
+  { id:"home_services", label:"Serviços Residenciais", playbook:"home_services", headline:"Orçamentos, urgências e visitas técnicas.", example:"Preciso solicitar um orçamento." },
 ];
 
 export function getRegisterSegmentById(segmentId) {

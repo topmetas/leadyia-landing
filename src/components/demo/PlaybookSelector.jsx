@@ -31,8 +31,8 @@ export default function PlaybookSelector() {
           <span>Playbooks ao vivo</span>
           <h2>Teste a LeadyIA como se fosse um site real de cada nicho.</h2>
           <p>
-            Clínica, estética, jurídico, imobiliária, educação, e-commerce e SaaS usam a
-            mesma plataforma, mas cada playbook muda a conversa, os botões e a próxima ação.
+            Os 14 nichos usam a mesma plataforma, mas cada playbook mantém conversa, memória,
+            botões, ações e próxima etapa totalmente isolados.
           </p>
         </header>
 

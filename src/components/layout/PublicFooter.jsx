@@ -1,4 +1,5 @@
 import WidgetOrbMark from "../brand/WidgetOrbMark";
+import { COMMERCIAL_NICHES_V1103_123 } from "../../data/verticalNiches.v1103_123";
 /**
  * =========================================================
  * 🧾 PUBLIC FOOTER — LEADYIA ENTERPRISE LANDING
@@ -43,15 +44,8 @@ const FOOTER_GROUPS = [
   {
     title: "Playbooks ao vivo",
     links: [
-      { label: "Hub de playbooks", href: "/demo" },
-      { label: "Clínicas", href: "https://clinica.leadyia.com" },
-      { label: "Estética", href: "https://estetica.leadyia.com" },
-      { label: "Advocacia", href: "https://advocacia.leadyia.com" },
-      { label: "Imobiliária", href: "https://imobiliaria.leadyia.com" },
-      { label: "Escola", href: "https://escola.leadyia.com" },
-      { label: "E-commerce", href: "https://ecommerce.leadyia.com" },
-      { label: "Odontologia", href: "https://dentista.leadyia.com" },
-      { label: "Veterinária", href: "https://veterinaria.leadyia.com" },
+      { label: "Hub dos 14 nichos", href: "/#playbooks" },
+      ...COMMERCIAL_NICHES_V1103_123.map((item) => ({ label: item.label, href: item.href })),
     ],
   },
   {

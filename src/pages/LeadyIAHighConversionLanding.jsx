@@ -3,9 +3,10 @@ import { SEOProvider } from "../seo";
 import { PAGE_SEO } from "../seo/config/pagesSeo.config";
 import PublicLayout from "../components/layout/PublicLayout";
 import Pricing from "../components/landing/Pricing";
+import { COMMERCIAL_NICHES_V1103_123 } from "../data/verticalNiches.v1103_123";
 import "../styles/leadyia-high-conversion.css";
 
-const REGISTER_URL = "https://dashboard.leadyia.com/auth/register?plan=pro&source=leadyia_main_v1103_43_11&playbook=leadyia";
+const REGISTER_URL = "https://dashboard.leadyia.com/auth/register?plan=pro&source=leadyia_main_v1103_124&playbook=leadyia";
 
 const painCards = [
   ["Leads esperando resposta", "Quem pede informação agora pode comprar de outra empresa em poucos minutos."],
@@ -21,26 +22,8 @@ const benefitCards = [
   ["Continue até a decisão", "Follow-up, lembretes, campanhas e CRM evitam que o contato esfrie."],
 ];
 
-const niches = [
-  ["Clínicas", "Pacientes respondidos, triagem e agendamentos."],
-  ["Estética", "Avaliações, confirmações e recorrência."],
-  ["Imobiliárias", "Leads qualificados e visitas organizadas."],
-  ["Advocacia", "Pré-triagem responsável e casos organizados."],
-  ["Educação", "Visitas, aulas experimentais e matrículas."],
-  ["E-commerce", "Recomendação de produtos e recuperação."],
-  ["SaaS", "Trials, demos e qualificação B2B."],
-];
-
-
-const customerSegments = [
-  "Clínicas",
-  "Estética",
-  "Imobiliárias",
-  "Escritórios",
-  "Educação",
-  "E-commerce",
-  "SaaS",
-];
+const niches = COMMERCIAL_NICHES_V1103_123;
+const customerSegments = COMMERCIAL_NICHES_V1103_123.map((item) => item.label);
 
 const trustTestimonials = [
   {
@@ -176,7 +159,7 @@ export default function LeadyIAHighConversionLanding() {
             <div className="lyhc-trust-metrics" aria-label="Diferenciais da plataforma">
               <article><strong>24/7</strong><span>atendimento inicial disponível</span></article>
               <article><strong>1 CRM</strong><span>para centralizar oportunidades</span></article>
-              <article><strong>7 nichos</strong><span>com jornadas especializadas</span></article>
+              <article><strong>14 nichos</strong><span>com jornadas especializadas</span></article>
               <article><strong>Omnichannel</strong><span>site, WhatsApp e integrações</span></article>
             </div>
 
@@ -214,7 +197,14 @@ export default function LeadyIAHighConversionLanding() {
           <div className="lyhc-shell">
             <SectionTitle kicker="IA treinada por segmento" title="A LeadyIA fala a língua do seu negócio." text="Cada playbook combina perguntas, limites, regras e próximos passos próprios do nicho." centered />
             <div className="lyhc-niche-grid">
-              {niches.map(([title, text]) => <article key={title}><h3>{title}</h3><p>{text}</p></article>)}
+              {niches.map((niche) => (
+                <a key={niche.playbook} href={niche.href} style={{ "--niche-accent": niche.color }}>
+                  <span aria-hidden="true">{niche.icon}</span>
+                  <h3>{niche.label}</h3>
+                  <p>{niche.summary}</p>
+                  <strong>Ver landing →</strong>
+                </a>
+              ))}
             </div>
           </div>
         </section>

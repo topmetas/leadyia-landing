@@ -75,6 +75,15 @@ export const PUBLIC_ROUTES = [
   { path: "/imobiliaria", key: "realestate", priority: 0.9 },
   { path: "/educacao", key: "education", priority: 0.9 },
   { path: "/ecommerce", key: "ecommerce", priority: 0.9 },
+  { path: "/saas", key: "home", priority: 0.85 },
+  { path: "/dentista", key: "home", priority: 0.9 },
+  { path: "/veterinaria", key: "home", priority: 0.9 },
+  { path: "/contabilidade", key: "home", priority: 0.85 },
+  { path: "/automotivo", key: "home", priority: 0.85 },
+  { path: "/restaurante", key: "home", priority: 0.85 },
+  { path: "/fitness", key: "home", priority: 0.85 },
+  { path: "/servicos-residenciais", key: "home", priority: 0.85 },
+  { path: "/pricing", key: "home", priority: 0.8 },
   { path: "/register", key: "home", priority: 0.7 },
   { path: "/contato", key: "home", priority: 0.7 }
 ];

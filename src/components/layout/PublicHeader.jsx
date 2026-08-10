@@ -26,6 +26,7 @@
 
 import { useEffect, useState } from "react";
 import WidgetOrbMark from "../brand/WidgetOrbMark";
+import { COMMERCIAL_NICHES_V1103_123 } from "../../data/verticalNiches.v1103_123";
 
 const DASHBOARD_LOGIN_URL = "https://dashboard.leadyia.com/auth/login";
 const DASHBOARD_REGISTER_URL = "https://dashboard.leadyia.com/auth/register";
@@ -39,15 +40,8 @@ const NAV_ITEMS = [
 ];
 
 const LIVE_PLAYBOOK_MENU = [
-  { label: "Hub", href: "/demo", icon: "✨" },
-  { label: "Clínica", href: "https://clinica.leadyia.com", icon: "🏥" },
-  { label: "Estética", href: "https://estetica.leadyia.com", icon: "💆" },
-  { label: "Advocacia", href: "https://advocacia.leadyia.com", icon: "⚖️" },
-  { label: "Imobiliária", href: "https://imobiliaria.leadyia.com", icon: "🏠" },
-  { label: "Escola", href: "https://escola.leadyia.com", icon: "🎓" },
-  { label: "E-commerce", href: "https://ecommerce.leadyia.com", icon: "🛒" },
-  { label: "Odontologia", href: "https://dentista.leadyia.com", icon: "🦷" },
-  { label: "Veterinária", href: "https://veterinaria.leadyia.com", icon: "🐾" },
+  { label: "Hub dos 14 nichos", href: "/#playbooks", icon: "✨" },
+  ...COMMERCIAL_NICHES_V1103_123.map((item) => ({ label: item.label, href: item.href, icon: item.icon })),
 ];
 
 export default function PublicHeader() {

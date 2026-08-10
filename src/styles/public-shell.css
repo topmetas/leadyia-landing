@@ -275,6 +275,8 @@
   box-shadow: 0 22px 70px rgba(0, 0, 0, 0.42);
   backdrop-filter: blur(18px);
   -webkit-backdrop-filter: blur(18px);
+  max-height: calc(100vh - 110px);
+  overflow-y: auto;
 }
 
 .ly-public-header__mobile-kicker {
@@ -722,6 +724,8 @@
   pointer-events: none;
   transition: opacity 160ms ease, transform 160ms ease, visibility 160ms ease;
   z-index: 120;
+  max-height: min(72vh, 520px);
+  overflow-y: auto;
 }
 
 .ly-public-header__dropdown:hover .ly-public-header__dropdown-panel,

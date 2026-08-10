@@ -34,7 +34,7 @@ const PLANS = [
 ];
 
 function registerUrl(tier, playbook) {
-  const params = new URLSearchParams({ plan: tier, source: `vertical_${playbook}_v1103_122`, playbook });
+  const params = new URLSearchParams({ plan: tier, source: `vertical_${playbook}_v1103_124`, playbook });
   return `${DASHBOARD_REGISTER}?${params.toString()}`;
 }
 

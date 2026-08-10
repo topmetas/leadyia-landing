@@ -2,6 +2,8 @@
 @media(max-width:980px){.lyhc-hero-grid,.lyhc-journey-grid,.lyhc-two-columns,.lyhc-plan-card{grid-template-columns:1fr}.lyhc-card-grid.four,.lyhc-niche-grid{grid-template-columns:repeat(2,1fr)}.lyhc-hero{padding-top:70px}.lyhc-price-box{max-width:460px}.lyhc-faq-grid{grid-template-columns:1fr}}
 @media(max-width:640px){.lyhc-shell{width:min(100% - 24px,1180px)}.lyhc-section{padding:70px 0}.lyhc-card-grid.four,.lyhc-niche-grid{grid-template-columns:1fr}.lyhc-hero h1{font-size:44px}.lyhc-actions{flex-direction:column}.lyhc-button{width:100%}.lyhc-demo-card{padding:18px}.lyhc-bubble.customer,.lyhc-bubble.ai{margin-left:0;margin-right:0}.lyhc-plan-card{padding:24px}.lyhc-plan-card h2{font-size:38px}}
 
+.lyhc-niche-grid>a{display:block;padding:22px;border:1px solid rgba(255,255,255,.1);border-radius:20px;background:rgba(255,255,255,.055);color:inherit;text-decoration:none;transition:transform .2s,border-color .2s,background .2s}.lyhc-niche-grid>a:hover{transform:translateY(-4px);border-color:var(--niche-accent,#60a5fa);background:rgba(255,255,255,.09)}.lyhc-niche-grid>a>span{display:block;margin-bottom:12px;font-size:28px}.lyhc-niche-grid>a>strong{display:block;margin-top:14px;color:color-mix(in srgb,var(--niche-accent,#93c5fd) 72%,white);font-size:13px}
+
 /* v1103.43.9 — funnel contrast + demonstrative social proof */
 .lyhc-pipeline span{color:#f8fbff!important;text-shadow:0 1px 0 rgba(0,0,0,.18)}
 .lyhc-pipeline span:nth-child(1),.lyhc-pipeline span:nth-child(2){color:#dbeafe!important}

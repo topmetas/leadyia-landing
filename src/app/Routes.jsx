@@ -34,6 +34,7 @@ import RealEstateLanding from "../pages/niches/RealEstateLanding";
 import EcommerceLanding from "../pages/niches/EcommerceLanding";
 import EducationLanding from "../pages/niches/EducationLanding";
 import PricingPage from "../modules/marketing/pricing/PricingPage";
+import UniversalNicheLanding from "../pages/niches/UniversalNicheLanding";
 
 function HostAwareHome() {
   const host = typeof window !== "undefined" ? window.location.hostname : "";
@@ -59,6 +60,34 @@ function HostAwareHome() {
 
   if (host.startsWith("educacao.") || host.startsWith("education.") || host.startsWith("escola.")) {
     return <EducationLanding />;
+  }
+
+  if (host.startsWith("dentista.") || host.startsWith("odontologia.") || host.startsWith("dentistry.")) {
+    return <UniversalNicheLanding niche="dentistry" />;
+  }
+
+  if (host.startsWith("veterinaria.") || host.startsWith("veterinary.") || host.startsWith("pet.")) {
+    return <UniversalNicheLanding niche="veterinary" />;
+  }
+
+  if (host.startsWith("contabilidade.") || host.startsWith("accounting.") || host.startsWith("contador.")) {
+    return <UniversalNicheLanding niche="accounting" />;
+  }
+
+  if (host.startsWith("automotivo.") || host.startsWith("automotive.") || host.startsWith("oficina.")) {
+    return <UniversalNicheLanding niche="automotive" />;
+  }
+
+  if (host.startsWith("restaurante.") || host.startsWith("restaurant.") || host.startsWith("gastronomia.")) {
+    return <UniversalNicheLanding niche="restaurant" />;
+  }
+
+  if (host.startsWith("fitness.") || host.startsWith("academia.") || host.startsWith("personal.")) {
+    return <UniversalNicheLanding niche="fitness" />;
+  }
+
+  if (host.startsWith("servicos.") || host.startsWith("home-services.")) {
+    return <UniversalNicheLanding niche="home_services" />;
   }
 
   // Landing SaaS / hub comercial da LeadyIA
@@ -102,6 +131,35 @@ export default function AppRoutes() {
       <Route path="/educacao" element={<EducationLanding />} />
       <Route path="/education" element={<EducationLanding />} />
       <Route path="/escola" element={<EducationLanding />} />
+
+      {/* Novos playbooks comerciais ativados — v1103.92 / landing v1103.123 */}
+      <Route path="/dentista" element={<UniversalNicheLanding niche="dentistry" />} />
+      <Route path="/odontologia" element={<UniversalNicheLanding niche="dentistry" />} />
+      <Route path="/dentistry" element={<UniversalNicheLanding niche="dentistry" />} />
+
+      <Route path="/veterinaria" element={<UniversalNicheLanding niche="veterinary" />} />
+      <Route path="/veterinary" element={<UniversalNicheLanding niche="veterinary" />} />
+      <Route path="/pet" element={<UniversalNicheLanding niche="veterinary" />} />
+
+      <Route path="/contabilidade" element={<UniversalNicheLanding niche="accounting" />} />
+      <Route path="/accounting" element={<UniversalNicheLanding niche="accounting" />} />
+      <Route path="/contador" element={<UniversalNicheLanding niche="accounting" />} />
+
+      <Route path="/automotivo" element={<UniversalNicheLanding niche="automotive" />} />
+      <Route path="/automotive" element={<UniversalNicheLanding niche="automotive" />} />
+      <Route path="/oficina" element={<UniversalNicheLanding niche="automotive" />} />
+
+      <Route path="/restaurante" element={<UniversalNicheLanding niche="restaurant" />} />
+      <Route path="/restaurant" element={<UniversalNicheLanding niche="restaurant" />} />
+      <Route path="/gastronomia" element={<UniversalNicheLanding niche="restaurant" />} />
+
+      <Route path="/fitness" element={<UniversalNicheLanding niche="fitness" />} />
+      <Route path="/academia" element={<UniversalNicheLanding niche="fitness" />} />
+      <Route path="/personal" element={<UniversalNicheLanding niche="fitness" />} />
+
+      <Route path="/servicos-residenciais" element={<UniversalNicheLanding niche="home_services" />} />
+      <Route path="/home-services" element={<UniversalNicheLanding niche="home_services" />} />
+      <Route path="/servicos" element={<UniversalNicheLanding niche="home_services" />} />
 
       {/* Landing SaaS / demo hub */}
       <Route path="/saas" element={<Home />} />
