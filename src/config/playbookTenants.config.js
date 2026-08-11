@@ -10,20 +10,22 @@
  * Para subdomínios, registre também clinica.leadyia.com, estetica.leadyia.com etc.
  */
 
-export const LEADYIA_WIDGET_LOADER_SRC = String(import.meta.env.VITE_LEADYIA_WIDGET_SRC || "https://widget.leadyia.com/v1/widget.js").trim();
+const VITE_ENV = import.meta.env || {};
+
+export const LEADYIA_WIDGET_LOADER_SRC = String(VITE_ENV.VITE_LEADYIA_WIDGET_SRC || "https://widget.leadyia.com/v1/widget.js").trim();
 export const LEADYIA_WIDGET_SRC = LEADYIA_WIDGET_LOADER_SRC;
-export const LEADYIA_API_BASE_URL = String(import.meta.env.VITE_API_URL || "https://api.leadyia.com").replace(/\/+$/, "").replace(/\/api$/, "");
+export const LEADYIA_API_BASE_URL = String(VITE_ENV.VITE_API_URL || "https://api.leadyia.com").replace(/\/+$/, "").replace(/\/api$/, "");
 
 const isTenantPlaceholder = (value) => /^TENANT_ID_/i.test(String(value || "").trim());
 
 const envTenant = (key, fallback) => {
-  const value = String(import.meta.env[key] || "").trim();
+  const value = String(VITE_ENV[key] || "").trim();
   if (value && !isTenantPlaceholder(value)) return value;
   return String(fallback || "").trim();
 };
 
 const envPlaybook = (key, fallback) => {
-  const value = String(import.meta.env[key] || "").trim().toLowerCase();
+  const value = String(VITE_ENV[key] || "").trim().toLowerCase();
   return value || fallback;
 };
 
@@ -35,6 +37,7 @@ export const PLAYBOOK_TENANT_REGISTRY = {
     // autorizado por metadata.allowLeadyiaPlaybook.
     playbook: envPlaybook("VITE_LEADYIA_PLAYBOOK", "leadyia"),
     niche: envPlaybook("VITE_LEADYIA_PLAYBOOK", "leadyia"),
+    canonicalTenantId: "69f168938e078fba344fe491",
     tenantId: envTenant("VITE_LEADYIA_TENANT_ID", envTenant("VITE_LEADYIA_LOCAL_TENANT_ID", "69f168938e078fba344fe491")),
     widgetKey: "",
     paths: ["/", "/demo", "/playbook", "/playbooks", "/ao-vivo"],
@@ -55,6 +58,7 @@ export const PLAYBOOK_TENANT_REGISTRY = {
     label: "Clínica",
     playbook: "clinic",
     niche: "clinic",
+    canonicalTenantId: "6a48125e0b6fcd419b86524a",
     tenantId: envTenant("VITE_CLINIC_TENANT_ID", "6a48125e0b6fcd419b86524a"),
     widgetKey: "",
     paths: ["/clinica", "/clinic"],
@@ -65,6 +69,7 @@ export const PLAYBOOK_TENANT_REGISTRY = {
     label: "Estética",
     playbook: "aesthetics",
     niche: "aesthetics",
+    canonicalTenantId: "6a480bba5258829b2cd61b33",
     tenantId: envTenant("VITE_ESTETICA_TENANT_ID", "6a480bba5258829b2cd61b33"),
     widgetKey: "",
     paths: ["/estetica", "/aesthetics"],
@@ -75,6 +80,7 @@ export const PLAYBOOK_TENANT_REGISTRY = {
     label: "Advocacia / Jurídico",
     playbook: "legal",
     niche: "legal",
+    canonicalTenantId: "6a480ca95258829b2cd61bb1",
     tenantId: envTenant("VITE_LEGAL_TENANT_ID", "6a480ca95258829b2cd61bb1"),
     widgetKey: "",
     paths: ["/juridico", "/advocacia", "/legal"],
@@ -85,6 +91,7 @@ export const PLAYBOOK_TENANT_REGISTRY = {
     label: "Imobiliária",
     playbook: "real_estate",
     niche: "real_estate",
+    canonicalTenantId: "6a4802ae5258829b2cd61531",
     tenantId: envTenant("VITE_REAL_ESTATE_TENANT_ID", "6a4802ae5258829b2cd61531"),
     widgetKey: "",
     paths: ["/imobiliaria", "/imoveis", "/realestate"],
@@ -95,6 +102,7 @@ export const PLAYBOOK_TENANT_REGISTRY = {
     label: "Educação",
     playbook: "education",
     niche: "education",
+    canonicalTenantId: "6a480d0c5258829b2cd61c3d",
     tenantId: envTenant("VITE_EDUCATION_TENANT_ID", "6a480d0c5258829b2cd61c3d"),
     widgetKey: "",
     paths: ["/educacao", "/education", "/escola"],
@@ -105,6 +113,7 @@ export const PLAYBOOK_TENANT_REGISTRY = {
     label: "E-commerce",
     playbook: "ecommerce",
     niche: "ecommerce",
+    canonicalTenantId: "6a4813e60b6fcd419b865483",
     tenantId: envTenant("VITE_ECOMMERCE_TENANT_ID", "6a4813e60b6fcd419b865483"),
     widgetKey: "",
     paths: ["/ecommerce", "/loja", "/shop"],
@@ -115,6 +124,7 @@ export const PLAYBOOK_TENANT_REGISTRY = {
     label: "Odontologia",
     playbook: "dentistry",
     niche: "dentistry",
+    canonicalTenantId: "6a78d3c022f2475bcebfaa60",
     tenantId: envTenant("VITE_DENTISTRY_TENANT_ID", "6a78d3c022f2475bcebfaa60"),
     widgetKey: "",
     paths: ["/dentista", "/odontologia", "/dentistry"],
@@ -194,6 +204,17 @@ export function resolvePlaybookKeyFromLocation(locationLike) {
   const hostname = String(locationLike?.hostname || "").toLowerCase();
   const pathname = String(locationLike?.pathname || "/").toLowerCase().replace(/\/$/, "") || "/";
 
+  const sharedInstitutionalHost = ["leadyia.com", "www.leadyia.com", "localhost", "127.0.0.1"].includes(hostname);
+
+  // Em subdomínio dedicado, o host é soberano. Isso impede que o path raiz
+  // "/" seja confundido com a landing institucional.
+  if (!sharedInstitutionalHost) {
+    const dedicatedDomainMatch = Object.entries(PLAYBOOK_TENANT_REGISTRY).find(([, cfg]) =>
+      cfg.domains.some((domain) => hostname === domain)
+    );
+    if (dedicatedDomainMatch) return dedicatedDomainMatch[0];
+  }
+
   // Prioridade 1: path da página atual.
   // Em leadyia.com/imobiliaria, leadyia.com é domínio compartilhado, então o path decide o playbook.
   const pathMatch = Object.entries(PLAYBOOK_TENANT_REGISTRY).find(([, cfg]) =>
@@ -202,7 +223,7 @@ export function resolvePlaybookKeyFromLocation(locationLike) {
 
   if (pathMatch) return pathMatch[0];
 
-  // Prioridade 2: subdomínio dedicado.
+  // Prioridade 2 nos hosts compartilhados: domínio dedicado/fallback.
   // Em imobiliaria.leadyia.com, o host decide o playbook.
   const domainMatch = Object.entries(PLAYBOOK_TENANT_REGISTRY).find(([, cfg]) =>
     cfg.domains.some((domain) => hostname === domain)
@@ -214,7 +235,24 @@ export function resolvePlaybookKeyFromLocation(locationLike) {
 export function getCurrentPlaybookTenantConfig() {
   if (typeof window === "undefined") return PLAYBOOK_TENANT_REGISTRY.leadyia;
   const key = resolvePlaybookKeyFromLocation(window.location);
-  return getPlaybookTenantConfig(key);
+  const cfg = getPlaybookTenantConfig(key);
+  const hostname = String(window.location.hostname || "").toLowerCase();
+  const dedicatedOfficialHost = cfg.domains.some(
+    (domain) => domain !== "leadyia.com" && domain !== "www.leadyia.com" && hostname === domain
+  );
+
+  // Nos subdomínios oficiais, o tenant canônico não pode ser substituído por
+  // uma variável VITE copiada de outro nicho. Em white-label externo, a env
+  // continua sendo usada normalmente.
+  if (dedicatedOfficialHost && cfg.canonicalTenantId) {
+    return { ...cfg, tenantId: cfg.canonicalTenantId };
+  }
+
+  if (["leadyia.com", "www.leadyia.com"].includes(hostname) && key === "leadyia") {
+    return { ...cfg, tenantId: cfg.canonicalTenantId || cfg.tenantId, playbook: "leadyia", niche: "leadyia" };
+  }
+
+  return cfg;
 }
 
 export function buildLeadyIAWidgetSnippet(playbookKey = "saas") {
