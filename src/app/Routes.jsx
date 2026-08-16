@@ -35,6 +35,7 @@ import EcommerceLanding from "../pages/niches/EcommerceLanding";
 import EducationLanding from "../pages/niches/EducationLanding";
 import PricingPage from "../modules/marketing/pricing/PricingPage";
 import UniversalNicheLanding from "../pages/niches/UniversalNicheLanding";
+import SaasLeadyiaLanding from "../pages/niches/SaasLeadyiaLanding";
 
 function HostAwareHome() {
   const host = typeof window !== "undefined" ? window.location.hostname : "";
@@ -92,7 +93,7 @@ function HostAwareHome() {
 
   // Landing SaaS / hub comercial da LeadyIA
   if (host.startsWith("saas.") || host.startsWith("demo.") || host.startsWith("playbook.") || host.startsWith("playbooks.")) {
-    return <Home />;
+    return <SaasLeadyiaLanding />;
   }
 
   return <Home />;
@@ -162,7 +163,7 @@ export default function AppRoutes() {
       <Route path="/servicos" element={<UniversalNicheLanding niche="home_services" />} />
 
       {/* Landing SaaS / demo hub */}
-      <Route path="/saas" element={<Home />} />
+      <Route path="/saas" element={<SaasLeadyiaLanding />} />
       <Route path="/demo" element={<Home />} />
       <Route path="/playbook" element={<Home />} />
       <Route path="/playbooks" element={<Home />} />

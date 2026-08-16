@@ -7,10 +7,19 @@
 export const SUPPORTED_COUNTRIES = [
   { code: "BR", label: "Brasil", currency: "BRL", locale: "pt-BR", provider: "mercadopago", flag: "🇧🇷" },
   { code: "US", label: "United States", currency: "USD", locale: "en-US", provider: "stripe", flag: "🇺🇸" },
-  { code: "EU", label: "Europe", currency: "EUR", locale: "en-US", provider: "stripe", flag: "🇪🇺" },
-  { code: "GB", label: "United Kingdom", currency: "GBP", locale: "en-US", provider: "stripe", flag: "🇬🇧" },
-  { code: "CA", label: "Canada", currency: "CAD", locale: "en-US", provider: "stripe", flag: "🇨🇦" },
+  { code: "PT", label: "Portugal", currency: "EUR", locale: "pt-PT", provider: "stripe", flag: "🇵🇹" },
+  { code: "ES", label: "España", currency: "EUR", locale: "es-ES", provider: "stripe", flag: "🇪🇸" },
+  { code: "IE", label: "Ireland", currency: "EUR", locale: "en-IE", provider: "stripe", flag: "🇮🇪" },
+  { code: "FR", label: "France", currency: "EUR", locale: "fr-FR", provider: "stripe", flag: "🇫🇷" },
+  { code: "DE", label: "Deutschland", currency: "EUR", locale: "de-DE", provider: "stripe", flag: "🇩🇪" },
+  { code: "IT", label: "Italia", currency: "EUR", locale: "it-IT", provider: "stripe", flag: "🇮🇹" },
+  { code: "GB", label: "United Kingdom", currency: "GBP", locale: "en-GB", provider: "stripe", flag: "🇬🇧" },
+  { code: "CA", label: "Canada", currency: "CAD", locale: "en-CA", provider: "stripe", flag: "🇨🇦" },
   { code: "MX", label: "México", currency: "MXN", locale: "es-MX", provider: "stripe", flag: "🇲🇽" },
+  { code: "CL", label: "Chile", currency: "USD", locale: "es-CL", provider: "stripe", flag: "🇨🇱" },
+  { code: "CO", label: "Colombia", currency: "USD", locale: "es-CO", provider: "stripe", flag: "🇨🇴" },
+  { code: "AR", label: "Argentina", currency: "USD", locale: "es-AR", provider: "stripe", flag: "🇦🇷" },
+  { code: "PE", label: "Perú", currency: "USD", locale: "es-PE", provider: "stripe", flag: "🇵🇪" },
 ];
 
 export const SUPPORTED_CURRENCIES = ["BRL", "USD", "EUR", "GBP", "CAD", "MXN"];
@@ -112,10 +121,11 @@ export function resolveInitialCountry() {
   }
   if (byCurrency) return resolveCountryFromCurrency(byCurrency);
   const locale = navigator.language || "pt-BR";
-  if (locale.startsWith("en-GB")) return SUPPORTED_COUNTRIES.find((c) => c.code === "GB");
-  if (locale.startsWith("en-CA")) return SUPPORTED_COUNTRIES.find((c) => c.code === "CA");
-  if (locale.startsWith("en")) return SUPPORTED_COUNTRIES.find((c) => c.code === "US");
-  if (locale.startsWith("es")) return SUPPORTED_COUNTRIES.find((c) => c.code === "MX");
+  const exactLocale = SUPPORTED_COUNTRIES.find((c) => c.locale.toLowerCase() === locale.toLowerCase());
+  if (exactLocale) return exactLocale;
+  if (locale.toLowerCase().startsWith("pt-pt")) return SUPPORTED_COUNTRIES.find((c) => c.code === "PT");
+  if (locale.toLowerCase().startsWith("en")) return SUPPORTED_COUNTRIES.find((c) => c.code === "US");
+  if (locale.toLowerCase().startsWith("es")) return SUPPORTED_COUNTRIES.find((c) => c.code === "ES");
   return SUPPORTED_COUNTRIES[0];
 }
 

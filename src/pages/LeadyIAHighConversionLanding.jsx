@@ -6,7 +6,7 @@ import Pricing from "../components/landing/Pricing";
 import { COMMERCIAL_NICHES_V1103_123 } from "../data/verticalNiches.v1103_123";
 import "../styles/leadyia-high-conversion.css";
 
-const REGISTER_URL = "https://dashboard.leadyia.com/auth/register?plan=pro&source=leadyia_main_v1103_125&playbook=leadyia";
+const REGISTER_URL = "https://dashboard.leadyia.com/auth/register?plan=pro&source=leadyia_main_v1103_206&playbook=leadyia";
 
 const painCards = [
   ["Leads esperando resposta", "Quem pede informação agora pode comprar de outra empresa em poucos minutos."],
@@ -83,10 +83,9 @@ export default function LeadyIAHighConversionLanding() {
           <div className="lyhc-shell lyhc-hero-grid">
             <div className="lyhc-hero-copy">
               <span className="lyhc-kicker">Atendimento e vendas com IA</span>
-              <h1>Responda mais rápido, organize cada lead e transforme conversas em oportunidades.</h1>
+              <h1>Atenda, qualifique, agende e venda 24 horas por dia com uma IA preparada para o seu negócio.</h1>
               <p>
-                A LeadyIA atende no site e no WhatsApp, entende o que o visitante precisa,
-                coleta os dados, organiza o CRM e conduz para agendamento, compra, demo ou atendimento humano.
+                A LeadyIA atende no site e no WhatsApp, usa as informações oficiais da sua empresa, organiza cada lead no CRM e conduz a conversa para agendamento, compra, demonstração ou atendimento humano.
               </p>
               <div className="lyhc-actions">
                 <a className="lyhc-button primary" href={REGISTER_URL}>Quero testar gratuitamente</a>
@@ -171,14 +170,15 @@ export default function LeadyIAHighConversionLanding() {
               {customerSegments.map((segment) => <span key={segment}>{segment}</span>)}
             </div>
 
-            <div className="lyhc-testimonial-grid">
-              {trustTestimonials.map((item) => (
-                <article key={item.role} className="lyhc-testimonial">
-                  <div className="lyhc-stars" aria-label="5 estrelas">★★★★★</div>
-                  <blockquote>“{item.quote}”</blockquote>
-                  <footer><strong>Cliente LeadyIA</strong><span>{item.role}</span></footer>
-                </article>
-              ))}
+            <div className="lyhc-proof-subheading outcomes-heading">
+              <span>Produto verificável</span>
+              <h3>Veja o que acontece em uma operação LeadyIA</h3>
+            </div>
+            <div className="lyhc-outcomes-grid">
+              <article><h4>Atendimento contextual</h4><p>A conversa preserva intenção, dados do lead e próximo passo entre atendimento, agenda e equipe.</p></article>
+              <article><h4>Agenda organizada</h4><p>Data, período, horário, dados e confirmação seguem uma jornada guiada e aparecem no fluxo operacional.</p></article>
+              <article><h4>Informação oficial</h4><p>Serviços, preços, horários, endereço e políticas usam o Perfil do Negócio e fontes configuradas.</p></article>
+              <article><h4>Continuidade humana</h4><p>Quando necessário, a equipe recebe o contexto já coletado em vez de recomeçar o atendimento.</p></article>
             </div>
 
             <div className="lyhc-proof-subheading outcomes-heading">
@@ -205,6 +205,51 @@ export default function LeadyIAHighConversionLanding() {
                   <strong>Ver landing →</strong>
                 </a>
               ))}
+            </div>
+          </div>
+        </section>
+
+        <section className="lyhc-section light" id="business-profile">
+          <div className="lyhc-shell lyhc-two-columns">
+            <div>
+              <SectionTitle kicker="Perfil do Negócio" title="Sua IA responde com as informações reais da sua empresa." text="Cadastre o que a equipe realmente pode informar. A LeadyIA usa esse contexto durante o atendimento e evita transformar suposições em respostas comerciais." />
+              <ul className="lyhc-checklist">
+                <li>Serviços, produtos e informações comerciais.</li>
+                <li>Preços e formas de pagamento quando cadastrados.</li>
+                <li>Horários de funcionamento, endereço e localização.</li>
+                <li>Políticas, documentos, site e Base de Conhecimento.</li>
+                <li>Regras de encaminhamento para atendimento humano.</li>
+                <li>Fail-closed: se a informação oficial não existe, a IA não deve inventá-la.</li>
+              </ul>
+            </div>
+            <div className="lyhc-crm-card">
+              <div><span>Serviço</span><strong>Fonte oficial</strong></div>
+              <div><span>Horários</span><strong>Perfil do Negócio</strong></div>
+              <div><span>Localização</span><strong>Endereço + mapa</strong></div>
+              <div><span>Informação ausente</span><strong className="hot">Encaminhar, não inventar</strong></div>
+            </div>
+          </div>
+        </section>
+
+        <section className="lyhc-section dark" id="whatsapp-real">
+          <div className="lyhc-shell lyhc-journey-grid">
+            <div>
+              <SectionTitle kicker="WhatsApp + agendamento" title="Da primeira mensagem ao próximo passo, sem perder o contexto." text="A mesma lógica de atendimento pode entender a necessidade, organizar a preferência de agenda, confirmar dados e continuar a conversa depois do pré-agendamento." />
+              <ol className="lyhc-steps">
+                <li><strong>1. Entende o objetivo</strong><span>O lead explica o que precisa com as próprias palavras.</span></li>
+                <li><strong>2. Organiza a agenda</strong><span>Data, período e horário são conduzidos de forma coerente.</span></li>
+                <li><strong>3. Confirma os dados</strong><span>Nome, contato e resumo ficam claros antes do registro.</span></li>
+                <li><strong>4. Entrega localização</strong><span>Quando cadastrados, endereço e rota podem acompanhar a confirmação.</span></li>
+                <li><strong>5. Continua atendendo</strong><span>Alteração de horário, informações e recepção continuam sem apagar o contexto.</span></li>
+              </ol>
+            </div>
+            <div className="lyhc-demo-card">
+              <div className="lyhc-demo-top"><strong>Conversa no WhatsApp</strong><span>● Contexto preservado</span></div>
+              <div className="lyhc-bubble customer">Quero agendar uma avaliação.</div>
+              <div className="lyhc-bubble ai">Claro. Vou organizar sua preferência de data e horário.</div>
+              <div className="lyhc-bubble customer">Amanhã à tarde.</div>
+              <div className="lyhc-bubble ai">Perfeito. Depois de confirmar seus dados, seu pré-agendamento fica registrado para a equipe continuar.</div>
+              <div className="lyhc-result-card"><span>Próximo passo claro</span><strong>Agenda • CRM • Atendimento humano quando necessário</strong></div>
             </div>
           </div>
         </section>
@@ -244,23 +289,8 @@ export default function LeadyIAHighConversionLanding() {
         </section>
 
         <section className="lyhc-section recommended">
-          <div className="lyhc-shell lyhc-plan-card">
-            <div>
-              <span className="lyhc-kicker">Plano recomendado</span>
-              <h2>Comece com o Pro.</h2>
-              <p>É o plano ideal para quem quer usar Website + WhatsApp API Oficial da Meta + Instagram, CRM, agendamentos, lead score, follow-up e playbooks por nicho.</p>
-              <ul className="lyhc-checklist compact">
-                <li>3 assistentes IA e 5 usuários</li>
-                <li>10.000 conversas por mês</li>
-                <li>CRM completo e pipeline</li>
-                <li>Agendamentos e campanhas</li>
-              </ul>
-            </div>
-            <div className="lyhc-price-box">
-              <span>Pro</span><strong>R$ 297</strong><small>/mês · R$ 2.970/ano (2 meses grátis)</small>
-              <div className="lyhc-promo">Implantação gratuita por tempo limitado<br/><small>Valor normal: R$ 197</small></div>
-              <a className="lyhc-button primary" href={REGISTER_URL}>Começar meu trial</a>
-            </div>
+          <div className="lyhc-shell">
+            <SectionTitle kicker="Planos por mercado" title="Veja preço, moeda e checkout corretos para o seu país." text="A seleção comercial abaixo usa Mercado Pago/Pix no Brasil e Stripe nos mercados internacionais suportados. Escolha seu país antes de iniciar o trial." centered />
           </div>
         </section>
 
