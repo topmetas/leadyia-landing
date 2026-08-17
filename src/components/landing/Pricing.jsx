@@ -39,6 +39,8 @@ function PlanCard({ plan, onCheckout, loading, billingCycle }) {
   const monthlyCents = Number(plan.priceCents || 0);
   const annualContractBRL = Number(commercial.annualPriceBRL || 0);
   const annualCents = plan.currency === "BRL" && annualContractBRL > 0 ? annualContractBRL * 100 : monthlyCents * 10;
+  const yearlyAvailable = plan.currency !== 'BRL' || plan.yearlyAvailable === true || plan.billingOptions?.yearly?.available === true;
+  const cycleAvailable = billingCycle !== 'yearly' || yearlyAvailable;
   const displayedPrice = billingCycle === "yearly"
     ? new Intl.NumberFormat(plan.locale || "pt-BR", { style: "currency", currency: plan.currency || "BRL" }).format(annualCents / 100)
     : plan.priceFormatted;
@@ -64,7 +66,8 @@ function PlanCard({ plan, onCheckout, loading, billingCycle }) {
       </div>
 
       {commercial.channels?.length > 0 && <p className="lp-pricing-channels">Canais: {commercial.channels.join(" + ")}</p>}
-      {billingCycle === "yearly" ? <p className="lp-pricing-channels"><strong>2 meses grátis</strong> · equivalente a 10 mensalidades</p> : null}
+      {billingCycle === "yearly" && cycleAvailable ? <p className="lp-pricing-channels"><strong>2 meses grátis</strong> · equivalente a 10 mensalidades</p> : null}
+      {billingCycle === "yearly" && !cycleAvailable ? <p className="lp-pricing-channels"><strong>Anual ainda não disponível neste plano no Brasil.</strong> Selecione Mensal para contratar agora.</p> : null}
       {setupPolicy?.label && (
         <div className={`lp-pricing-setup-policy ${setupPolicy?.promotion ? "lp-pricing-setup-policy--promo" : ""}`}>
           <strong>{setupPolicy.label}</strong>
@@ -85,8 +88,8 @@ function PlanCard({ plan, onCheckout, loading, billingCycle }) {
         </details>
       )}
 
-      <button type="button" className={`lp-pricing-cta ${plan.recommended ? "lp-pricing-cta--primary" : ""}`} onClick={() => onCheckout(plan)} disabled={loading}>
-        {loading ? "Abrindo..." : resolveCtaLabel(plan)}
+      <button type="button" className={`lp-pricing-cta ${plan.recommended ? "lp-pricing-cta--primary" : ""}`} onClick={() => cycleAvailable && onCheckout(plan)} disabled={loading || !cycleAvailable}>
+        {loading ? "Abrindo..." : !cycleAvailable ? "Escolha Mensal para contratar" : resolveCtaLabel(plan)}
       </button>
     </article>
   );
