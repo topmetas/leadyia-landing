@@ -52,6 +52,7 @@ const FOOTER_GROUPS = [
     title: "Canais",
     links: [
       { label: "Widget para site", href: "#channels" },
+      { label: "Plugin WordPress", href: "/wordpress" },
       { label: "WhatsApp", href: "#channels" },
       { label: "Instagram", href: "#channels" },
       { label: "Multiatendimento", href: "#channels" },
@@ -64,14 +65,6 @@ const FOOTER_GROUPS = [
       { label: "Pix de reserva", href: "#scheduling" },
       { label: "Google Calendar", href: "#scheduling" },
       { label: "Confirmação de horários", href: "#scheduling" },
-    ],
-  },
-  {
-    title: "Legal",
-    links: [
-      { label: "Termos de Uso", href: "/terms" },
-      { label: "Política de Privacidade", href: "/privacy" },
-      { label: "Contato de privacidade", href: "mailto:support@leadyia.com" },
     ],
   },
   {
@@ -199,7 +192,7 @@ export default function PublicFooter() {
 
         <div className="ly-public-footer__bottom">
           <p>© 2026 LeadyIA. Todos os direitos reservados.</p>
-          <p>Em conformidade com LGPD e boas práticas de segurança para SaaS. · <a href="/terms">Termos</a> · <a href="/privacy">Privacidade</a></p>
+          <p>Em conformidade com LGPD e boas práticas de segurança para SaaS.</p>
         </div>
       </div>
     </footer>

@@ -36,8 +36,7 @@ import EducationLanding from "../pages/niches/EducationLanding";
 import PricingPage from "../modules/marketing/pricing/PricingPage";
 import UniversalNicheLanding from "../pages/niches/UniversalNicheLanding";
 import SaasLeadyiaLanding from "../pages/niches/SaasLeadyiaLanding";
-import Terms from "../pages/legal/Terms";
-import Privacy from "../pages/legal/Privacy";
+import WordPressPlugin from "../pages/WordPressPlugin";
 
 function HostAwareHome() {
   const host = typeof window !== "undefined" ? window.location.hostname : "";
@@ -174,9 +173,7 @@ export default function AppRoutes() {
       {/* Comparação completa: Starter, Pro, Business, Enterprise e Agency */}
       <Route path="/pricing" element={<PricingPage />} />
 
-      {/* Documentos legais públicos usados também pelas integrações oficiais */}
-      <Route path="/terms" element={<Terms />} />
-      <Route path="/privacy" element={<Privacy />} />
+      <Route path="/wordpress" element={<WordPressPlugin />} />
 
       {/* Página pública de cadastro */}
       <Route
