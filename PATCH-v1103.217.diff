@@ -1,0 +1,704 @@
+diff -ruN landing_orig/RELEASE-v1103.217.md landing/RELEASE-v1103.217.md
+--- landing_orig/RELEASE-v1103.217.md	1970-01-01 00:00:00.000000000 +0000
++++ landing/RELEASE-v1103.217.md	2026-08-18 10:01:31.147669267 +0000
+@@ -0,0 +1,21 @@
++# v1103.217 — Public Legal Pages & WordPress Compliance
++
++Release incremental sobre a landing institucional preservada na v1103.216.
++
++## Objetivo
++
++Criar documentos legais públicos e estáveis exigidos pelas integrações oficiais e pelo processo de revisão do plugin no WordPress.org.
++
++## Entregas
++
++- `/terms` — Termos de Uso públicos.
++- `/privacy` — Política de Privacidade pública.
++- Links legais no `PublicFooter`.
++- Entradas `/terms` e `/privacy` no sitemap.
++- Páginas legais independentes do loader do widget para que possam ser consultadas mesmo quando o serviço de conversação estiver indisponível.
++- Transparência específica sobre `api.leadyia.com` e `widget.leadyia.com` na Política de Privacidade.
++- Validador `test:public-legal-pages-v1103.217`.
++
++## Preservação arquitetural
++
++Nenhum playbook, tenant, canal, billing, checkout, Baileys, lifecycle, CRM ou appointment foi alterado nesta release.
+diff -ruN landing_orig/package-lock.json landing/package-lock.json
+--- landing_orig/package-lock.json	2026-08-16 20:46:02.000000000 +0000
++++ landing/package-lock.json	2026-08-18 10:06:13.802935585 +0000
+@@ -1,12 +1,12 @@
+ {
+   "name": "leadyia-landing-v500-premium-unificada",
+-  "version": "5.0.206",
++  "version": "5.0.217",
+   "lockfileVersion": 3,
+   "requires": true,
+   "packages": {
+     "": {
+       "name": "leadyia-landing-v500-premium-unificada",
+-      "version": "5.0.206",
++      "version": "5.0.217",
+       "dependencies": {
+         "react": "^19.2.3",
+         "react-dom": "^19.2.3",
+diff -ruN landing_orig/package.json landing/package.json
+--- landing_orig/package.json	2026-08-16 20:43:27.000000000 +0000
++++ landing/package.json	2026-08-18 10:01:30.949211231 +0000
+@@ -1,7 +1,7 @@
+ {
+   "name": "leadyia-landing-v500-premium-unificada",
+   "private": true,
+-  "version": "5.0.206",
++  "version": "5.0.217",
+   "type": "module",
+   "scripts": {
+     "dev": "vite --host 0.0.0.0 --port 5176",
+@@ -40,7 +40,8 @@
+     "test:starter-pro-focus-v1103.122": "node scripts/validate-starter-pro-focus-v1103.122.mjs",
+     "test:full-14-playbooks-v1103.123": "node scripts/validate-full-14-playbooks-v1103.123.mjs",
+     "test:leadyia-institutional-v1103.124": "node scripts/validate-leadyia-institutional-v1103.124.mjs",
+-    "test:landing-commercial-conversion-v1103.206": "node scripts/validate-landing-commercial-conversion-v1103.206.mjs"
++    "test:landing-commercial-conversion-v1103.206": "node scripts/validate-landing-commercial-conversion-v1103.206.mjs",
++    "test:public-legal-pages-v1103.217": "node scripts/validate-public-legal-pages-v1103.217.mjs"
+   },
+   "dependencies": {
+     "react": "^19.2.3",
+diff -ruN landing_orig/public/sitemap.xml landing/public/sitemap.xml
+--- landing_orig/public/sitemap.xml	2026-07-03 20:22:40.000000000 +0000
++++ landing/public/sitemap.xml	2026-08-18 10:01:30.368029410 +0000
+@@ -1872,4 +1872,16 @@
+     <xhtml:link rel="alternate" hreflang="es-CL" href="https://leadyia.com/cl/contact" />
+     <xhtml:link rel="alternate" hreflang="x-default" href="https://leadyia.com/contact" />
+   </url>
++  <url>
++    <loc>https://leadyia.com/terms</loc>
++    <lastmod>2026-08-18</lastmod>
++    <changefreq>monthly</changefreq>
++    <priority>0.3</priority>
++  </url>
++  <url>
++    <loc>https://leadyia.com/privacy</loc>
++    <lastmod>2026-08-18</lastmod>
++    <changefreq>monthly</changefreq>
++    <priority>0.3</priority>
++  </url>
+ </urlset>
+diff -ruN landing_orig/scripts/validate-public-legal-pages-v1103.217.mjs landing/scripts/validate-public-legal-pages-v1103.217.mjs
+--- landing_orig/scripts/validate-public-legal-pages-v1103.217.mjs	1970-01-01 00:00:00.000000000 +0000
++++ landing/scripts/validate-public-legal-pages-v1103.217.mjs	2026-08-18 10:01:30.493005037 +0000
+@@ -0,0 +1,28 @@
++import fs from "node:fs";
++
++const checks = [
++  ["src/app/Routes.jsx", 'path="/terms"'],
++  ["src/app/Routes.jsx", 'path="/privacy"'],
++  ["src/pages/legal/Terms.jsx", "Termos de Uso"],
++  ["src/pages/legal/Privacy.jsx", "Política de Privacidade"],
++  ["src/pages/legal/Privacy.jsx", "https://api.leadyia.com"],
++  ["src/pages/legal/Privacy.jsx", "https://widget.leadyia.com"],
++  ["src/components/layout/PublicFooter.jsx", 'href: "/terms"'],
++  ["src/components/layout/PublicFooter.jsx", 'href: "/privacy"'],
++  ["public/sitemap.xml", "https://leadyia.com/terms"],
++  ["public/sitemap.xml", "https://leadyia.com/privacy"],
++];
++
++let failed = 0;
++for (const [file, needle] of checks) {
++  const content = fs.readFileSync(file, "utf8");
++  if (!content.includes(needle)) {
++    console.error(`FAIL ${file}: missing ${needle}`);
++    failed += 1;
++  } else {
++    console.log(`PASS ${file}: ${needle}`);
++  }
++}
++
++if (failed) process.exit(1);
++console.log(`Public Legal Pages v1103.217: ${checks.length}/${checks.length} contracts passed.`);
+diff -ruN landing_orig/src/app/Routes.jsx landing/src/app/Routes.jsx
+--- landing_orig/src/app/Routes.jsx	2026-08-16 20:43:27.000000000 +0000
++++ landing/src/app/Routes.jsx	2026-08-18 10:01:29.810452018 +0000
+@@ -36,6 +36,8 @@
+ import PricingPage from "../modules/marketing/pricing/PricingPage";
+ import UniversalNicheLanding from "../pages/niches/UniversalNicheLanding";
+ import SaasLeadyiaLanding from "../pages/niches/SaasLeadyiaLanding";
++import Terms from "../pages/legal/Terms";
++import Privacy from "../pages/legal/Privacy";
+ 
+ function HostAwareHome() {
+   const host = typeof window !== "undefined" ? window.location.hostname : "";
+@@ -172,6 +174,10 @@
+       {/* Comparação completa: Starter, Pro, Business, Enterprise e Agency */}
+       <Route path="/pricing" element={<PricingPage />} />
+ 
++      {/* Documentos legais públicos usados também pelas integrações oficiais */}
++      <Route path="/terms" element={<Terms />} />
++      <Route path="/privacy" element={<Privacy />} />
++
+       {/* Página pública de cadastro */}
+       <Route
+         path="/register"
+diff -ruN landing_orig/src/components/layout/PublicFooter.jsx landing/src/components/layout/PublicFooter.jsx
+--- landing_orig/src/components/layout/PublicFooter.jsx	2026-08-10 16:23:14.000000000 +0000
++++ landing/src/components/layout/PublicFooter.jsx	2026-08-18 10:01:29.810855268 +0000
+@@ -67,6 +67,14 @@
+     ],
+   },
+   {
++    title: "Legal",
++    links: [
++      { label: "Termos de Uso", href: "/terms" },
++      { label: "Política de Privacidade", href: "/privacy" },
++      { label: "Contato de privacidade", href: "mailto:support@leadyia.com" },
++    ],
++  },
++  {
+     title: "Acesso",
+     links: [
+       { label: "Criar conta", href: DASHBOARD_REGISTER_URL },
+@@ -191,7 +199,7 @@
+ 
+         <div className="ly-public-footer__bottom">
+           <p>© 2026 LeadyIA. Todos os direitos reservados.</p>
+-          <p>Em conformidade com LGPD e boas práticas de segurança para SaaS.</p>
++          <p>Em conformidade com LGPD e boas práticas de segurança para SaaS. · <a href="/terms">Termos</a> · <a href="/privacy">Privacidade</a></p>
+         </div>
+       </div>
+     </footer>
+diff -ruN landing_orig/src/pages/legal/LegalPageShell.jsx landing/src/pages/legal/LegalPageShell.jsx
+--- landing_orig/src/pages/legal/LegalPageShell.jsx	1970-01-01 00:00:00.000000000 +0000
++++ landing/src/pages/legal/LegalPageShell.jsx	2026-08-18 10:01:29.344745071 +0000
+@@ -0,0 +1,41 @@
++import { useEffect } from "react";
++import PublicHeader from "../../components/layout/PublicHeader";
++import PublicFooter from "../../components/layout/PublicFooter";
++
++export default function LegalPageShell({ title, description, updatedAt, children }) {
++  useEffect(() => {
++    const previousTitle = document.title;
++    const meta = document.querySelector('meta[name="description"]');
++    const previousDescription = meta?.getAttribute("content") || "";
++
++    document.title = `${title} | LeadyIA`;
++    if (meta) meta.setAttribute("content", description);
++    window.scrollTo({ top: 0, behavior: "auto" });
++
++    return () => {
++      document.title = previousTitle;
++      if (meta) meta.setAttribute("content", previousDescription);
++    };
++  }, [title, description]);
++
++  return (
++    <div className="ly-legal-page">
++      <PublicHeader />
++      <main className="ly-legal-main">
++        <header className="ly-legal-hero">
++          <a href="/" className="ly-legal-back">← Voltar para LeadyIA</a>
++          <span className="ly-legal-kicker">LeadyIA · Documento legal público</span>
++          <h1>{title}</h1>
++          <p>{description}</p>
++          <div className="ly-legal-meta">
++            <span>Última atualização: {updatedAt}</span>
++            <span>Contato: <a href="mailto:support@leadyia.com">support@leadyia.com</a></span>
++          </div>
++        </header>
++
++        <article className="ly-legal-document">{children}</article>
++      </main>
++      <PublicFooter />
++    </div>
++  );
++}
+diff -ruN landing_orig/src/pages/legal/Privacy.jsx landing/src/pages/legal/Privacy.jsx
+--- landing_orig/src/pages/legal/Privacy.jsx	1970-01-01 00:00:00.000000000 +0000
++++ landing/src/pages/legal/Privacy.jsx	2026-08-18 10:01:29.346070618 +0000
+@@ -0,0 +1,183 @@
++import LegalPageShell from "./LegalPageShell";
++
++const UPDATED_AT = "18 de agosto de 2026";
++
++export default function Privacy() {
++  return (
++    <LegalPageShell
++      title="Política de Privacidade"
++      description="Saiba quais dados a LeadyIA pode tratar, por que eles são utilizados, quando são compartilhados e quais são seus direitos."
++      updatedAt={UPDATED_AT}
++    >
++      <section>
++        <h2>1. Escopo</h2>
++        <p>
++          Esta Política de Privacidade descreve como a LeadyIA trata dados pessoais no site, dashboard, widget,
++          integrações, APIs, CRM, automações, agendamentos e demais recursos da plataforma. Ela também explica o
++          tratamento realizado quando um visitante conversa com um assistente LeadyIA instalado por um cliente.
++        </p>
++      </section>
++
++      <section>
++        <h2>2. Papéis no tratamento</h2>
++        <p>
++          Quando tratamos dados para administrar contas, segurança, cobrança, suporte e operação do nosso próprio
++          serviço, a LeadyIA pode atuar como controladora. Quando processamos dados de leads, clientes ou usuários em
++          nome de um tenant, o cliente normalmente define as finalidades e atua como controlador, enquanto a LeadyIA
++          atua como operadora, conforme a legislação e a configuração aplicável.
++        </p>
++      </section>
++
++      <section>
++        <h2>3. Dados que podemos tratar</h2>
++        <p>Dependendo dos recursos utilizados, podemos tratar:</p>
++        <ul>
++          <li>dados de conta, como nome, e-mail, telefone, empresa, função, tenant e preferências;</li>
++          <li>dados de leads e contatos, como nome, e-mail, telefone/WhatsApp e identificadores de canal;</li>
++          <li>conteúdo de conversas, mensagens, respostas, quick replies e registros de atendimento;</li>
++          <li>dados de CRM, origem do lead, estágio, tags, histórico de contato e eventos de lifecycle;</li>
++          <li>dados de agendamento, como serviço ou objetivo, unidade, disponibilidade, data, período, horário, reagendamento, cancelamento e lembretes;</li>
++          <li>dados técnicos, como URL/origem, navegador, endereço IP quando necessário à infraestrutura, identificadores de sessão, logs, timestamps e eventos de segurança;</li>
++          <li>dados de uso e configuração, como playbook, preferências de widget, canais conectados, permissões e integrações;</li>
++          <li>dados de cobrança estritamente necessários à gestão da assinatura; dados completos de cartão podem ser processados diretamente pelo provedor de pagamento.</li>
++        </ul>
++      </section>
++
++      <section>
++        <h2>4. Quando os dados são coletados</h2>
++        <p>
++          Os dados podem ser coletados quando você cria ou administra uma conta, utiliza o dashboard, configura um
++          canal, instala o widget ou plugin, inicia ou responde a uma conversa, informa seus dados de contato, agenda um
++          atendimento, solicita suporte, executa uma integração ou quando sistemas conectados enviam eventos necessários
++          ao serviço.
++        </p>
++      </section>
++
++      <section>
++        <h2>5. Finalidades do tratamento</h2>
++        <p>Os dados podem ser utilizados para:</p>
++        <ul>
++          <li>fornecer, autenticar e manter a plataforma;</li>
++          <li>entregar conversas, qualificação, CRM, automações, handoff e atendimento humano;</li>
++          <li>criar, confirmar, alterar e lembrar agendamentos;</li>
++          <li>operar integrações e canais habilitados pelo cliente;</li>
++          <li>prevenir fraude, abuso, falhas e incidentes de segurança;</li>
++          <li>medir uso, limites de plano, desempenho e confiabilidade;</li>
++          <li>prestar suporte e cumprir obrigações contratuais, legais e regulatórias;</li>
++          <li>enviar comunicações transacionais ou de lifecycle quando habilitadas e quando houver base legal aplicável.</li>
++        </ul>
++      </section>
++
++      <section>
++        <h2>6. Bases legais</h2>
++        <p>
++          Conforme o contexto e a legislação aplicável, o tratamento pode se basear na execução de contrato ou de
++          procedimentos preliminares, cumprimento de obrigação legal ou regulatória, legítimo interesse, exercício
++          regular de direitos e consentimento quando este for necessário. O cliente é responsável por definir e
++          documentar a base legal adequada para os dados que controla por meio de seu tenant.
++        </p>
++      </section>
++
++      <section>
++        <h2>7. Serviços externos e integrações</h2>
++        <p>
++          A LeadyIA utiliza infraestrutura e pode integrar serviços externos para disponibilizar funções como hospedagem,
++          entrega de mensagens, e-mail, calendário, pagamentos, analytics e comércio eletrônico. Dados são enviados a
++          esses serviços somente quando necessário à funcionalidade habilitada, conforme a configuração do tenant e as
++          regras do provedor correspondente.
++        </p>
++        <p>
++          No plugin oficial para WordPress, por exemplo, o navegador pode carregar o widget de
++          {" "}<code>https://widget.leadyia.com</code> e enviar dados necessários ao atendimento para
++          {" "}<code>https://api.leadyia.com</code> quando o widget é inicializado ou utilizado.
++        </p>
++      </section>
++
++      <section>
++        <h2>8. Compartilhamento</h2>
++        <p>
++          Não vendemos dados pessoais. Podemos compartilhar dados com fornecedores e suboperadores necessários à
++          prestação do serviço, com integrações ativadas pelo cliente, por determinação legal ou para proteger direitos,
++          segurança e integridade da plataforma. Cada compartilhamento deve observar finalidade, necessidade e medidas
++          de proteção compatíveis com o contexto.
++        </p>
++      </section>
++
++      <section>
++        <h2>9. Transferências internacionais</h2>
++        <p>
++          Alguns fornecedores de infraestrutura ou integrações podem processar dados em outros países. Quando aplicável,
++          buscamos adotar mecanismos e salvaguardas compatíveis com a legislação de proteção de dados pertinente.
++        </p>
++      </section>
++
++      <section>
++        <h2>10. Retenção</h2>
++        <p>
++          Mantemos dados pelo período necessário às finalidades descritas, à execução do contrato, segurança, prevenção
++          de fraude, cumprimento de obrigações legais e exercício regular de direitos. Prazos específicos podem variar
++          conforme o tipo de dado, plano, configuração do tenant e obrigação aplicável. Após o término do período
++          necessário, os dados podem ser excluídos, anonimizados ou mantidos quando houver fundamento legal.
++        </p>
++      </section>
++
++      <section>
++        <h2>11. Segurança</h2>
++        <p>
++          Adotamos controles técnicos e organizacionais voltados a proteger confidencialidade, integridade e
++          disponibilidade, incluindo autenticação, controle de acesso, isolamento entre tenants, registros operacionais
++          e medidas de proteção de infraestrutura. Nenhum sistema é completamente imune a riscos, por isso segurança é
++          tratada como processo contínuo.
++        </p>
++      </section>
++
++      <section>
++        <h2>12. Cookies e armazenamento local</h2>
++        <p>
++          O site e os componentes da LeadyIA podem utilizar cookies ou armazenamento local estritamente necessários para
++          sessão, preferências, atribuição, segurança e continuidade de uso. Tecnologias adicionais de analytics ou
++          marketing devem observar a configuração do site, a legislação aplicável e, quando necessário, mecanismos de
++          consentimento.
++        </p>
++      </section>
++
++      <section>
++        <h2>13. Direitos dos titulares</h2>
++        <p>
++          Conforme a legislação aplicável, você pode ter direitos de confirmação e acesso, correção, anonimização,
++          bloqueio ou eliminação, portabilidade quando cabível, informação sobre compartilhamentos, revogação de
++          consentimento, oposição e revisão de determinadas decisões automatizadas. Quando a LeadyIA atuar apenas como
++          operadora de um tenant, poderemos direcionar a solicitação ao cliente controlador responsável.
++        </p>
++      </section>
++
++      <section>
++        <h2>14. Crianças e adolescentes</h2>
++        <p>
++          A LeadyIA é uma plataforma B2B e não é direcionada à criação autônoma de contas por crianças. Se um cliente
++          utilizar a plataforma em contexto que envolva dados de crianças ou adolescentes, ele deve observar as regras
++          legais específicas, inclusive melhor interesse e consentimentos ou autorizações exigidos.
++        </p>
++      </section>
++
++      <section>
++        <h2>15. Alterações desta política</h2>
++        <p>
++          Podemos atualizar esta Política de Privacidade para refletir mudanças legais, técnicas ou de produto. A data
++          da versão vigente é exibida no topo desta página. Mudanças materiais poderão ser comunicadas pelos canais
++          disponíveis quando apropriado ou exigido.
++        </p>
++      </section>
++
++      <section>
++        <h2>16. Contato sobre privacidade</h2>
++        <p>
++          Solicitações ou dúvidas relacionadas a privacidade e proteção de dados podem ser enviadas para
++          {" "}<a href="mailto:support@leadyia.com">support@leadyia.com</a>. Para solicitações ligadas a um tenant
++          específico, informe a empresa ou o site em que a interação ocorreu para facilitar a identificação do
++          controlador responsável.
++        </p>
++      </section>
++    </LegalPageShell>
++  );
++}
+diff -ruN landing_orig/src/pages/legal/Terms.jsx landing/src/pages/legal/Terms.jsx
+--- landing_orig/src/pages/legal/Terms.jsx	1970-01-01 00:00:00.000000000 +0000
++++ landing/src/pages/legal/Terms.jsx	2026-08-18 10:01:29.345389254 +0000
+@@ -0,0 +1,153 @@
++import LegalPageShell from "./LegalPageShell";
++
++const UPDATED_AT = "18 de agosto de 2026";
++
++export default function Terms() {
++  return (
++    <LegalPageShell
++      title="Termos de Uso"
++      description="Termos aplicáveis ao acesso e uso da plataforma LeadyIA, seus widgets, integrações, automações, APIs e recursos relacionados."
++      updatedAt={UPDATED_AT}
++    >
++      <section>
++        <h2>1. Aceitação dos termos</h2>
++        <p>
++          Estes Termos de Uso regulam o acesso e o uso da LeadyIA, incluindo o site, dashboard, widget para sites,
++          integrações, APIs, recursos de atendimento, CRM, automação, agendamento e funcionalidades relacionadas.
++          Ao criar uma conta, contratar um plano, instalar uma integração ou utilizar a plataforma, você declara que
++          leu e concorda com estes termos.
++        </p>
++      </section>
++
++      <section>
++        <h2>2. Sobre a LeadyIA</h2>
++        <p>
++          A LeadyIA é uma plataforma SaaS de inteligência artificial voltada a atendimento, qualificação de leads,
++          vendas, CRM, automações de ciclo de vida, agendamentos e integração de canais. Algumas funcionalidades
++          dependem de serviços de terceiros escolhidos ou habilitados pelo cliente, como provedores de mensagens,
++          e-mail, calendário, pagamentos ou comércio eletrônico.
++        </p>
++      </section>
++
++      <section>
++        <h2>3. Conta e responsabilidade do cliente</h2>
++        <p>
++          O cliente é responsável por manter suas credenciais seguras, fornecer informações verdadeiras e atualizadas,
++          configurar corretamente os canais e permissões do seu tenant e garantir que possui base legal e autorização
++          para tratar os dados pessoais inseridos ou coletados por meio da plataforma.
++        </p>
++        <p>
++          O cliente também é responsável pelo conteúdo de seus playbooks, bases de conhecimento, campanhas,
++          mensagens, integrações, ofertas, políticas comerciais e decisões tomadas a partir das informações fornecidas
++          pela LeadyIA.
++        </p>
++      </section>
++
++      <section>
++        <h2>4. Uso aceitável</h2>
++        <p>Não é permitido utilizar a LeadyIA para:</p>
++        <ul>
++          <li>praticar fraude, engenharia social, spam, assédio, abuso ou atividades ilegais;</li>
++          <li>violar direitos de terceiros, direitos autorais, marcas, privacidade ou proteção de dados;</li>
++          <li>enviar mensagens em desacordo com consentimentos, opt-out, regras dos canais ou legislação aplicável;</li>
++          <li>tentar contornar limites de plano, autenticação, isolamento entre tenants ou mecanismos de segurança;</li>
++          <li>introduzir código malicioso, atacar, sobrecarregar ou comprometer a disponibilidade da plataforma;</li>
++          <li>usar respostas geradas por IA como substituição automática de aconselhamento profissional quando revisão humana for necessária.</li>
++        </ul>
++      </section>
++
++      <section>
++        <h2>5. Inteligência artificial e revisão humana</h2>
++        <p>
++          Respostas geradas por IA podem conter imprecisões. O cliente deve revisar configurações, fluxos e conteúdos
++          adequados ao seu contexto, especialmente em áreas reguladas, jurídicas, médicas, financeiras ou outras em
++          que erros possam produzir impactos relevantes. A LeadyIA oferece automação e apoio operacional, não uma
++          garantia de resultado comercial ou profissional específico.
++        </p>
++      </section>
++
++      <section>
++        <h2>6. Integrações e serviços de terceiros</h2>
++        <p>
++          Recursos integrados podem depender de APIs, contas ou infraestrutura de terceiros. O uso dessas integrações
++          também pode estar sujeito aos termos e políticas dos respectivos provedores. Alterações, indisponibilidades,
++          bloqueios, limites ou mudanças de API desses provedores podem afetar funcionalidades específicas da LeadyIA.
++        </p>
++      </section>
++
++      <section>
++        <h2>7. Planos, cobrança e limites</h2>
++        <p>
++          Recursos, canais, usuários, assistentes, limites de conversas, períodos de teste e preços são definidos no
++          plano contratado e na oferta apresentada no momento da contratação. Quando aplicável, cobranças recorrentes
++          são processadas pelos provedores de pagamento disponibilizados pela LeadyIA. Tributos, estornos e regras de
++          cancelamento seguem a legislação aplicável e as condições apresentadas no checkout.
++        </p>
++      </section>
++
++      <section>
++        <h2>8. Disponibilidade e manutenção</h2>
++        <p>
++          A LeadyIA busca manter o serviço disponível e seguro, mas pode realizar manutenções, atualizações e correções.
++          Interrupções também podem ocorrer por falhas de infraestrutura, provedores externos, internet, canais de
++          terceiros ou eventos fora do controle razoável da plataforma.
++        </p>
++      </section>
++
++      <section>
++        <h2>9. Propriedade intelectual</h2>
++        <p>
++          A plataforma, código, interface, marca, documentação, modelos de produto e materiais próprios da LeadyIA são
++          protegidos pela legislação aplicável. O cliente permanece responsável e titular dos conteúdos, marcas e dados
++          que inserir na plataforma, observados os direitos de terceiros.
++        </p>
++      </section>
++
++      <section>
++        <h2>10. Proteção de dados</h2>
++        <p>
++          O tratamento de dados pessoais relacionado ao serviço é descrito na nossa
++          {" "}<a href="/privacy">Política de Privacidade</a>. Em cenários B2B, o cliente normalmente define as finalidades
++          do tratamento dos dados de seus próprios leads e clientes, enquanto a LeadyIA processa essas informações para
++          prestar o serviço contratado, conforme as configurações habilitadas.
++        </p>
++      </section>
++
++      <section>
++        <h2>11. Suspensão e encerramento</h2>
++        <p>
++          O acesso pode ser suspenso em caso de inadimplência, risco de segurança, uso abusivo, violação destes termos
++          ou necessidade de cumprimento legal. O cliente pode solicitar cancelamento conforme as condições do plano e
++          os canais disponíveis na sua conta.
++        </p>
++      </section>
++
++      <section>
++        <h2>12. Limitação de responsabilidade</h2>
++        <p>
++          Na extensão permitida pela lei, a LeadyIA não responde por perdas indiretas, lucros cessantes, decisões
++          tomadas exclusivamente com base em respostas automatizadas, falhas de serviços de terceiros ou uso da
++          plataforma em desacordo com estes termos. Nada nesta cláusula afasta direitos que não possam ser excluídos
++          pela legislação aplicável.
++        </p>
++      </section>
++
++      <section>
++        <h2>13. Alterações destes termos</h2>
++        <p>
++          Estes termos podem ser atualizados para refletir mudanças legais, de produto, segurança ou operação. A data
++          da última atualização ficará indicada nesta página. Mudanças materiais poderão ser comunicadas pelos canais
++          disponíveis quando exigido ou apropriado.
++        </p>
++      </section>
++
++      <section>
++        <h2>14. Contato</h2>
++        <p>
++          Dúvidas sobre estes Termos de Uso podem ser enviadas para
++          {" "}<a href="mailto:support@leadyia.com">support@leadyia.com</a>.
++        </p>
++      </section>
++    </LegalPageShell>
++  );
++}
+diff -ruN landing_orig/src/styles/index.css landing/src/styles/index.css
+--- landing_orig/src/styles/index.css	2026-06-19 03:25:36.000000000 +0000
++++ landing/src/styles/index.css	2026-08-18 10:01:29.811046402 +0000
+@@ -15,4 +15,5 @@
+ @import "./gradient.system.css";
+ @import "./global.css";
+ @import "./public-shell.css";
++@import "./legal-pages.css";
+ @import "./responsive-safe.css";
+diff -ruN landing_orig/src/styles/legal-pages.css landing/src/styles/legal-pages.css
+--- landing_orig/src/styles/legal-pages.css	1970-01-01 00:00:00.000000000 +0000
++++ landing/src/styles/legal-pages.css	2026-08-18 10:01:29.347245025 +0000
+@@ -0,0 +1,135 @@
++.ly-legal-page {
++  min-height: 100vh;
++  background:
++    radial-gradient(circle at 20% 0%, rgba(37, 99, 235, 0.16), transparent 28%),
++    radial-gradient(circle at 85% 8%, rgba(124, 58, 237, 0.14), transparent 24%),
++    #070b14;
++  color: #e5edf8;
++}
++
++.ly-legal-main {
++  width: min(980px, calc(100vw - 32px));
++  margin: 0 auto;
++  padding: 132px 0 72px;
++}
++
++.ly-legal-hero {
++  padding: 42px 44px;
++  border: 1px solid rgba(148, 163, 184, 0.16);
++  border-radius: 28px;
++  background: linear-gradient(145deg, rgba(15, 23, 42, 0.94), rgba(9, 13, 24, 0.9));
++  box-shadow: 0 28px 90px rgba(0, 0, 0, 0.28);
++}
++
++.ly-legal-back,
++.ly-legal-meta a,
++.ly-legal-document a {
++  color: #7dd3fc;
++}
++
++.ly-legal-back {
++  display: inline-flex;
++  margin-bottom: 28px;
++  text-decoration: none;
++  font-weight: 750;
++}
++
++.ly-legal-kicker {
++  display: block;
++  margin-bottom: 12px;
++  color: #93c5fd;
++  font-size: 0.82rem;
++  font-weight: 850;
++  letter-spacing: 0.08em;
++  text-transform: uppercase;
++}
++
++.ly-legal-hero h1 {
++  margin: 0;
++  color: #fff;
++  font-size: clamp(2.25rem, 6vw, 4.35rem);
++  line-height: 0.98;
++  letter-spacing: -0.05em;
++}
++
++.ly-legal-hero > p {
++  max-width: 760px;
++  margin: 22px 0 0;
++  color: rgba(226, 232, 240, 0.78);
++  font-size: 1.08rem;
++  line-height: 1.75;
++}
++
++.ly-legal-meta {
++  display: flex;
++  flex-wrap: wrap;
++  gap: 10px 22px;
++  margin-top: 26px;
++  color: rgba(203, 213, 225, 0.72);
++  font-size: 0.9rem;
++}
++
++.ly-legal-document {
++  margin-top: 26px;
++  padding: 28px 44px 46px;
++  border: 1px solid rgba(148, 163, 184, 0.14);
++  border-radius: 28px;
++  background: rgba(9, 13, 24, 0.86);
++}
++
++.ly-legal-document section {
++  padding: 24px 0;
++  border-bottom: 1px solid rgba(148, 163, 184, 0.1);
++}
++
++.ly-legal-document section:last-child {
++  border-bottom: 0;
++}
++
++.ly-legal-document h2 {
++  margin: 0 0 12px;
++  color: #f8fafc;
++  font-size: 1.25rem;
++  line-height: 1.35;
++}
++
++.ly-legal-document p,
++.ly-legal-document li {
++  color: rgba(226, 232, 240, 0.78);
++  line-height: 1.78;
++}
++
++.ly-legal-document p {
++  margin: 0 0 12px;
++}
++
++.ly-legal-document ul {
++  margin: 12px 0 0;
++  padding-left: 24px;
++}
++
++.ly-legal-document li + li {
++  margin-top: 8px;
++}
++
++.ly-legal-document code {
++  padding: 2px 7px;
++  border-radius: 7px;
++  background: rgba(148, 163, 184, 0.12);
++  color: #bae6fd;
++  overflow-wrap: anywhere;
++}
++
++@media (max-width: 720px) {
++  .ly-legal-main {
++    width: min(100% - 20px, 980px);
++    padding-top: 112px;
++  }
++
++  .ly-legal-hero,
++  .ly-legal-document {
++    padding-left: 22px;
++    padding-right: 22px;
++    border-radius: 22px;
++  }
++}

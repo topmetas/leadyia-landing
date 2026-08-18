@@ -1,0 +1,135 @@
+.ly-legal-page {
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at 20% 0%, rgba(37, 99, 235, 0.16), transparent 28%),
+    radial-gradient(circle at 85% 8%, rgba(124, 58, 237, 0.14), transparent 24%),
+    #070b14;
+  color: #e5edf8;
+}
+
+.ly-legal-main {
+  width: min(980px, calc(100vw - 32px));
+  margin: 0 auto;
+  padding: 132px 0 72px;
+}
+
+.ly-legal-hero {
+  padding: 42px 44px;
+  border: 1px solid rgba(148, 163, 184, 0.16);
+  border-radius: 28px;
+  background: linear-gradient(145deg, rgba(15, 23, 42, 0.94), rgba(9, 13, 24, 0.9));
+  box-shadow: 0 28px 90px rgba(0, 0, 0, 0.28);
+}
+
+.ly-legal-back,
+.ly-legal-meta a,
+.ly-legal-document a {
+  color: #7dd3fc;
+}
+
+.ly-legal-back {
+  display: inline-flex;
+  margin-bottom: 28px;
+  text-decoration: none;
+  font-weight: 750;
+}
+
+.ly-legal-kicker {
+  display: block;
+  margin-bottom: 12px;
+  color: #93c5fd;
+  font-size: 0.82rem;
+  font-weight: 850;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.ly-legal-hero h1 {
+  margin: 0;
+  color: #fff;
+  font-size: clamp(2.25rem, 6vw, 4.35rem);
+  line-height: 0.98;
+  letter-spacing: -0.05em;
+}
+
+.ly-legal-hero > p {
+  max-width: 760px;
+  margin: 22px 0 0;
+  color: rgba(226, 232, 240, 0.78);
+  font-size: 1.08rem;
+  line-height: 1.75;
+}
+
+.ly-legal-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 22px;
+  margin-top: 26px;
+  color: rgba(203, 213, 225, 0.72);
+  font-size: 0.9rem;
+}
+
+.ly-legal-document {
+  margin-top: 26px;
+  padding: 28px 44px 46px;
+  border: 1px solid rgba(148, 163, 184, 0.14);
+  border-radius: 28px;
+  background: rgba(9, 13, 24, 0.86);
+}
+
+.ly-legal-document section {
+  padding: 24px 0;
+  border-bottom: 1px solid rgba(148, 163, 184, 0.1);
+}
+
+.ly-legal-document section:last-child {
+  border-bottom: 0;
+}
+
+.ly-legal-document h2 {
+  margin: 0 0 12px;
+  color: #f8fafc;
+  font-size: 1.25rem;
+  line-height: 1.35;
+}
+
+.ly-legal-document p,
+.ly-legal-document li {
+  color: rgba(226, 232, 240, 0.78);
+  line-height: 1.78;
+}
+
+.ly-legal-document p {
+  margin: 0 0 12px;
+}
+
+.ly-legal-document ul {
+  margin: 12px 0 0;
+  padding-left: 24px;
+}
+
+.ly-legal-document li + li {
+  margin-top: 8px;
+}
+
+.ly-legal-document code {
+  padding: 2px 7px;
+  border-radius: 7px;
+  background: rgba(148, 163, 184, 0.12);
+  color: #bae6fd;
+  overflow-wrap: anywhere;
+}
+
+@media (max-width: 720px) {
+  .ly-legal-main {
+    width: min(100% - 20px, 980px);
+    padding-top: 112px;
+  }
+
+  .ly-legal-hero,
+  .ly-legal-document {
+    padding-left: 22px;
+    padding-right: 22px;
+    border-radius: 22px;
+  }
+}

@@ -67,6 +67,14 @@ const FOOTER_GROUPS = [
     ],
   },
   {
+    title: "Legal",
+    links: [
+      { label: "Termos de Uso", href: "/terms" },
+      { label: "Política de Privacidade", href: "/privacy" },
+      { label: "Contato de privacidade", href: "mailto:support@leadyia.com" },
+    ],
+  },
+  {
     title: "Acesso",
     links: [
       { label: "Criar conta", href: DASHBOARD_REGISTER_URL },
@@ -191,7 +199,7 @@ export default function PublicFooter() {
 
         <div className="ly-public-footer__bottom">
           <p>© 2026 LeadyIA. Todos os direitos reservados.</p>
-          <p>Em conformidade com LGPD e boas práticas de segurança para SaaS.</p>
+          <p>Em conformidade com LGPD e boas práticas de segurança para SaaS. · <a href="/terms">Termos</a> · <a href="/privacy">Privacidade</a></p>
         </div>
       </div>
     </footer>
